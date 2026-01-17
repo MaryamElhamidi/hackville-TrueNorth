@@ -63,4 +63,42 @@ const { class: clazz } = Astro.props;
 
 <style is:global>
 	@import url('https://fonts.cdnfonts.com/css/inter');
+
+	:root {
+		--color-primary: #1d4ed8;
+		--color-primary-hover: #1e40af;
+		--color-neutral-bg: #f8fafc;
+		--color-neutral-surface: #ffffff;
+		--color-neutral-text: #0f172a;
+		--color-focus-ring: #2563eb;
+		--radius-sm: 0.375rem;
+		--radius-md: 0.5rem;
+		--radius-lg: 0.75rem;
+		--space-3: 0.75rem;
+		--space-4: 1rem;
+		--space-6: 1.5rem;
+	}
+
+	.dark {
+		--color-primary: #3b82f6;
+		--color-primary-hover: #2563eb;
+		--color-neutral-bg: #0f172a;
+		--color-neutral-surface: #111827;
+		--color-neutral-text: #f8fafc;
+		--color-focus-ring: #93c5fd;
+	}
+
+	body {
+		background-color: var(--color-neutral-bg);
+		color: var(--color-neutral-text);
+	}
+
+	:where(input, select, textarea, button) {
+		border-radius: var(--radius-md);
+	}
+
+	:where(input, select, textarea, button, a):focus-visible {
+		outline: 3px solid var(--color-focus-ring);
+		outline-offset: 2px;
+	}
 </style>
