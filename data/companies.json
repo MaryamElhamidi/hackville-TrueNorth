@@ -1,0 +1,26 @@
+{
+  "companyId": "uuid",
+  "companyName": "",
+  "companyStage": "idea | early | scaling",
+  "industry": "",
+  "description": "",
+  "servedCustomerTypes": [
+    "individuals",
+    "small_businesses",
+    "enterprises",
+    "non_profits",
+    "government"
+  ],
+  "geographicFocus": [
+    "Ontario",
+    "British Columbia"
+  ],
+  "currentReach": "concept_only | pilot_users | active_users | growing_customer_base",
+  "accessibilityCommitment": "intentional | somewhat | not_yet",
+  "languagesSupported": [
+    "English",
+    "French",
+    "Other"
+  ],
+  "createdAt": "ISO_DATE"
+}

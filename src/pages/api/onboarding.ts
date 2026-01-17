@@ -3,39 +3,135 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { randomUUID } from 'node:crypto';
 
+interface FormData {
+	companyName?: string;
+	companyStage?: string;
+	industry?: string;
+	description?: string;
+	audience?: string[];
+	geographicFocus?: string[];
+	currentReach?: string;
+	accessibilityConsideration?: string;
+	languages?: string[];
+	languagesOther?: string;
+}
+
+// Normalization maps
+const normalizeCompanyStage = (stage: string): string => {
+	switch (stage) {
+		case 'Idea / Pre-launch':
+			return 'idea';
+		case 'Launched (Early)':
+			return 'early';
+		case 'Scaling':
+			return 'scaling';
+		default:
+			return 'idea';
+	}
+};
+
+const normalizeServedCustomerTypes = (audiences: string[]): string[] => {
+	const mapping: Record<string, string> = {
+		'Individuals': 'individuals',
+		'Small businesses': 'small_businesses',
+		'Enterprises': 'enterprises',
+		'Non-profits': 'non_profits',
+		'Government / public sector': 'government',
+	};
+
+	return audiences.map(audience => mapping[audience] || audience).filter(Boolean);
+};
+
+const normalizeCurrentReach = (reach: string): string => {
+	switch (reach) {
+		case 'Concept only':
+			return 'concept_only';
+		case 'Pilot users':
+			return 'pilot_users';
+		case 'Active users':
+			return 'active_users';
+		case 'Growing customer base':
+			return 'growing_customer_base';
+		default:
+			return 'concept_only';
+	}
+};
+
+const normalizeAccessibilityCommitment = (commitment: string): string => {
+	switch (commitment) {
+		case 'Yes, intentionally':
+			return 'intentional';
+		case 'Somewhat':
+			return 'somewhat';
+		case 'Not yet, but we want to':
+			return 'not_yet';
+		default:
+			return 'not_yet';
+	}
+};
+
+const normalizeLanguages = (languages: string[], other?: string): string[] => {
+	const normalized = [...languages];
+	if (other && other.trim()) {
+		normalized.push(other.trim());
+	}
+	return normalized;
+};
+
 export const POST: APIRoute = async ({ request }) => {
 	try {
-		const data = await request.json();
+		const formData: FormData = await request.json();
 
-		// Save to 'onboarding_data.json' in the project root
-		const filePath = path.join(process.cwd(), 'onboarding_data.json');
+		// Normalize the form data to match the schema
+		const normalizedData = {
+			companyId: randomUUID(),
+			companyName: formData.companyName || '',
+			companyStage: normalizeCompanyStage(formData.companyStage || ''),
+			industry: formData.industry || '',
+			description: formData.description || '',
+			servedCustomerTypes: normalizeServedCustomerTypes(formData.audience || []),
+			geographicFocus: formData.geographicFocus || [],
+			currentReach: normalizeCurrentReach(formData.currentReach || ''),
+			accessibilityCommitment: normalizeAccessibilityCommitment(formData.accessibilityConsideration || ''),
+			languagesSupported: normalizeLanguages(formData.languages || [], formData.languagesOther),
+			createdAt: new Date().toISOString(),
+		};
 
-		let fileData = [];
+		// Save to 'data/companies.json'
+		const filePath = path.join(process.cwd(), 'data', 'companies.json');
+
+		let companies = [];
 		try {
 			// Try to read existing file
 			const content = await fs.readFile(filePath, 'utf-8');
-			fileData = JSON.parse(content);
+			const parsed = JSON.parse(content);
+			// Handle case where file contains a single object (schema template)
+			companies = Array.isArray(parsed) ? parsed : [];
 		} catch (error) {
 			// File doesn't exist or is empty, start with empty array
+			companies = [];
 		}
 
-		const newEntry = {
-			id: randomUUID(),
-			timestamp: new Date().toISOString(),
-			...data,
-		};
+		// Append new company
+		companies.push(normalizedData);
 
-		fileData.push(newEntry);
+		// Write back to file
+		await fs.writeFile(filePath, JSON.stringify(companies, null, 2));
 
-		await fs.writeFile(filePath, JSON.stringify(fileData, null, 2));
-
-		return new Response(JSON.stringify({ success: true, id: newEntry.id }), {
+		return new Response(JSON.stringify({
+			success: true,
+			companyId: normalizedData.companyId,
+			message: 'Company profile saved successfully'
+		}), {
 			status: 200,
 			headers: { 'Content-Type': 'application/json' },
 		});
 	} catch (error) {
-		console.error('Error saving onboarding data:', error);
-		return new Response(JSON.stringify({ error: 'Failed to save data' }), {
+		console.error('Error saving company data:', error);
+		return new Response(JSON.stringify({
+			error: 'Failed to save company data',
+			details: error instanceof Error ? error.message : 'Unknown error'
+		}), {
 			status: 500,
 			headers: { 'Content-Type': 'application/json' },
 		});
