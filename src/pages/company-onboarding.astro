@@ -1,0 +1,361 @@
+---
+import LayoutApp from '../app/LayoutApp.astro';
+
+const industries = [
+	'Technology',
+	'Healthcare',
+	'Education',
+	'Finance',
+	'Retail',
+	'Non-profit',
+	'Government',
+	'Other',
+];
+
+const audiences = [
+	'Individuals',
+	'Small businesses',
+	'Enterprises',
+	'Non-profits',
+	'Government / public sector',
+];
+
+const provinces = [
+	'Nationwide',
+	'Alberta',
+	'British Columbia',
+	'Manitoba',
+	'New Brunswick',
+	'Newfoundland and Labrador',
+	'Northwest Territories',
+	'Nova Scotia',
+	'Nunavut',
+	'Ontario',
+	'Prince Edward Island',
+	'Quebec',
+	'Saskatchewan',
+	'Yukon',
+];
+---
+
+<LayoutApp centered>
+	<!-- Accessibility: Using a semantic section with a clear heading level -->
+	<div
+		class="mx-auto w-full max-w-3xl rounded-2xl border border-gray-200 bg-white p-8 shadow-sm dark:border-gray-700 dark:bg-gray-800 sm:p-10"
+	>
+		<header class="mb-8">
+			<h1 class="text-2xl font-bold text-gray-900 dark:text-white sm:text-3xl">
+				Complete your organization profile
+			</h1>
+			<p class="mt-2 text-gray-600 dark:text-gray-300">
+				Tell us about your organization to receive tailored accessibility insights and benchmarks.
+			</p>
+		</header>
+
+		<form class="space-y-8">
+			<!-- Company Name -->
+			<div>
+				<label
+					for="company-name"
+					class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+				>
+					Company name
+				</label>
+				<input
+					type="text"
+					id="company-name"
+					name="companyName"
+					class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-4 focus:ring-primary-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-900"
+					placeholder="Organization Inc."
+					required
+				/>
+			</div>
+
+			<!-- Company Stage: Using fieldset/legend for accessibility of radio groups -->
+			<fieldset>
+				<legend class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
+					Company stage
+				</legend>
+				<div class="grid gap-4 sm:grid-cols-3">
+					{
+						['Idea / Pre-launch', 'Launched (Early)', 'Scaling'].map((stage) => (
+							<div class="flex items-center rounded border border-gray-200 pl-4 dark:border-gray-700">
+								<input
+									id={`stage-${stage.replace(/\s+/g, '-').toLowerCase()}`}
+									type="radio"
+									value={stage}
+									name="companyStage"
+									class="h-4 w-4 border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+									required
+								/>
+								<label
+									for={`stage-${stage.replace(/\s+/g, '-').toLowerCase()}`}
+									class="ml-2 w-full py-4 text-sm font-medium text-gray-900 dark:text-gray-300"
+								>
+									{stage}
+								</label>
+							</div>
+						))
+					}
+				</div>
+			</fieldset>
+
+			<!-- Industry -->
+			<div>
+				<label
+					for="industry"
+					class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+				>
+					Industry or sector
+				</label>
+				<select
+					id="industry"
+					name="industry"
+					class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-4 focus:ring-primary-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-900"
+					required
+				>
+					<option value="" disabled selected>Select an industry</option>
+					{industries.map((ind) => <option value={ind}>{ind}</option>)}
+				</select>
+			</div>
+
+			<!-- Description -->
+			<div>
+				<label
+					for="description"
+					class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+				>
+					Plain-language company description
+				</label>
+				<textarea
+					id="description"
+					name="description"
+					rows="3"
+					class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-4 focus:ring-primary-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-900"
+					placeholder="In one or two sentences, what problem does your company solve and for whom?"
+					required></textarea>
+				<p class="mt-1 text-xs text-gray-500 dark:text-gray-400">
+					Max 2 sentences. This helps AI tailor recommendations.
+				</p>
+			</div>
+
+			<!-- Who the company serves -->
+			<fieldset>
+				<legend class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
+					Who do you serve? (Select all that apply)
+				</legend>
+				<div class="grid gap-2 sm:grid-cols-2">
+					{
+						audiences.map((audience) => (
+							<div class="flex items-center">
+								<input
+									id={`audience-${audience.replace(/\s+/g, '-').toLowerCase()}`}
+									type="checkbox"
+									value={audience}
+									name="audience"
+									class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+								/>
+								<label
+									for={`audience-${audience.replace(/\s+/g, '-').toLowerCase()}`}
+									class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+								>
+									{audience}
+								</label>
+							</div>
+						))
+					}
+				</div>
+			</fieldset>
+
+			<!-- Geographic Focus -->
+			<fieldset>
+				<legend class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
+					Primary geographic focus in Canada
+				</legend>
+				<div class="grid grid-cols-2 gap-2 sm:grid-cols-3">
+					{
+						provinces.map((geo) => (
+							<div class="flex items-center">
+								<input
+									id={`geo-${geo.replace(/\s+/g, '-').toLowerCase()}`}
+									type="checkbox"
+									value={geo}
+									name="geographicFocus"
+									class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+								/>
+								<label
+									for={`geo-${geo.replace(/\s+/g, '-').toLowerCase()}`}
+									class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+								>
+									{geo}
+								</label>
+							</div>
+						))
+					}
+				</div>
+			</fieldset>
+
+			<!-- Current Reach -->
+			<fieldset>
+				<legend class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
+					Current reach
+				</legend>
+				<div class="space-y-2">
+					{
+						['Concept only', 'Pilot users', 'Active users', 'Growing customer base'].map(
+							(reach) => (
+								<div class="flex items-center">
+									<input
+										id={`reach-${reach.replace(/\s+/g, '-').toLowerCase()}`}
+										type="radio"
+										value={reach}
+										name="currentReach"
+										class="h-4 w-4 border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+										required
+									/>
+									<label
+										for={`reach-${reach.replace(/\s+/g, '-').toLowerCase()}`}
+										class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+									>
+										{reach}
+									</label>
+								</div>
+							)
+						)
+					}
+				</div>
+			</fieldset>
+
+			<!-- Accessibility Consideration -->
+			<fieldset>
+				<legend class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
+					Is accessibility a core consideration?
+				</legend>
+				<div class="space-y-2">
+					{
+						['Yes, intentionally', 'Somewhat', 'Not yet, but we want to'].map((opt) => (
+							<div class="flex items-center">
+								<input
+									id={`access-${opt.substring(0, 5).replace(/\s+/g, '-').toLowerCase()}`}
+									type="radio"
+									value={opt}
+									name="accessibilityConsideration"
+									class="h-4 w-4 border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+									required
+								/>
+								<label
+									for={`access-${opt.substring(0, 5).replace(/\s+/g, '-').toLowerCase()}`}
+									class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+								>
+									{opt}
+								</label>
+							</div>
+						))
+					}
+				</div>
+			</fieldset>
+
+			<!-- Languages -->
+			<fieldset>
+				<legend class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
+					Languages supported
+				</legend>
+				<div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-6">
+					<div class="flex items-center">
+						<input
+							id="lang-en"
+							type="checkbox"
+							value="English"
+							name="languages"
+							class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+						/>
+						<label
+							for="lang-en"
+							class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+						>
+							English
+						</label>
+					</div>
+					<div class="flex items-center">
+						<input
+							id="lang-fr"
+							type="checkbox"
+							value="French"
+							name="languages"
+							class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+						/>
+						<label
+							for="lang-fr"
+							class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+						>
+							French
+						</label>
+					</div>
+					<div class="flex items-center gap-2">
+						<label
+							for="lang-other"
+							class="text-sm font-medium text-gray-900 dark:text-gray-300"
+						>
+							Other:
+						</label>
+						<input
+							type="text"
+							id="lang-other"
+							name="languagesOther"
+							class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-1.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-4 focus:ring-primary-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-900"
+							placeholder="e.g. Spanish"
+						/>
+					</div>
+				</div>
+			</fieldset>
+
+			<div class="pt-4">
+				<button
+					type="submit"
+					class="inline-flex w-full items-center justify-center rounded-lg bg-primary-700 px-6 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-primary-800 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus-visible:ring-primary-800"
+				>
+					Continue to Dashboard
+				</button>
+			</div>
+		</form>
+	</div>
+
+	<script>
+		const form = document.querySelector('form');
+		form?.addEventListener('submit', async (e) => {
+			e.preventDefault();
+			const formData = new FormData(form);
+			const data = Object.fromEntries(formData.entries());
+			
+			// Handle multi-selects manually since Object.fromEntries takes last value for same-name keys
+			const audiences = formData.getAll('audience');
+			const geoFocus = formData.getAll('geographicFocus');
+			const languages = formData.getAll('languages');
+			
+			const finalData = {
+				...data,
+				audience: audiences,
+				geographicFocus: geoFocus,
+				languages: languages
+			};
+
+			console.log('Onboarding Data:', finalData);
+			
+			try {
+				// Send data to the API endpoint to save to JSON file
+				await fetch('/api/onboarding', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify(finalData),
+				});
+			} catch (error) {
+				console.error('Failed to save data:', error);
+			} finally {
+				// Redirect to dashboard regardless of save success for the demo
+				window.location.href = '/dashboard';
+			}
+		});
+	</script>
+</LayoutApp>

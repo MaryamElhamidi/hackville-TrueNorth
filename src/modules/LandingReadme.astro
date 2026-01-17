@@ -4,7 +4,7 @@ import Code from 'astro/components/Code.astro';
 import Confettis from '../components/ConfettiLauncher.astro';
 
 import AstroLogo from '../assets/astro-icon.svg?raw';
-import FlowbiteLogo from '../assets/flowbite-logo.svg?raw';
+import TrueNorthLogo from '../assets/truenorth-logo.svg?raw';
 
 import * as readMe from '../../README.md';
 import { SITE_TITLE } from '../app/constants.js';
@@ -35,9 +35,9 @@ import { SITE_TITLE } from '../app/constants.js';
 				>…
 				<br />meet <a
 					rel="noopener nofollow"
-					href="https://flowbite.com"
-					class="font-bold text-blue-600 dark:text-blue-500 no-underline"
-					>Flowbite</a
+					href="https://truenorth.com"
+					class="font-bold text-red-600 dark:text-red-500 no-underline"
+					>TrueNorth</a
 				>!
 			</p>
 
@@ -45,7 +45,7 @@ import { SITE_TITLE } from '../app/constants.js';
 				<Confettis>
 					<button
 						type="button"
-						class="text-blue-800 hover:text-white border border-blue-700 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-100 dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-800"
+						class="text-red-800 hover:text-white border border-red-700 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-red-500 dark:text-red-100 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-800"
 						>Click me!</button
 					>
 				</Confettis>
@@ -53,7 +53,7 @@ import { SITE_TITLE } from '../app/constants.js';
 		</div>
 
 		<div class="flex justify-center w-full my-16">
-			<div set:html={FlowbiteLogo} class="svg-inline w-16 h-16" />
+			<div set:html={TrueNorthLogo} class="svg-inline w-16 h-16" />
 		</div>
 	</header>
 
@@ -62,7 +62,7 @@ import { SITE_TITLE } from '../app/constants.js';
 			<Code
 				lang={'powershell' /* Looks cool */}
 				code={`git clone \\
-https://github.com/themesberg/flowbite-astro-admin-dashboard.git`}
+https://github.com/truenorth/truenorth-astro-admin-dashboard.git`}
 			/>
 		</div>
 	</section>
