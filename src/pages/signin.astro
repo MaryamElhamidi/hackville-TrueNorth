@@ -4,11 +4,12 @@ import AuthCard from '../components/AuthCard.astro';
 ---
 
 <LayoutApp centered>
-	<AuthCard
-		title="Sign in to your account"
-		description="Use your email and password to access the Canadian accessibility and market insight platform."
-		id="sign-in"
-	>
+	<div class="w-full max-w-md mx-auto">
+		<AuthCard
+			title="Sign in to your account"
+			description="Use your email and password to access the Canadian accessibility and market insight platform."
+			id="sign-in"
+		>
 		<form class="space-y-6" action="#" method="post">
 			<div>
 				<label
@@ -60,7 +61,8 @@ import AuthCard from '../components/AuthCard.astro';
 				</a>
 			</p>
 		</form>
-	</AuthCard>
+		</AuthCard>
+	</div>
 
 	<script>
 		const form = document.querySelector('form');
