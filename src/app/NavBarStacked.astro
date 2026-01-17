@@ -1,24 +1,22 @@
 ---
-import { asset, url } from '../lib/data.js';
+import { url } from '../lib/data.js';
+import logo from '../assets/TrueNorth.svg';
 ---
 
-<nav
-	class="fixed z-50 w-full bg-white border-b border-gray-200 sm:py-2 dark:bg-gray-800 dark:border-gray-700"
->
-	<div class="container py-3 mx-auto">
-		<div class="flex items-center justify-between">
-			<div class="flex items-center justify-start">
-				<a href={url()} class="flex mr-4">
-					<img
-						src={asset('images/logo.svg')}
-						class="h-8 mr-3"
-						alt="Flowbite Logo"
-					/>
-					<span
-						class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
-						>Flowbite</span
-					>
-				</a>
+<nav class="fixed z-50 w-full bg-white border-b border-gray-200 sm:py-2 dark:bg-gray-800 dark:border-gray-700">
+  <div class="container py-3 mx-auto">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center justify-start">
+        <a href={url()} class="flex mr-4">
+          <img
+            src={logo}
+            class="h-20 mr-3"
+            alt="TrueNorth Logo"
+          />
+          <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+            TrueNorth
+          </span>
+        </a>
 				<div class="hidden sm:flex sm:ml-6">
 					<ul class="flex space-x-8">
 						<li>
@@ -26,20 +24,6 @@ import { asset, url } from '../lib/data.js';
 								href={url()}
 								class="text-sm font-medium text-gray-700 hover:text-primary-700 dark:text-gray-400 dark:hover:text-primary-500"
 								aria-current="page">Home</a
-							>
-						</li>
-						<li>
-							<a
-								href="#"
-								class="text-sm font-medium text-gray-700 hover:text-primary-700 dark:text-gray-400 dark:hover:text-primary-500"
-								aria-current="page">Team</a
-							>
-						</li>
-						<li>
-							<a
-								href="#"
-								class="text-sm font-medium text-gray-700 hover:text-primary-700 dark:text-gray-400 dark:hover:text-primary-500"
-								aria-current="page">Pricing</a
 							>
 						</li>
 						<li>
@@ -120,13 +104,7 @@ import { asset, url } from '../lib/data.js';
 					>Dashboard</a
 				>
 			</li>
-			<li>
-				<a
-					href="#"
-					class="block px-3 py-2 text-base font-normal text-gray-600 border-b border-gray-100 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-900 dark:border-gray-700 dark:hover:bg-gray-700 dark:text-gray-400 dark:hover:text-white"
-					>Team</a
-				>
-			</li>
+
 			<li>
 				<a
 					href="#"
