@@ -1,0 +1,26 @@
+[
+  {
+    "municipality": "Barrie",
+    "summary": "Barrie has concerns in services: Housing, Transportation. Locations: Downtown, Highway 400.",
+    "issues_count": 2,
+    "top_services_affected": [
+      "Housing",
+      "Transportation"
+    ],
+    "locations_mentioned": [
+      "Downtown",
+      "Highway 400"
+    ]
+  },
+  {
+    "municipality": "London",
+    "summary": "London has concerns in services: Water supply. Locations: North end.",
+    "issues_count": 1,
+    "top_services_affected": [
+      "Water supply"
+    ],
+    "locations_mentioned": [
+      "North end"
+    ]
+  }
+]
