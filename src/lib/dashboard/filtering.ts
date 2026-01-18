@@ -8,6 +8,12 @@ export interface MunicipalitySummary {
   issues_count: number;
   top_services_affected: string[];
   locations_mentioned: string[];
+  latitude?: number;
+  longitude?: number;
+  affected_populations?: number;
+  severity_level?: 'critical' | 'moderate' | 'minor';
+  service_gap_types?: string[];
+  accessibility_barriers?: string[];
 }
 
 /**

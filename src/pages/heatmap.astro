@@ -1,4 +1,32 @@
----
+Implementation Requirements
+
+Use true latitude and longitude positioning
+
+Use point-based markers, not grid or circular layouts
+
+Hover interactions must not affect marker position
+
+Ontario municipalities must appear geographically correct relative to each other
+
+Do NOT
+
+Do not claim fixes are complete without visual correctness
+
+Do not describe expected behavior unless it is implemented
+
+Do not approximate locations or cluster into artificial shapes
+
+Output
+
+Identify the root cause of the incorrect marker placement
+
+Provide corrected map rendering code
+
+Explain why the markers were appearing in a circle or stretching
+
+Confirm how hover anchoring is fixed
+
+The goal is a geographically accurate Ontario heatmap where markers stay fixed and tooltips behave correctly.---
 import LayoutSidebar from '../app/LayoutSidebar.astro';
 import { getCompanyDashboardData } from '../lib/dashboard/index.js';
 import { loadCompanies } from '../lib/company/index.js';
@@ -8,8 +36,30 @@ const dashboardData = await getCompanyDashboardData();
 const { company, municipalities } = dashboardData;
 const allCompanies = loadCompanies();
 
+// Focus on Ontario municipalities for demo
+let filteredMunicipalities = municipalities;
+let regionName: string = 'Ontario';
+
+// Filter to Ontario municipalities only (all current data appears to be Ontario)
+// In a real implementation, you'd filter by province field
+filteredMunicipalities = municipalities.filter(municipality =>
+  municipality.locations_mentioned?.includes('Ontario')
+);
+
+if (company) {
+  // For demo, show Ontario municipalities with Ontario region
+  // In production, you'd combine company geographic focus with province filtering
+  regionName = 'Ontario';
+
+  // Add region info to data
+  filteredMunicipalities = filteredMunicipalities.map(mun => ({ ...mun, region: regionName }));
+} else {
+  // No company selected, show Ontario municipalities
+  filteredMunicipalities = filteredMunicipalities.map(mun => ({ ...mun, region: regionName }));
+}
+
 // Transform data for heatmap
-const heatmapData = transformMunicipalityToHeatmapData(municipalities, company ?? undefined);
+const heatmapData = transformMunicipalityToHeatmapData(filteredMunicipalities, company ?? undefined);
 
 
 ---
@@ -27,7 +77,7 @@ const heatmapData = transformMunicipalityToHeatmapData(municipalities, company ?
 							Service Gap Heatmap
 						</h1>
 						<p class="text-lg text-gray-600 dark:text-gray-400 mt-2">
-							Interactive map showing accessibility service gaps across Canada
+							Interactive map showing accessibility service gaps across Ontario municipalities
 						</p>
 					</div>
 					<a
@@ -49,7 +99,6 @@ const heatmapData = transformMunicipalityToHeatmapData(municipalities, company ?
 						<select
 							id="company-selector-heatmap"
 							class="block w-64 pl-3 pr-10 py-2 text-sm border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-							value={company?.companyId || ''}
 						>
 							{allCompanies.map((comp) => (
 								<option value={comp.companyId}>{comp.companyName}</option>
@@ -84,9 +133,10 @@ const heatmapData = transformMunicipalityToHeatmapData(municipalities, company ?
 	</div>
 </LayoutSidebar>
 
-<script define:vars={{ heatmapData }}>
-	// Make heatmap data available to client-side scripts
+<script define:vars={{ heatmapData, allCompanies }}>
+	// Make heatmap data and companies available to client-side scripts
 	window.heatmapData = heatmapData;
+	window.allCompanies = allCompanies;
 </script>
 
 <script>
@@ -176,5 +226,32 @@ const heatmapData = transformMunicipalityToHeatmapData(municipalities, company ?
 		background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
 		background-size: 200px 100%;
 		animation: shimmer 1.5s infinite;
+	}
+
+	/* Mapbox popup styling */
+	.municipality-popup .mapboxgl-popup-content {
+		background: white;
+		border-radius: 8px;
+		box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+		border: 1px solid #e5e7eb;
+		padding: 0;
+		font-family: inherit;
+	}
+
+	.municipality-popup .mapboxgl-popup-tip {
+		border-width: 8px;
+		border-color: white;
+	}
+
+	.municipality-popup .mapboxgl-popup-close-button {
+		color: #6b7280;
+		font-size: 18px;
+		padding: 4px 8px;
+	}
+
+	.municipality-popup .mapboxgl-popup-close-button:hover {
+		color: #374151;
+		background: #f3f4f6;
+		border-radius: 4px;
 	}
 </style>

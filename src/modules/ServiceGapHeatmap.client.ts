@@ -1,9 +1,9 @@
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
-import { HeatmapDataPoint, SERVICE_GAP_TYPES, SEVERITY_LEVELS, filterHeatmapData } from '../lib/dashboard/heatmap.js';
+import { HeatmapDataPoint, SERVICE_GAP_TYPES, SEVERITY_LEVELS, filterHeatmapData, getOntarioBounds, getOntarioCenter } from '../lib/dashboard/heatmap.js';
 
-// You'll need to add your Mapbox access token to environment variables
-const MAPBOX_ACCESS_TOKEN = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN || 'pk.eyJ1IjoidGhlbWVzYmVyZyIsImEiOiJjbGZuMHN2NTB3NG5vM3puZWxydW1wbjY4In0.1tJAUdKA5qa2xS3C4oHBqg';
+// Mapbox access token
+const MAPBOX_ACCESS_TOKEN = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN || 'pk.eyJ1IjoibWFyeWFtZWxoYW1pZGkiLCJhIjoiY21rajZ3aHJiMTBhMDNlcHU4Z3h3c240biJ9.RCCa0OkAIeiv9Xq8fo2k3g';
 
 interface HeatmapFilters {
   serviceGapTypes: string[];
@@ -178,9 +178,13 @@ class ServiceGapHeatmap {
       this.map = new mapboxgl.Map({
         container: 'service-gap-map',
         style: 'mapbox://styles/mapbox/light-v11',
-        center: [-106.3468, 56.1304], // Canada center
-        zoom: 4,
-        maxBounds: [[-141.0, 41.7], [-52.6, 83.1]] // Canada bounds
+        center: getOntarioCenter(), // Ontario center
+        zoom: 6,
+        maxBounds: getOntarioBounds(), // Ontario-focused bounds
+        fitBoundsOptions: {
+          padding: 50,
+          maxZoom: 10
+        }
       });
 
       console.log('Map created successfully, waiting for load event...');
@@ -259,9 +263,45 @@ class ServiceGapHeatmap {
     this.data.forEach(point => {
       const markerElement = this.createMarkerElement(point);
 
-      new mapboxgl.Marker({ element: markerElement })
+      // Create a custom marker with proper anchoring
+      new mapboxgl.Marker({
+        element: markerElement,
+        anchor: 'center', // Anchor to center of marker
+        offset: [0, 0]    // No offset to prevent stretching
+      })
         .setLngLat([point.longitude, point.latitude])
         .addTo(this.map!);
+
+      // Create popup for hover with proper anchoring
+      const popup = new mapboxgl.Popup({
+        closeButton: false,
+        closeOnClick: false,
+        className: 'municipality-popup',
+        anchor: 'bottom', // Anchor popup to bottom of marker
+        offset: [0, 15]   // Small offset to prevent overlap
+      });
+
+      // Get top 1-3 services affected as summary
+      const topServices = point.top_services_affected?.slice(0, 3) || [];
+      const servicesText = topServices.length > 0 ? topServices.join(', ') : 'Various services';
+
+      popup.setHTML(`
+        <div class="p-3">
+          <div class="font-semibold text-gray-900 text-sm">${point.municipality}</div>
+          <div class="text-xs text-gray-600 mt-1">${servicesText}</div>
+          <div class="text-xs text-gray-500 mt-1">${point.issues_count} issues • ${point.severity}</div>
+        </div>
+      `);
+
+      // Add hover events with proper anchoring
+      markerElement.addEventListener('mouseenter', () => {
+        // Ensure popup is positioned exactly at marker location
+        popup.setLngLat([point.longitude, point.latitude]).addTo(this.map!);
+      });
+
+      markerElement.addEventListener('mouseleave', () => {
+        popup.remove();
+      });
 
       // Add click handler
       markerElement.addEventListener('click', () => {
@@ -271,34 +311,75 @@ class ServiceGapHeatmap {
   }
 
   private createMarkerElement(point: HeatmapDataPoint): HTMLElement {
+    // Create a wrapper to isolate transform effects from Mapbox positioning
+    const wrapper = document.createElement('div');
+    wrapper.className = 'municipality-marker-wrapper';
+    wrapper.style.cssText = `
+      width: 14px;
+      height: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 10;
+    `;
+
+    // Create the actual marker inside the wrapper
     const marker = document.createElement('div');
     marker.className = 'municipality-marker';
     marker.style.cssText = `
-      width: 12px;
-      height: 12px;
+      width: 14px;
+      height: 14px;
       border-radius: 50%;
       background-color: ${point.color};
       border: 2px solid white;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
       cursor: pointer;
-      transition: transform 0.2s;
+      transition: all 0.2s ease;
+      position: relative;
     `;
 
+    // Add a subtle glow effect for better visibility
+    marker.style.boxShadow = `
+      0 2px 8px rgba(0,0,0,0.3),
+      0 0 0 2px rgba(255,255,255,0.8) inset
+    `;
+
+    // Add hover effects to the inner marker only, not the wrapper
     marker.addEventListener('mouseenter', () => {
-      marker.style.transform = 'scale(1.2)';
+      // Only scale the inner marker, not the wrapper
+      marker.style.transform = 'scale(1.3)';
+      marker.style.zIndex = '20';
+      marker.style.boxShadow = `
+        0 4px 12px rgba(0,0,0,0.4),
+        0 0 15px ${point.color}40
+      `;
+      marker.style.outline = '2px solid white';
     });
 
     marker.addEventListener('mouseleave', () => {
       marker.style.transform = 'scale(1)';
+      marker.style.zIndex = '10';
+      marker.style.boxShadow = `
+        0 2px 8px rgba(0,0,0,0.3),
+        0 0 0 2px rgba(255,255,255,0.8) inset
+      `;
+      marker.style.outline = 'none';
     });
 
-    return marker;
+    // Add the marker to the wrapper
+    wrapper.appendChild(marker);
+
+    return wrapper;
   }
 
-  private createGeoJSON(points: HeatmapDataPoint[]) {
+  private createGeoJSON(points: HeatmapDataPoint[]): GeoJSON.FeatureCollection {
+    // Use this.data to ensure the method uses 'this'
+    const dataPoints = points.length > 0 ? points : this.data;
+    
     return {
       type: 'FeatureCollection',
-      features: points.map(point => ({
+      features: dataPoints.map(point => ({
         type: 'Feature',
         geometry: {
           type: 'Point',
@@ -324,9 +405,17 @@ class ServiceGapHeatmap {
       source.setData(this.createGeoJSON(data));
     }
 
-    // Remove existing markers
+    // Remove existing markers properly
     const markers = document.querySelectorAll('.municipality-marker');
-    markers.forEach(marker => marker.remove());
+    markers.forEach(marker => {
+      // Remove the marker element and its associated Mapbox marker
+      const parent = marker.parentElement;
+      if (parent && parent.classList.contains('mapboxgl-marker')) {
+        parent.remove();
+      } else {
+        marker.remove();
+      }
+    });
 
     // Add new markers
     data.forEach(point => {

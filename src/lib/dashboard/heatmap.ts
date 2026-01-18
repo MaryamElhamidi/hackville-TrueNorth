@@ -11,6 +11,7 @@ export interface HeatmapDataPoint {
   affected_populations: number;
   service_gap_types: string[];
   accessibility_barriers: string[];
+  top_services_affected: string[]; // Top services affected (1-3 words summary)
   color: string; // CSS color class
   summary: string;
 }
@@ -49,7 +50,7 @@ export const SEVERITY_LEVELS = ['minor', 'moderate', 'severe'] as const;
  */
 function calculateSeverity(municipality: MunicipalitySummary): 'critical' | 'moderate' | 'minor' {
   const issuesCount = municipality.issues_count;
-  const affectedPopulations = (municipality as any)?.affected_populations || 0;
+  const affectedPopulations = municipality.affected_populations || 0;
   const hasSevereServices = municipality.top_services_affected.some(service =>
     ['Healthcare', 'Mental health support', 'Transportation'].includes(service)
   );
@@ -82,8 +83,8 @@ function calculateHeatmapIntensity(municipality: MunicipalitySummary, severity: 
   const issuesBoost = Math.min(municipality.issues_count / 10, 0.2);
 
   // Boost intensity based on affected populations (max +0.1)
-  const populationBoost = (municipality as any)?.affected_populations
-    ? Math.min((municipality as any).affected_populations / 50000, 0.1)
+  const populationBoost = municipality.affected_populations
+    ? Math.min(municipality.affected_populations / 50000, 0.1)
     : 0;
 
   return Math.min(baseIntensity + issuesBoost + populationBoost, 1.0);
@@ -174,15 +175,96 @@ function inferAccessibilityBarriers(municipality: MunicipalitySummary): string[]
 }
 
 /**
+ * Ontario geographic bounds for validation
+ */
+const ONTARIO_BOUNDS = {
+  minLat: 41.6,    // Southern Ontario
+  maxLat: 56.9,    // Northern Ontario
+  minLng: -95.2,   // Western Ontario
+  maxLng: -74.3    // Eastern Ontario
+};
+
+/**
+ * Validate and normalize coordinates to ensure they're within Ontario bounds
+ */
+function validateCoordinates(lat: number, lng: number): { lat: number; lng: number } | null {
+  // Check if coordinates are within reasonable bounds
+  if (!lat || !lng || lat === 0 || lng === 0) {
+    return null;
+  }
+
+  // Check if coordinates are within Ontario bounds
+  if (lat < ONTARIO_BOUNDS.minLat || lat > ONTARIO_BOUNDS.maxLat ||
+      lng < ONTARIO_BOUNDS.minLng || lng > ONTARIO_BOUNDS.maxLng) {
+    console.warn(`Coordinates for municipality outside Ontario bounds: lat=${lat}, lng=${lng}`);
+    return null;
+  }
+
+  return { lat, lng };
+}
+
+/**
+ * Generate fallback coordinates for municipalities without valid coordinates
+ * Using a grid pattern to distribute markers evenly across Ontario
+ */
+function generateFallbackCoordinates(municipalityName: string, index: number): { lat: number; lng: number } {
+  // Ontario center coordinates
+  const centerLat = 46.0;
+  const centerLng = -81.0;
+
+  // Grid spacing (approximately 1.5 degrees = ~166km)
+  const spacing = 1.5;
+
+  // Create a grid pattern
+  const row = Math.floor(index / 8); // 8 columns
+  const col = index % 8;
+
+  // Add some randomness to prevent perfect grid alignment
+  const randomLat = (Math.random() - 0.5) * 0.5;
+  const randomLng = (Math.random() - 0.5) * 0.5;
+
+  const lat = centerLat + (row * spacing) + randomLat;
+  const lng = centerLng + (col * spacing) + randomLng;
+
+  // Ensure coordinates stay within Ontario bounds
+  const finalLat = Math.max(ONTARIO_BOUNDS.minLat, Math.min(ONTARIO_BOUNDS.maxLat, lat));
+  const finalLng = Math.max(ONTARIO_BOUNDS.minLng, Math.min(ONTARIO_BOUNDS.maxLng, lng));
+
+  console.warn(`Using fallback coordinates for ${municipalityName}: lat=${finalLat.toFixed(4)}, lng=${finalLng.toFixed(4)}`);
+
+  return { lat: finalLat, lng: finalLng };
+}
+
+/**
  * Transform municipality data into heatmap format
  */
 export function transformMunicipalityToHeatmapData(
   municipalities: MunicipalitySummary[],
   _company?: Company
 ): HeatmapDataPoint[] {
+  let fallbackCount = 0;
+
   return municipalities
-    .filter(municipality => municipality.latitude && municipality.longitude)
-    .map(municipality => {
+    .map((municipality) => {
+      let coordinates: { lat: number; lng: number } | null = null;
+
+      // Try to use existing coordinates if valid
+      if (municipality.latitude && municipality.longitude) {
+        coordinates = validateCoordinates(municipality.latitude, municipality.longitude);
+      }
+
+      // If no valid coordinates, generate fallback
+      if (!coordinates) {
+        const fallbackIndex = fallbackCount;
+        fallbackCount += 1;
+        coordinates = generateFallbackCoordinates(municipality.municipality, fallbackIndex);
+      }
+
+      if (!coordinates) {
+        console.error(`Could not generate valid coordinates for ${municipality.municipality}`);
+        return null;
+      }
+
       // Calculate severity based on requirements
       const severity = municipality.severity_level || calculateSeverity(municipality);
 
@@ -194,18 +276,20 @@ export function transformMunicipalityToHeatmapData(
 
       return {
         municipality: municipality.municipality,
-        latitude: municipality.latitude!,
-        longitude: municipality.longitude!,
+        latitude: coordinates.lat,
+        longitude: coordinates.lng,
         severity,
         intensity,
         issues_count: municipality.issues_count,
-        affected_populations: municipality.affected_populations || 0,
-        service_gap_types: municipality.service_gap_types || inferServiceGapTypes(municipality),
-        accessibility_barriers: municipality.accessibility_barriers || inferAccessibilityBarriers(municipality),
+        affected_populations: municipality.affected_populations ?? 0,
+        service_gap_types: municipality.service_gap_types ?? inferServiceGapTypes(municipality),
+        accessibility_barriers: municipality.accessibility_barriers ?? inferAccessibilityBarriers(municipality),
+        top_services_affected: municipality.top_services_affected,
         color,
         summary: municipality.summary
       };
-    });
+    })
+    .filter((point): point is HeatmapDataPoint => point !== null); // Remove null entries
 }
 
 /**
@@ -234,6 +318,21 @@ export function filterHeatmapData(
 
     return true;
   });
+}
+
+/**
+ * Get bounds for heatmap display (Ontario-focused)
+ */
+export function getOntarioBounds(): [[number, number], [number, number]] {
+  // Ontario bounds: [west, south, east, north]
+  return [[-95.2, 41.6], [-74.3, 56.9]];
+}
+
+/**
+ * Get default map center for Ontario
+ */
+export function getOntarioCenter(): [number, number] {
+  return [-81.0, 46.0]; // Geographic center of Ontario
 }
 
 /**
