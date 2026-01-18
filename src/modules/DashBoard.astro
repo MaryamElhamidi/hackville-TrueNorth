@@ -13,13 +13,7 @@ console.log('Server-side: heatmapData length:', heatmapData.length);
 console.log('Server-side: municipalities length:', municipalities.length);
 console.log('Server-side: company:', company?.companyName);
 
-if (typeof window !== 'undefined') {
-	(window as any).heatmapData = heatmapData;
-	console.log('Heatmap data set on window:', heatmapData.length, 'points');
-	console.log('Sample data points:', heatmapData.slice(0, 5));
-	console.log('Municipalities before transform:', municipalities.length);
-	console.log('Company:', company?.companyName, 'Focus:', company?.geographicFocus);
-}
+
 ---
 
 <div class="grid grid-cols-1 2xl:grid-cols-2 gap-4 pt-8 px-4 pb-4">
@@ -190,6 +184,13 @@ if (typeof window !== 'undefined') {
 			</div>
 		</div>
 </div>
+
+<script define:vars={{ heatmapData, municipalities }}>
+	// Set heatmap data on window for client-side scripts
+	window.heatmapData = heatmapData;
+	window.originalMunicipalities = municipalities;
+	window.allCompanies = [{ companyId: 'default', companyName: 'Demo Company', geographicFocus: ['Nationwide'], industry: 'Other' }];
+</script>
 
 <script>
 	import './DashBoard.client.ts';
