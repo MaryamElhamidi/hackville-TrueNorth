@@ -5,119 +5,77 @@
     "urls_discovered": 324,
     "documents_extracted": 313,
     "chunks_created": 30,
-    "concerns_count": 17,
+    "concerns_count": 20,
     "concerns": [
       {
-        "description": "Social improvements needed in Barrie",
-        "category": "social",
-        "location": "",
-        "severity": "low",
-        "summary": "Community members in Barrie have expressed concerns about social services, indicating a need for improved infrastructure and responsive local government action."
-      },
-      {
         "description": "Infrastructure improvements needed in Barrie",
         "category": "infrastructure",
-        "location": "Barrie downtown area",
-        "severity": "high",
-        "summary": "Community members in Barrie have expressed concerns about infrastructure services, indicating a need for improved infrastructure and responsive local government action."
-      },
-      {
-        "description": "Infrastructure improvements needed in Barrie",
-        "category": "infrastructure",
-        "location": "Barrie downtown area",
-        "severity": "low",
-        "summary": "Community members in Barrie have expressed concerns about infrastructure services, indicating a need for improved infrastructure and responsive local government action."
-      },
-      {
-        "description": "Transit improvements needed in Barrie",
-        "category": "transit",
-        "location": "Barrie downtown area",
-        "severity": "low",
-        "summary": "Community members in Barrie have expressed concerns about transit services, indicating a need for improved infrastructure and responsive local government action."
-      },
-      {
-        "description": "Transit improvements needed in Barrie",
-        "category": "transit",
-        "location": "",
-        "severity": "low",
-        "summary": "Community members in Barrie have expressed concerns about transit services, indicating a need for improved infrastructure and responsive local government action."
-      },
-      {
-        "description": "Transit improvements needed in Barrie",
-        "category": "transit",
-        "location": "Barrie downtown area",
-        "severity": "low",
-        "summary": "Community members in Barrie have expressed concerns about transit services, indicating a need for improved infrastructure and responsive local government action."
-      },
-      {
-        "description": "Transit improvements needed in Barrie",
-        "category": "transit",
         "location": "Barrie downtown area",
         "severity": "medium",
-        "summary": "Community members in Barrie have expressed concerns about transit services, indicating a need for improved infrastructure and responsive local government action."
-      },
-      {
-        "description": "Utilities improvements needed in Barrie",
-        "category": "utilities",
-        "location": "Barrie downtown area",
-        "severity": "high",
-        "summary": "Community members in Barrie have expressed concerns about utilities services, indicating a need for improved infrastructure and responsive local government action."
-      },
-      {
-        "description": "Safety improvements needed in Barrie",
-        "category": "safety",
-        "location": "Barrie downtown area",
-        "severity": "medium",
-        "summary": "Community members in Barrie have expressed concerns about safety services, indicating a need for improved infrastructure and responsive local government action."
-      },
-      {
-        "description": "Transit improvements needed in Barrie",
-        "category": "transit",
-        "location": "",
-        "severity": "high",
-        "summary": "Community members in Barrie have expressed concerns about transit services, indicating a need for improved infrastructure and responsive local government action."
-      },
-      {
-        "description": "Infrastructure improvements needed in Barrie",
-        "category": "infrastructure",
-        "location": "Barrie downtown area",
-        "severity": "low",
         "summary": "Community members in Barrie have expressed concerns about infrastructure services, indicating a need for improved infrastructure and responsive local government action."
+      },
+      {
+        "description": "Housing improvements needed in Barrie",
+        "category": "housing",
+        "location": "",
+        "severity": "low",
+        "summary": "Community members in Barrie have expressed concerns about housing services, indicating a need for improved infrastructure and responsive local government action."
       },
       {
         "description": "Utilities improvements needed in Barrie",
         "category": "utilities",
         "location": "",
-        "severity": "medium",
+        "severity": "low",
         "summary": "Community members in Barrie have expressed concerns about utilities services, indicating a need for improved infrastructure and responsive local government action."
       },
       {
-        "description": "Social improvements needed in Barrie",
-        "category": "social",
+        "description": "Healthcare improvements needed in Barrie",
+        "category": "healthcare",
+        "location": "",
+        "severity": "high",
+        "summary": "Community members in Barrie have expressed concerns about healthcare services, indicating a need for improved infrastructure and responsive local government action."
+      },
+      {
+        "description": "Infrastructure improvements needed in Barrie",
+        "category": "infrastructure",
+        "location": "",
+        "severity": "low",
+        "summary": "Community members in Barrie have expressed concerns about infrastructure services, indicating a need for improved infrastructure and responsive local government action."
+      },
+      {
+        "description": "Healthcare improvements needed in Barrie",
+        "category": "healthcare",
+        "location": "",
+        "severity": "high",
+        "summary": "Community members in Barrie have expressed concerns about healthcare services, indicating a need for improved infrastructure and responsive local government action."
+      },
+      {
+        "description": "Transit improvements needed in Barrie",
+        "category": "transit",
         "location": "Barrie downtown area",
         "severity": "low",
-        "summary": "Community members in Barrie have expressed concerns about social services, indicating a need for improved infrastructure and responsive local government action."
-      },
-      {
-        "description": "Safety improvements needed in Barrie",
-        "category": "safety",
-        "location": "Barrie downtown area",
-        "severity": "high",
-        "summary": "Community members in Barrie have expressed concerns about safety services, indicating a need for improved infrastructure and responsive local government action."
-      },
-      {
-        "description": "Social improvements needed in Barrie",
-        "category": "social",
-        "location": "Barrie downtown area",
-        "severity": "medium",
-        "summary": "Community members in Barrie have expressed concerns about social services, indicating a need for improved infrastructure and responsive local government action."
+        "summary": "Community members in Barrie have expressed concerns about transit services, indicating a need for improved infrastructure and responsive local government action."
       },
       {
         "description": "Healthcare improvements needed in Barrie",
         "category": "healthcare",
         "location": "Barrie downtown area",
-        "severity": "medium",
+        "severity": "high",
         "summary": "Community members in Barrie have expressed concerns about healthcare services, indicating a need for improved infrastructure and responsive local government action."
+      },
+      {
+        "description": "Housing improvements needed in Barrie",
+        "category": "housing",
+        "location": "",
+        "severity": "low",
+        "summary": "Community members in Barrie have expressed concerns about housing services, indicating a need for improved infrastructure and responsive local government action."
+      },
+      {
+        "description": "Transit improvements needed in Barrie",
+        "category": "transit",
+        "location": "",
+        "severity": "medium",
+        "summary": "Community members in Barrie have expressed concerns about transit services, indicating a need for improved infrastructure and responsive local government action."
       },
       {
         "description": "Housing improvements needed in Barrie",
@@ -125,17 +83,87 @@
         "location": "",
         "severity": "high",
         "summary": "Community members in Barrie have expressed concerns about housing services, indicating a need for improved infrastructure and responsive local government action."
+      },
+      {
+        "description": "Housing improvements needed in Barrie",
+        "category": "housing",
+        "location": "",
+        "severity": "high",
+        "summary": "Community members in Barrie have expressed concerns about housing services, indicating a need for improved infrastructure and responsive local government action."
+      },
+      {
+        "description": "Housing improvements needed in Barrie",
+        "category": "housing",
+        "location": "",
+        "severity": "low",
+        "summary": "Community members in Barrie have expressed concerns about housing services, indicating a need for improved infrastructure and responsive local government action."
+      },
+      {
+        "description": "Utilities improvements needed in Barrie",
+        "category": "utilities",
+        "location": "",
+        "severity": "low",
+        "summary": "Community members in Barrie have expressed concerns about utilities services, indicating a need for improved infrastructure and responsive local government action."
+      },
+      {
+        "description": "Safety improvements needed in Barrie",
+        "category": "safety",
+        "location": "",
+        "severity": "medium",
+        "summary": "Community members in Barrie have expressed concerns about safety services, indicating a need for improved infrastructure and responsive local government action."
+      },
+      {
+        "description": "Healthcare improvements needed in Barrie",
+        "category": "healthcare",
+        "location": "Barrie downtown area",
+        "severity": "high",
+        "summary": "Community members in Barrie have expressed concerns about healthcare services, indicating a need for improved infrastructure and responsive local government action."
+      },
+      {
+        "description": "Safety improvements needed in Barrie",
+        "category": "safety",
+        "location": "Barrie downtown area",
+        "severity": "medium",
+        "summary": "Community members in Barrie have expressed concerns about safety services, indicating a need for improved infrastructure and responsive local government action."
+      },
+      {
+        "description": "Infrastructure improvements needed in Barrie",
+        "category": "infrastructure",
+        "location": "Barrie downtown area",
+        "severity": "low",
+        "summary": "Community members in Barrie have expressed concerns about infrastructure services, indicating a need for improved infrastructure and responsive local government action."
+      },
+      {
+        "description": "Infrastructure improvements needed in Barrie",
+        "category": "infrastructure",
+        "location": "Barrie downtown area",
+        "severity": "high",
+        "summary": "Community members in Barrie have expressed concerns about infrastructure services, indicating a need for improved infrastructure and responsive local government action."
+      },
+      {
+        "description": "Transit improvements needed in Barrie",
+        "category": "transit",
+        "location": "",
+        "severity": "low",
+        "summary": "Community members in Barrie have expressed concerns about transit services, indicating a need for improved infrastructure and responsive local government action."
       }
     ]
   },
   {
     "city": "Belleville, City of",
     "status": "completed",
-    "urls_discovered": 401,
-    "documents_extracted": 324,
+    "urls_discovered": 405,
+    "documents_extracted": 328,
     "chunks_created": 30,
-    "concerns_count": 20,
+    "concerns_count": 21,
     "concerns": [
+      {
+        "description": "Infrastructure improvements needed in Belleville",
+        "category": "infrastructure",
+        "location": "",
+        "severity": "medium",
+        "summary": "Community members in Belleville have expressed concerns about infrastructure services, indicating a need for improved infrastructure and responsive local government action."
+      },
       {
         "description": "Transit improvements needed in Belleville",
         "category": "transit",
@@ -144,25 +172,25 @@
         "summary": "Community members in Belleville have expressed concerns about transit services, indicating a need for improved infrastructure and responsive local government action."
       },
       {
-        "description": "Healthcare improvements needed in Belleville",
-        "category": "healthcare",
-        "location": "",
+        "description": "Utilities improvements needed in Belleville",
+        "category": "utilities",
+        "location": "Belleville downtown area",
         "severity": "medium",
-        "summary": "Community members in Belleville have expressed concerns about healthcare services, indicating a need for improved infrastructure and responsive local government action."
+        "summary": "Community members in Belleville have expressed concerns about utilities services, indicating a need for improved infrastructure and responsive local government action."
       },
       {
-        "description": "Safety improvements needed in Belleville",
-        "category": "safety",
-        "location": "",
+        "description": "Transit improvements needed in Belleville",
+        "category": "transit",
+        "location": "Belleville downtown area",
         "severity": "medium",
-        "summary": "Community members in Belleville have expressed concerns about safety services, indicating a need for improved infrastructure and responsive local government action."
+        "summary": "Community members in Belleville have expressed concerns about transit services, indicating a need for improved infrastructure and responsive local government action."
       },
       {
-        "description": "Safety improvements needed in Belleville",
-        "category": "safety",
+        "description": "Transit improvements needed in Belleville",
+        "category": "transit",
         "location": "",
-        "severity": "low",
-        "summary": "Community members in Belleville have expressed concerns about safety services, indicating a need for improved infrastructure and responsive local government action."
+        "severity": "medium",
+        "summary": "Community members in Belleville have expressed concerns about transit services, indicating a need for improved infrastructure and responsive local government action."
       },
       {
         "description": "Utilities improvements needed in Belleville",
@@ -172,16 +200,72 @@
         "summary": "Community members in Belleville have expressed concerns about utilities services, indicating a need for improved infrastructure and responsive local government action."
       },
       {
+        "description": "Healthcare improvements needed in Belleville",
+        "category": "healthcare",
+        "location": "Belleville downtown area",
+        "severity": "high",
+        "summary": "Community members in Belleville have expressed concerns about healthcare services, indicating a need for improved infrastructure and responsive local government action."
+      },
+      {
         "description": "Safety improvements needed in Belleville",
         "category": "safety",
-        "location": "",
+        "location": "Belleville downtown area",
         "severity": "low",
         "summary": "Community members in Belleville have expressed concerns about safety services, indicating a need for improved infrastructure and responsive local government action."
       },
       {
+        "description": "Housing improvements needed in Belleville",
+        "category": "housing",
+        "location": "Belleville downtown area",
+        "severity": "high",
+        "summary": "Community members in Belleville have expressed concerns about housing services, indicating a need for improved infrastructure and responsive local government action."
+      },
+      {
+        "description": "Infrastructure improvements needed in Belleville",
+        "category": "infrastructure",
+        "location": "Belleville downtown area",
+        "severity": "low",
+        "summary": "Community members in Belleville have expressed concerns about infrastructure services, indicating a need for improved infrastructure and responsive local government action."
+      },
+      {
+        "description": "Utilities improvements needed in Belleville",
+        "category": "utilities",
+        "location": "",
+        "severity": "medium",
+        "summary": "Community members in Belleville have expressed concerns about utilities services, indicating a need for improved infrastructure and responsive local government action."
+      },
+      {
+        "description": "Utilities improvements needed in Belleville",
+        "category": "utilities",
+        "location": "Belleville downtown area",
+        "severity": "low",
+        "summary": "Community members in Belleville have expressed concerns about utilities services, indicating a need for improved infrastructure and responsive local government action."
+      },
+      {
+        "description": "Healthcare improvements needed in Belleville",
+        "category": "healthcare",
+        "location": "",
+        "severity": "low",
+        "summary": "Community members in Belleville have expressed concerns about healthcare services, indicating a need for improved infrastructure and responsive local government action."
+      },
+      {
+        "description": "Housing improvements needed in Belleville",
+        "category": "housing",
+        "location": "",
+        "severity": "low",
+        "summary": "Community members in Belleville have expressed concerns about housing services, indicating a need for improved infrastructure and responsive local government action."
+      },
+      {
+        "description": "Infrastructure improvements needed in Belleville",
+        "category": "infrastructure",
+        "location": "",
+        "severity": "high",
+        "summary": "Community members in Belleville have expressed concerns about infrastructure services, indicating a need for improved infrastructure and responsive local government action."
+      },
+      {
         "description": "Social improvements needed in Belleville",
         "category": "social",
-        "location": "Belleville downtown area",
+        "location": "",
         "severity": "high",
         "summary": "Community members in Belleville have expressed concerns about social services, indicating a need for improved infrastructure and responsive local government action."
       },
@@ -189,62 +273,6 @@
         "description": "Utilities improvements needed in Belleville",
         "category": "utilities",
         "location": "Belleville downtown area",
-        "severity": "low",
-        "summary": "Community members in Belleville have expressed concerns about utilities services, indicating a need for improved infrastructure and responsive local government action."
-      },
-      {
-        "description": "Transit improvements needed in Belleville",
-        "category": "transit",
-        "location": "Belleville downtown area",
-        "severity": "high",
-        "summary": "Community members in Belleville have expressed concerns about transit services, indicating a need for improved infrastructure and responsive local government action."
-      },
-      {
-        "description": "Utilities improvements needed in Belleville",
-        "category": "utilities",
-        "location": "Belleville downtown area",
-        "severity": "low",
-        "summary": "Community members in Belleville have expressed concerns about utilities services, indicating a need for improved infrastructure and responsive local government action."
-      },
-      {
-        "description": "Safety improvements needed in Belleville",
-        "category": "safety",
-        "location": "Belleville downtown area",
-        "severity": "medium",
-        "summary": "Community members in Belleville have expressed concerns about safety services, indicating a need for improved infrastructure and responsive local government action."
-      },
-      {
-        "description": "Safety improvements needed in Belleville",
-        "category": "safety",
-        "location": "Belleville downtown area",
-        "severity": "medium",
-        "summary": "Community members in Belleville have expressed concerns about safety services, indicating a need for improved infrastructure and responsive local government action."
-      },
-      {
-        "description": "Transit improvements needed in Belleville",
-        "category": "transit",
-        "location": "",
-        "severity": "low",
-        "summary": "Community members in Belleville have expressed concerns about transit services, indicating a need for improved infrastructure and responsive local government action."
-      },
-      {
-        "description": "Utilities improvements needed in Belleville",
-        "category": "utilities",
-        "location": "Belleville downtown area",
-        "severity": "low",
-        "summary": "Community members in Belleville have expressed concerns about utilities services, indicating a need for improved infrastructure and responsive local government action."
-      },
-      {
-        "description": "Utilities improvements needed in Belleville",
-        "category": "utilities",
-        "location": "",
-        "severity": "low",
-        "summary": "Community members in Belleville have expressed concerns about utilities services, indicating a need for improved infrastructure and responsive local government action."
-      },
-      {
-        "description": "Utilities improvements needed in Belleville",
-        "category": "utilities",
-        "location": "",
         "severity": "high",
         "summary": "Community members in Belleville have expressed concerns about utilities services, indicating a need for improved infrastructure and responsive local government action."
       },
@@ -252,60 +280,67 @@
         "description": "Healthcare improvements needed in Belleville",
         "category": "healthcare",
         "location": "",
-        "severity": "medium",
+        "severity": "high",
         "summary": "Community members in Belleville have expressed concerns about healthcare services, indicating a need for improved infrastructure and responsive local government action."
       },
       {
-        "description": "Transit improvements needed in Belleville",
-        "category": "transit",
-        "location": "Belleville downtown area",
-        "severity": "medium",
-        "summary": "Community members in Belleville have expressed concerns about transit services, indicating a need for improved infrastructure and responsive local government action."
+        "description": "Infrastructure improvements needed in Belleville",
+        "category": "infrastructure",
+        "location": "",
+        "severity": "low",
+        "summary": "Community members in Belleville have expressed concerns about infrastructure services, indicating a need for improved infrastructure and responsive local government action."
       },
       {
-        "description": "Transit improvements needed in Belleville",
-        "category": "transit",
-        "location": "Belleville downtown area",
+        "description": "Infrastructure improvements needed in Belleville",
+        "category": "infrastructure",
+        "location": "",
         "severity": "high",
-        "summary": "Community members in Belleville have expressed concerns about transit services, indicating a need for improved infrastructure and responsive local government action."
+        "summary": "Community members in Belleville have expressed concerns about infrastructure services, indicating a need for improved infrastructure and responsive local government action."
       },
       {
-        "description": "Utilities improvements needed in Belleville",
-        "category": "utilities",
+        "description": "Healthcare improvements needed in Belleville",
+        "category": "healthcare",
         "location": "Belleville downtown area",
-        "severity": "medium",
-        "summary": "Community members in Belleville have expressed concerns about utilities services, indicating a need for improved infrastructure and responsive local government action."
+        "severity": "low",
+        "summary": "Community members in Belleville have expressed concerns about healthcare services, indicating a need for improved infrastructure and responsive local government action."
       }
     ]
   },
   {
     "city": "Brampton, City of",
     "status": "completed",
-    "urls_discovered": 907,
-    "documents_extracted": 588,
+    "urls_discovered": 908,
+    "documents_extracted": 589,
     "chunks_created": 30,
-    "concerns_count": 12,
+    "concerns_count": 20,
     "concerns": [
       {
-        "description": "Housing improvements needed in Brampton",
-        "category": "housing",
+        "description": "Utilities improvements needed in Brampton",
+        "category": "utilities",
         "location": "",
-        "severity": "high",
-        "summary": "Community members in Brampton have expressed concerns about housing services, indicating a need for improved infrastructure and responsive local government action."
+        "severity": "low",
+        "summary": "Community members in Brampton have expressed concerns about utilities services, indicating a need for improved infrastructure and responsive local government action."
       },
       {
-        "description": "Social improvements needed in Brampton",
-        "category": "social",
+        "description": "Infrastructure improvements needed in Brampton",
+        "category": "infrastructure",
+        "location": "",
+        "severity": "high",
+        "summary": "Community members in Brampton have expressed concerns about infrastructure services, indicating a need for improved infrastructure and responsive local government action."
+      },
+      {
+        "description": "Transit improvements needed in Brampton",
+        "category": "transit",
+        "location": "Brampton downtown area",
+        "severity": "medium",
+        "summary": "Community members in Brampton have expressed concerns about transit services, indicating a need for improved infrastructure and responsive local government action."
+      },
+      {
+        "description": "Healthcare improvements needed in Brampton",
+        "category": "healthcare",
         "location": "",
         "severity": "medium",
-        "summary": "Community members in Brampton have expressed concerns about social services, indicating a need for improved infrastructure and responsive local government action."
-      },
-      {
-        "description": "Social improvements needed in Brampton",
-        "category": "social",
-        "location": "Brampton downtown area",
-        "severity": "high",
-        "summary": "Community members in Brampton have expressed concerns about social services, indicating a need for improved infrastructure and responsive local government action."
+        "summary": "Community members in Brampton have expressed concerns about healthcare services, indicating a need for improved infrastructure and responsive local government action."
       },
       {
         "description": "Infrastructure improvements needed in Brampton",
@@ -315,60 +350,109 @@
         "summary": "Community members in Brampton have expressed concerns about infrastructure services, indicating a need for improved infrastructure and responsive local government action."
       },
       {
-        "description": "Utilities improvements needed in Brampton",
-        "category": "utilities",
-        "location": "Brampton downtown area",
-        "severity": "low",
-        "summary": "Community members in Brampton have expressed concerns about utilities services, indicating a need for improved infrastructure and responsive local government action."
-      },
-      {
-        "description": "Housing improvements needed in Brampton",
-        "category": "housing",
-        "location": "",
-        "severity": "medium",
-        "summary": "Community members in Brampton have expressed concerns about housing services, indicating a need for improved infrastructure and responsive local government action."
-      },
-      {
         "description": "Safety improvements needed in Brampton",
         "category": "safety",
-        "location": "",
+        "location": "Brampton downtown area",
         "severity": "high",
         "summary": "Community members in Brampton have expressed concerns about safety services, indicating a need for improved infrastructure and responsive local government action."
       },
       {
         "description": "Healthcare improvements needed in Brampton",
         "category": "healthcare",
-        "location": "",
+        "location": "Brampton downtown area",
         "severity": "high",
         "summary": "Community members in Brampton have expressed concerns about healthcare services, indicating a need for improved infrastructure and responsive local government action."
       },
       {
         "description": "Transit improvements needed in Brampton",
         "category": "transit",
-        "location": "Brampton downtown area",
-        "severity": "low",
+        "location": "",
+        "severity": "medium",
         "summary": "Community members in Brampton have expressed concerns about transit services, indicating a need for improved infrastructure and responsive local government action."
       },
       {
-        "description": "Social improvements needed in Brampton",
-        "category": "social",
+        "description": "Infrastructure improvements needed in Brampton",
+        "category": "infrastructure",
         "location": "",
-        "severity": "high",
-        "summary": "Community members in Brampton have expressed concerns about social services, indicating a need for improved infrastructure and responsive local government action."
+        "severity": "low",
+        "summary": "Community members in Brampton have expressed concerns about infrastructure services, indicating a need for improved infrastructure and responsive local government action."
+      },
+      {
+        "description": "Utilities improvements needed in Brampton",
+        "category": "utilities",
+        "location": "Brampton downtown area",
+        "severity": "low",
+        "summary": "Community members in Brampton have expressed concerns about utilities services, indicating a need for improved infrastructure and responsive local government action."
       },
       {
         "description": "Infrastructure improvements needed in Brampton",
         "category": "infrastructure",
         "location": "Brampton downtown area",
+        "severity": "low",
+        "summary": "Community members in Brampton have expressed concerns about infrastructure services, indicating a need for improved infrastructure and responsive local government action."
+      },
+      {
+        "description": "Healthcare improvements needed in Brampton",
+        "category": "healthcare",
+        "location": "Brampton downtown area",
+        "severity": "low",
+        "summary": "Community members in Brampton have expressed concerns about healthcare services, indicating a need for improved infrastructure and responsive local government action."
+      },
+      {
+        "description": "Safety improvements needed in Brampton",
+        "category": "safety",
+        "location": "Brampton downtown area",
+        "severity": "medium",
+        "summary": "Community members in Brampton have expressed concerns about safety services, indicating a need for improved infrastructure and responsive local government action."
+      },
+      {
+        "description": "Social improvements needed in Brampton",
+        "category": "social",
+        "location": "",
+        "severity": "low",
+        "summary": "Community members in Brampton have expressed concerns about social services, indicating a need for improved infrastructure and responsive local government action."
+      },
+      {
+        "description": "Social improvements needed in Brampton",
+        "category": "social",
+        "location": "Brampton downtown area",
         "severity": "high",
+        "summary": "Community members in Brampton have expressed concerns about social services, indicating a need for improved infrastructure and responsive local government action."
+      },
+      {
+        "description": "Housing improvements needed in Brampton",
+        "category": "housing",
+        "location": "",
+        "severity": "medium",
+        "summary": "Community members in Brampton have expressed concerns about housing services, indicating a need for improved infrastructure and responsive local government action."
+      },
+      {
+        "description": "Infrastructure improvements needed in Brampton",
+        "category": "infrastructure",
+        "location": "Brampton downtown area",
+        "severity": "low",
         "summary": "Community members in Brampton have expressed concerns about infrastructure services, indicating a need for improved infrastructure and responsive local government action."
       },
       {
         "description": "Utilities improvements needed in Brampton",
         "category": "utilities",
         "location": "",
-        "severity": "low",
+        "severity": "high",
         "summary": "Community members in Brampton have expressed concerns about utilities services, indicating a need for improved infrastructure and responsive local government action."
+      },
+      {
+        "description": "Infrastructure improvements needed in Brampton",
+        "category": "infrastructure",
+        "location": "Brampton downtown area",
+        "severity": "low",
+        "summary": "Community members in Brampton have expressed concerns about infrastructure services, indicating a need for improved infrastructure and responsive local government action."
+      },
+      {
+        "description": "Safety improvements needed in Brampton",
+        "category": "safety",
+        "location": "",
+        "severity": "low",
+        "summary": "Community members in Brampton have expressed concerns about safety services, indicating a need for improved infrastructure and responsive local government action."
       }
     ]
   },
@@ -381,73 +465,17 @@
     "concerns_count": 17,
     "concerns": [
       {
-        "description": "Social improvements needed in Brantford",
-        "category": "social",
+        "description": "Infrastructure improvements needed in Brantford",
+        "category": "infrastructure",
         "location": "Brantford downtown area",
-        "severity": "low",
-        "summary": "Community members in Brantford have expressed concerns about social services, indicating a need for improved infrastructure and responsive local government action."
+        "severity": "medium",
+        "summary": "Community members in Brantford have expressed concerns about infrastructure services, indicating a need for improved infrastructure and responsive local government action."
       },
       {
         "description": "Housing improvements needed in Brantford",
         "category": "housing",
         "location": "Brantford downtown area",
         "severity": "low",
-        "summary": "Community members in Brantford have expressed concerns about housing services, indicating a need for improved infrastructure and responsive local government action."
-      },
-      {
-        "description": "Safety improvements needed in Brantford",
-        "category": "safety",
-        "location": "",
-        "severity": "medium",
-        "summary": "Community members in Brantford have expressed concerns about safety services, indicating a need for improved infrastructure and responsive local government action."
-      },
-      {
-        "description": "Housing improvements needed in Brantford",
-        "category": "housing",
-        "location": "",
-        "severity": "high",
-        "summary": "Community members in Brantford have expressed concerns about housing services, indicating a need for improved infrastructure and responsive local government action."
-      },
-      {
-        "description": "Safety improvements needed in Brantford",
-        "category": "safety",
-        "location": "Brantford downtown area",
-        "severity": "medium",
-        "summary": "Community members in Brantford have expressed concerns about safety services, indicating a need for improved infrastructure and responsive local government action."
-      },
-      {
-        "description": "Utilities improvements needed in Brantford",
-        "category": "utilities",
-        "location": "Brantford downtown area",
-        "severity": "low",
-        "summary": "Community members in Brantford have expressed concerns about utilities services, indicating a need for improved infrastructure and responsive local government action."
-      },
-      {
-        "description": "Utilities improvements needed in Brantford",
-        "category": "utilities",
-        "location": "",
-        "severity": "high",
-        "summary": "Community members in Brantford have expressed concerns about utilities services, indicating a need for improved infrastructure and responsive local government action."
-      },
-      {
-        "description": "Safety improvements needed in Brantford",
-        "category": "safety",
-        "location": "",
-        "severity": "low",
-        "summary": "Community members in Brantford have expressed concerns about safety services, indicating a need for improved infrastructure and responsive local government action."
-      },
-      {
-        "description": "Utilities improvements needed in Brantford",
-        "category": "utilities",
-        "location": "",
-        "severity": "low",
-        "summary": "Community members in Brantford have expressed concerns about utilities services, indicating a need for improved infrastructure and responsive local government action."
-      },
-      {
-        "description": "Housing improvements needed in Brantford",
-        "category": "housing",
-        "location": "",
-        "severity": "medium",
         "summary": "Community members in Brantford have expressed concerns about housing services, indicating a need for improved infrastructure and responsive local government action."
       },
       {
@@ -456,41 +484,97 @@
         "location": "",
         "severity": "low",
         "summary": "Community members in Brantford have expressed concerns about social services, indicating a need for improved infrastructure and responsive local government action."
+      },
+      {
+        "description": "Social improvements needed in Brantford",
+        "category": "social",
+        "location": "Brantford downtown area",
+        "severity": "high",
+        "summary": "Community members in Brantford have expressed concerns about social services, indicating a need for improved infrastructure and responsive local government action."
+      },
+      {
+        "description": "Safety improvements needed in Brantford",
+        "category": "safety",
+        "location": "",
+        "severity": "medium",
+        "summary": "Community members in Brantford have expressed concerns about safety services, indicating a need for improved infrastructure and responsive local government action."
+      },
+      {
+        "description": "Healthcare improvements needed in Brantford",
+        "category": "healthcare",
+        "location": "",
+        "severity": "low",
+        "summary": "Community members in Brantford have expressed concerns about healthcare services, indicating a need for improved infrastructure and responsive local government action."
+      },
+      {
+        "description": "Safety improvements needed in Brantford",
+        "category": "safety",
+        "location": "",
+        "severity": "high",
+        "summary": "Community members in Brantford have expressed concerns about safety services, indicating a need for improved infrastructure and responsive local government action."
+      },
+      {
+        "description": "Utilities improvements needed in Brantford",
+        "category": "utilities",
+        "location": "Brantford downtown area",
+        "severity": "high",
+        "summary": "Community members in Brantford have expressed concerns about utilities services, indicating a need for improved infrastructure and responsive local government action."
+      },
+      {
+        "description": "Social improvements needed in Brantford",
+        "category": "social",
+        "location": "Brantford downtown area",
+        "severity": "high",
+        "summary": "Community members in Brantford have expressed concerns about social services, indicating a need for improved infrastructure and responsive local government action."
+      },
+      {
+        "description": "Social improvements needed in Brantford",
+        "category": "social",
+        "location": "Brantford downtown area",
+        "severity": "low",
+        "summary": "Community members in Brantford have expressed concerns about social services, indicating a need for improved infrastructure and responsive local government action."
+      },
+      {
+        "description": "Healthcare improvements needed in Brantford",
+        "category": "healthcare",
+        "location": "Brantford downtown area",
+        "severity": "high",
+        "summary": "Community members in Brantford have expressed concerns about healthcare services, indicating a need for improved infrastructure and responsive local government action."
+      },
+      {
+        "description": "Infrastructure improvements needed in Brantford",
+        "category": "infrastructure",
+        "location": "Brantford downtown area",
+        "severity": "low",
+        "summary": "Community members in Brantford have expressed concerns about infrastructure services, indicating a need for improved infrastructure and responsive local government action."
+      },
+      {
+        "description": "Utilities improvements needed in Brantford",
+        "category": "utilities",
+        "location": "",
+        "severity": "medium",
+        "summary": "Community members in Brantford have expressed concerns about utilities services, indicating a need for improved infrastructure and responsive local government action."
+      },
+      {
+        "description": "Utilities improvements needed in Brantford",
+        "category": "utilities",
+        "location": "Brantford downtown area",
+        "severity": "low",
+        "summary": "Community members in Brantford have expressed concerns about utilities services, indicating a need for improved infrastructure and responsive local government action."
       },
       {
         "description": "Transit improvements needed in Brantford",
         "category": "transit",
-        "location": "",
-        "severity": "low",
+        "location": "Brantford downtown area",
+        "severity": "high",
         "summary": "Community members in Brantford have expressed concerns about transit services, indicating a need for improved infrastructure and responsive local government action."
       },
       {
         "description": "Safety improvements needed in Brantford",
         "category": "safety",
-        "location": "",
-        "severity": "high",
+        "location": "Brantford downtown area",
+        "severity": "low",
         "summary": "Community members in Brantford have expressed concerns about safety services, indicating a need for improved infrastructure and responsive local government action."
-      },
-      {
-        "description": "Utilities improvements needed in Brantford",
-        "category": "utilities",
-        "location": "",
-        "severity": "low",
-        "summary": "Community members in Brantford have expressed concerns about utilities services, indicating a need for improved infrastructure and responsive local government action."
-      },
-      {
-        "description": "Social improvements needed in Brantford",
-        "category": "social",
-        "location": "Brantford downtown area",
-        "severity": "high",
-        "summary": "Community members in Brantford have expressed concerns about social services, indicating a need for improved infrastructure and responsive local government action."
-      },
-      {
-        "description": "Housing improvements needed in Brantford",
-        "category": "housing",
-        "location": "Brantford downtown area",
-        "severity": "low",
-        "summary": "Community members in Brantford have expressed concerns about housing services, indicating a need for improved infrastructure and responsive local government action."
       },
       {
         "description": "Housing improvements needed in Brantford",

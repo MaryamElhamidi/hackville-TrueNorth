@@ -1,0 +1,47 @@
+[
+  {
+    "city": "London, City of",
+    "status": "completed",
+    "urls_discovered": 447,
+    "documents_extracted": 321,
+    "chunks_created": 30,
+    "concerns_count": 5,
+    "concerns": [
+      {
+        "description": "Unusual taste and odour reported in tap water",
+        "category": "utilities",
+        "location": "London, Ontario (varies by neighbourhood, including south and east London)",
+        "severity": "low",
+        "summary": "Some residents in London report that their tap water occasionally has a strange or unpleasant taste or smell, often described as musty, earthy, or chlorine-like. These concerns are typically seasonal and linked to natural organic compounds in source lakes or routine water treatment processes. Municipal testing indicates the water remains safe to drink, making this primarily an aesthetic and quality-of-life issue rather than a health concern."
+      },
+      {
+        "description": "Inconsistent public transit reliability",
+        "category": "transit",
+        "location": "London bus routes, particularly suburban and off-peak areas",
+        "severity": "low",
+        "summary": "Residents have noted that some London Transit Commission bus routes experience delays, inconsistent schedules, or reduced frequency during evenings and weekends. While core routes remain functional, these issues can inconvenience commuters, students, and shift workers who rely on public transit for daily travel."
+      },
+      {
+        "description": "Potholes and minor road surface deterioration",
+        "category": "infrastructure",
+        "location": "Residential streets across London",
+        "severity": "low",
+        "summary": "Community members periodically report potholes and uneven road surfaces on residential streets, especially after winter freeze–thaw cycles. Although the city conducts seasonal repairs, delays in maintenance can lead to minor vehicle damage and reduced driving comfort for residents."
+      },
+      {
+        "description": "Limited availability of family doctors",
+        "category": "healthcare",
+        "location": "London, Ontario",
+        "severity": "medium",
+        "summary": "Some residents report difficulty finding a family doctor or accessing non-emergency primary care in a timely manner. While London hosts major hospitals and healthcare institutions, demand for primary care providers can exceed availability, resulting in longer wait times or reliance on walk-in clinics."
+      },
+      {
+        "description": "Litter and cleanliness concerns in public spaces",
+        "category": "environment",
+        "location": "Downtown London and major parks",
+        "severity": "low",
+        "summary": "Residents have expressed concerns about litter accumulation in certain public areas, particularly downtown corridors and high-traffic parks. While cleanup efforts are ongoing, inconsistent waste disposal and high pedestrian use contribute to periodic cleanliness issues that affect the appearance and usability of public spaces."
+      }
+    ]
+  }
+]
