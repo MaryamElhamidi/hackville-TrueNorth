@@ -161,22 +161,44 @@ class ServiceGapHeatmap {
   }
 
   private initializeMap() {
-    if (!document.getElementById('service-gap-map')) return;
+    console.log('Initializing Mapbox map...');
+    const mapElement = document.getElementById('service-gap-map');
+    console.log('Map element found:', !!mapElement);
 
-    mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
+    if (!mapElement) {
+      console.error('Map element not found!');
+      return;
+    }
 
-    this.map = new mapboxgl.Map({
-      container: 'service-gap-map',
-      style: 'mapbox://styles/mapbox/light-v11',
-      center: [-106.3468, 56.1304], // Canada center
-      zoom: 4,
-      maxBounds: [[-141.0, 41.7], [-52.6, 83.1]] // Canada bounds
-    });
+    try {
+      console.log('Setting Mapbox access token:', MAPBOX_ACCESS_TOKEN ? 'Token present' : 'No token');
+      mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
 
-    this.map.on('load', () => {
-      this.addHeatmapLayer();
-      this.addMunicipalityMarkers();
-    });
+      console.log('Creating Mapbox map...');
+      this.map = new mapboxgl.Map({
+        container: 'service-gap-map',
+        style: 'mapbox://styles/mapbox/light-v11',
+        center: [-106.3468, 56.1304], // Canada center
+        zoom: 4,
+        maxBounds: [[-141.0, 41.7], [-52.6, 83.1]] // Canada bounds
+      });
+
+      console.log('Map created successfully, waiting for load event...');
+
+      this.map.on('load', () => {
+        console.log('Map loaded successfully, adding layers...');
+        this.addHeatmapLayer();
+        this.addMunicipalityMarkers();
+        console.log('Heatmap layers added successfully');
+      });
+
+      this.map.on('error', (e) => {
+        console.error('Mapbox map error:', e);
+      });
+
+    } catch (error) {
+      console.error('Failed to initialize Mapbox map:', error);
+    }
   }
 
   private addHeatmapLayer() {
