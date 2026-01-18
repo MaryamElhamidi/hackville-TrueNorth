@@ -1,15 +1,15 @@
 ---
 import LayoutSidebar from '../app/LayoutSidebar.astro';
-import { getCompanyDashboardData } from '../lib/dashboard/index.js';
+import { loadMunicipalitySummaries } from '../lib/dashboard/filtering.js';
 import { loadCompanies } from '../lib/company/index.js';
 import { transformMunicipalityToHeatmapData } from '../lib/dashboard/heatmap.js';
 
-const dashboardData = await getCompanyDashboardData();
-const { company, municipalities } = dashboardData;
+// Load all municipality summaries for the heatmap (not company-filtered)
+const municipalities = loadMunicipalitySummaries();
 const allCompanies = loadCompanies();
 
-// Use same data as dashboard - all municipalities (not filtered to Ontario)
-const heatmapData = transformMunicipalityToHeatmapData(municipalities, company ?? undefined);
+// Transform all municipalities to heatmap data
+const heatmapData = transformMunicipalityToHeatmapData(municipalities, undefined);
 ---
 
 <link href='https://api.mapbox.com/mapbox-gl-js/v3.18.0/mapbox-gl.css' rel='stylesheet' />

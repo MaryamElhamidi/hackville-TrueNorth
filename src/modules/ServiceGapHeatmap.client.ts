@@ -1,6 +1,4 @@
-import mapboxgl from 'mapbox-gl';
-import 'mapbox-gl/dist/mapbox-gl.css';
-import { HeatmapDataPoint, SERVICE_GAP_TYPES, SEVERITY_LEVELS, filterHeatmapData, getOntarioBounds, getOntarioCenter } from '../lib/dashboard/heatmap.js';
+import { HeatmapDataPoint, SERVICE_GAP_TYPES, SEVERITY_LEVELS, filterHeatmapData, getOntarioCenter } from '../lib/dashboard/heatmap.js';
 
 // Mapbox access token
 const MAPBOX_ACCESS_TOKEN = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN || 'pk.eyJ1IjoibWFyeWFtZWxoYW1pZGkiLCJhIjoiY21rajZ3aHJiMTBhMDNlcHU4Z3h3c240biJ9.RCCa0OkAIeiv9Xq8fo2k3g';
@@ -12,10 +10,17 @@ interface HeatmapFilters {
 
 class ServiceGapHeatmap {
   private mapContainer: HTMLElement;
-  private filtersPanel: HTMLElement;
-  private map: mapboxgl.Map | null = null;
+
+  private filtersPanel!: HTMLElement;
+
+  private mapImage: HTMLImageElement | null = null;
+
+  private overlayContainer: HTMLElement | null = null;
+
   private data: HeatmapDataPoint[] = [];
+
   private filters: HeatmapFilters = { serviceGapTypes: [], severityLevels: [] };
+
   private onMunicipalityClick?: (municipality: HeatmapDataPoint) => void;
 
   constructor(
@@ -30,10 +35,10 @@ class ServiceGapHeatmap {
 
     this.mapContainer = container;
     this.data = initialData;
-    this.onMunicipalityClick = onClick;
+    this.onMunicipalityClick = onClick || undefined;
 
     this.createUI();
-    this.initializeMap();
+    this.initializeStaticMap();
   }
 
   private createUI() {
@@ -97,13 +102,15 @@ class ServiceGapHeatmap {
       </div>
     `;
 
-    // Create map container
+    // Create map container with static image and overlay
     const mapWrapper = document.createElement('div');
     mapWrapper.className = 'flex-1 relative';
-    const mapDiv = document.createElement('div');
-    mapDiv.className = 'w-full h-full';
-    mapDiv.id = 'service-gap-map';
-    mapWrapper.appendChild(mapDiv);
+    mapWrapper.innerHTML = `
+      <div class="w-full h-full relative">
+        <img id="static-map-image" class="w-full h-full object-cover" alt="Ontario Service Gap Map" />
+        <div id="map-overlay" class="absolute inset-0"></div>
+      </div>
+    `;
 
     // Create main container
     const mainContainer = document.createElement('div');
@@ -112,6 +119,10 @@ class ServiceGapHeatmap {
     mainContainer.appendChild(mapWrapper);
 
     this.mapContainer.appendChild(mainContainer);
+
+    // Get references to elements
+    this.mapImage = document.getElementById('static-map-image') as HTMLImageElement;
+    this.overlayContainer = document.getElementById('map-overlay') as HTMLElement;
 
     // Add event listeners
     this.setupEventListeners();
@@ -156,498 +167,187 @@ class ServiceGapHeatmap {
   }
 
   private updateFilters() {
+    console.log('Updating filters:', this.filters);
     const filteredData = filterHeatmapData(this.data, this.filters);
+    console.log('Filtered data from', this.data.length, 'to', filteredData.length, 'municipalities');
     this.updateMapData(filteredData);
+
+    // Update checkbox states to reflect current filter state
+    this.updateCheckboxStates();
   }
 
-  private initializeMap() {
-    console.log('Initializing Mapbox map...');
-    const mapElement = document.getElementById('service-gap-map');
-    console.log('Map element found:', !!mapElement);
+  private updateCheckboxStates() {
+    // Update service gap type checkboxes
+    const serviceGapCheckboxes = this.filtersPanel.querySelectorAll('#service-gap-filters input');
+    serviceGapCheckboxes.forEach(checkbox => {
+      const input = checkbox as HTMLInputElement;
+      input.checked = this.filters.serviceGapTypes.includes(input.value);
+    });
 
-    if (!mapElement) {
-      console.error('Map element not found!');
+    // Update severity level checkboxes
+    const severityCheckboxes = this.filtersPanel.querySelectorAll('#severity-filters input');
+    severityCheckboxes.forEach(checkbox => {
+      const input = checkbox as HTMLInputElement;
+      input.checked = this.filters.severityLevels.includes(input.value);
+    });
+  }
+
+  private initializeStaticMap() {
+    if (!this.mapImage || !this.overlayContainer) {
+      console.error('Map elements not found');
       return;
     }
 
-    try {
-      console.log('Setting Mapbox access token:', MAPBOX_ACCESS_TOKEN ? 'Token present' : 'No token');
-      mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
+    // Generate static map URL for Ontario
+    const staticMapUrl = this.generateStaticMapUrl(this.data);
+    console.log('Generated static map URL:', staticMapUrl);
 
-      console.log('Creating Mapbox map...');
-      const ontarioBounds = getOntarioBounds();
-      const ontarioCenter = getOntarioCenter();
-      console.log('Ontario bounds:', ontarioBounds);
-      console.log('Ontario center:', ontarioCenter);
-
-      this.map = new mapboxgl.Map({
-        container: 'service-gap-map',
-        style: 'mapbox://styles/mapbox/standard',
-        config: {
-          basemap: {
-            theme: 'monochrome',
-            lightPreset: 'day'
-          }
-        },
-        center: ontarioCenter, // Ontario center
-        zoom: 6,
-        maxBounds: ontarioBounds, // Strict Ontario bounds - cannot pan outside
-        fitBoundsOptions: {
-          padding: 20, // Reduced padding to stay within bounds
-          maxZoom: 10
-        },
-        // Strictly enforce Ontario bounds - NO BORDERING AREAS
-        minZoom: 6, // Start zoomed in to show Ontario clearly
-        maxZoom: 12,
-        // Restrict interactions to prevent viewing outside Ontario
-        boxZoom: false, // Disable box zoom to prevent edge cases
-        dragPan: true, // Allow panning but strictly within bounds
-        dragRotate: false, // No rotation
-        scrollZoom: true, // Allow zoom but respect bounds
-        touchZoomRotate: false, // No touch rotation
-        doubleClickZoom: false, // Disable double-click zoom that might go outside bounds
-        keyboard: false, // Disable keyboard navigation
-        // Force initial view to be Ontario-only
-        bearing: 0,
-        pitch: 0
-      });
-
-      // Add a mask layer to hide everything outside Ontario
-      this.map.on('load', () => {
-        // Create a polygon that covers everything EXCEPT Ontario
-        // This will make only Ontario visible
-        const boundsForMask = getOntarioBounds();
-        const maskPolygon = {
-          type: 'FeatureCollection' as const,
-          features: [{
-            type: 'Feature' as const,
-            properties: {},
-            geometry: {
-              type: 'Polygon' as const,
-              coordinates: [
-                // Outer ring (world bounds)
-                [
-                  [-180, -85],
-                  [180, -85],
-                  [180, 85],
-                  [-180, 85],
-                  [-180, -85]
-                ],
-                // Inner ring (Ontario - this creates a hole)
-                [
-                  [boundsForMask[0][0], boundsForMask[0][1]], // SW corner
-                  [boundsForMask[1][0], boundsForMask[0][1]], // SE corner
-                  [boundsForMask[1][0], boundsForMask[1][1]], // NE corner
-                  [boundsForMask[0][0], boundsForMask[1][1]], // NW corner
-                  [boundsForMask[0][0], boundsForMask[0][1]]  // Close polygon
-                ]
-              ]
-            }
-          }]
-        };
-
-        // Add the mask layer
-        this.map!.addSource('ontario-mask', {
-          type: 'geojson',
-          data: maskPolygon as GeoJSON.FeatureCollection
-        });
-
-        this.map!.addLayer({
-          id: 'ontario-mask-layer',
-          type: 'fill',
-          source: 'ontario-mask',
-          paint: {
-            'fill-color': '#ffffff',
-            'fill-opacity': 0.85
-          }
-        });
-
-        // Add a subtle border around Ontario
-        this.map!.addLayer({
-          id: 'ontario-border',
-          type: 'line',
-          source: {
-            type: 'geojson',
-            data: {
-              type: 'FeatureCollection' as const,
-              features: [{
-                type: 'Feature' as const,
-                properties: {},
-                geometry: {
-                  type: 'Polygon' as const,
-                  coordinates: [
-                    [
-                      [boundsForMask[0][0], boundsForMask[0][1]], // SW corner
-                      [boundsForMask[1][0], boundsForMask[0][1]], // SE corner
-                      [boundsForMask[1][0], boundsForMask[1][1]], // NE corner
-                      [boundsForMask[0][0], boundsForMask[1][1]], // NW corner
-                      [boundsForMask[0][0], boundsForMask[0][1]]  // Close polygon
-                    ]
-                  ]
-                }
-              }]
-            } as GeoJSON.FeatureCollection
-          },
-          paint: {
-            'line-color': '#2563eb',
-            'line-width': 2,
-            'line-opacity': 0.8
-          }
-        });
-      });
-
-      console.log('Map created successfully, waiting for load event...');
-
-      this.map.on('load', () => {
-        console.log('Map loaded successfully, adding layers...');
-        this.addHeatmapLayer();
-        this.addMunicipalityMarkers();
-        console.log('Heatmap layers added successfully');
-      });
-
-      this.map.on('error', (e) => {
-        console.error('Mapbox map error:', e);
-      });
-
-    } catch (error) {
-      console.error('Failed to initialize Mapbox map:', error);
-    }
+    this.mapImage.src = staticMapUrl;
+    this.mapImage.onload = () => {
+      console.log('Static map loaded successfully, adding markers for', this.data.length, 'municipalities');
+      this.addMunicipalityMarkers();
+    };
+    this.mapImage.onerror = (error) => {
+      console.error('Failed to load static map:', error);
+    };
   }
 
-  private addHeatmapLayer() {
-    if (!this.map) return;
+  private generateStaticMapUrl(_data: HeatmapDataPoint[]): string {
+    // Mapbox Static API URL structure:
+    // https://api.mapbox.com/styles/v1/{username}/{style_id}/static/{overlay}/{lon},{lat},{zoom},{bearing},{pitch}/{width}x{height}@2x?access_token={access_token}
 
-    console.log('Adding heatmap layer with data:', this.data.length, 'points');
+    const ontarioCenter = getOntarioCenter();
+    const zoom = 6;
+    const width = 800;
+    const height = 600;
 
-    // Add a geojson point source.
-    // Heatmap layers also work with a vector tile source.
-    this.map.addSource('service-gaps', {
-      'type': 'geojson',
-      'data': this.createGeoJSON(this.data)
-    });
+    // For static map, we'll just show a basic map without markers
+    // The interactive markers will be overlaid on top
+    // This avoids URL length limits with many municipalities
 
-    console.log('Heatmap source added');
-
-    console.log('Adding heatmap layer...');
-    this.map.addLayer({
-      'id': 'service-gaps-heatmap',
-      'type': 'heatmap',
-      'source': 'service-gaps',
-      'maxzoom': 9,
-      'paint': {
-        // Increase the heatmap weight based on frequency and property magnitude
-        'heatmap-weight': [
-          'interpolate',
-          ['linear'],
-          ['get', 'issues_count'],
-          0,
-          0,
-          10,
-          1
-        ],
-        // Increase the heatmap color weight weight by zoom level
-        // heatmap-intensity is a multiplier on top of heatmap-weight
-        'heatmap-intensity': [
-          'interpolate',
-          ['linear'],
-          ['zoom'],
-          0,
-          1,
-          9,
-          3
-        ],
-        // Color ramp for heatmap.  Domain is 0 (low) to 1 (high).
-        // Begin color ramp at 0-stop with a 0-transparancy color
-        // to create a blur-like effect.
-        'heatmap-color': [
-          'interpolate',
-          ['linear'],
-          ['heatmap-density'],
-          0,
-          'rgba(33,102,172,0)',
-          0.2,
-          'rgb(103,169,207)',
-          0.4,
-          'rgb(209,229,240)',
-          0.6,
-          'rgb(253,219,199)',
-          0.8,
-          'rgb(239,138,98)',
-          1,
-          'rgb(178,24,43)'
-        ],
-        // Adjust the heatmap radius by zoom level
-        'heatmap-radius': [
-          'interpolate',
-          ['linear'],
-          ['zoom'],
-          0,
-          2,
-          9,
-          20
-        ],
-        // Transition from heatmap to circle layer by zoom level
-        'heatmap-opacity': [
-          'interpolate',
-          ['linear'],
-          ['zoom'],
-          7,
-          1,
-          9,
-          0
-        ]
-      },
-      slot: 'top'
-    });
-    console.log('Heatmap layer added');
-
-    // Add circle layer for individual points when zoomed in
-    this.map.addLayer({
-      'id': 'service-gaps-point',
-      'type': 'circle',
-      'source': 'service-gaps',
-      'minzoom': 7,
-      'paint': {
-        // Size circle radius by earthquake magnitude and zoom level
-        'circle-radius': [
-          'interpolate',
-          ['linear'],
-          ['zoom'],
-          7,
-          ['interpolate', ['linear'], ['get', 'issues_count'], 1, 1, 10, 4],
-          16,
-          ['interpolate', ['linear'], ['get', 'issues_count'], 1, 5, 10, 50]
-        ],
-        // Color circle by issues count
-        'circle-color': [
-          'interpolate',
-          ['linear'],
-          ['get', 'issues_count'],
-          1,
-          'rgba(33,102,172,0)',
-          3,
-          'rgb(103,169,207)',
-          5,
-          'rgb(209,229,240)',
-          7,
-          'rgb(253,219,199)',
-          10,
-          'rgb(178,24,43)'
-        ],
-        'circle-stroke-color': 'white',
-        'circle-stroke-width': 1,
-        // Transition from heatmap to circle layer by zoom level
-        'circle-opacity': [
-          'interpolate',
-          ['linear'],
-          ['zoom'],
-          7,
-          0,
-          8,
-          1
-        ]
-      },
-      slot: 'top'
-    });
-
-    // Add click handlers for heatmap and point layers
-    this.map.on('click', 'service-gaps-point', (e) => {
-      if (e.features && e.features[0]) {
-        const { properties } = e.features[0];
-        if (properties) {
-          const municipalityData = this.data.find(d => d.municipality === properties.municipality);
-          if (municipalityData && this.onMunicipalityClick) {
-            this.onMunicipalityClick(municipalityData);
-          }
-        }
-      }
-    });
-
-    // Change cursor on hover
-    this.map.on('mouseenter', 'service-gaps-point', () => {
-      this.map!.getCanvas().style.cursor = 'pointer';
-    });
-
-    this.map.on('mouseleave', 'service-gaps-point', () => {
-      this.map!.getCanvas().style.cursor = '';
-    });
+    return `https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/${ontarioCenter[0]},${ontarioCenter[1]},${zoom},0,0/${width}x${height}@2x?access_token=${MAPBOX_ACCESS_TOKEN}`;
   }
 
   private addMunicipalityMarkers() {
-    if (!this.map) return;
+    if (!this.overlayContainer || !this.mapImage) return;
 
-    // Add markers for each municipality
+    // Clear existing markers
+    this.overlayContainer.innerHTML = '';
+
+    // Get image dimensions
+    const imgRect = this.mapImage.getBoundingClientRect();
+    const imgWidth = imgRect.width;
+    const imgHeight = imgRect.height;
+
+    // Ontario bounds for coordinate conversion
+    const ontarioBounds = {
+      west: -95.2,
+      east: -74.3,
+      north: 56.9,
+      south: 41.6
+    };
+
+    console.log('Adding markers for', this.data.length, 'municipalities');
     this.data.forEach(point => {
-      const markerElement = this.createMarkerElement(point);
+      // Convert lat/lng to pixel coordinates on the static map
+      const x = ((point.longitude - ontarioBounds.west) / (ontarioBounds.east - ontarioBounds.west)) * imgWidth;
+      const y = ((ontarioBounds.north - point.latitude) / (ontarioBounds.north - ontarioBounds.south)) * imgHeight;
 
-      // Create a custom marker with proper anchoring
-      new mapboxgl.Marker({
-        element: markerElement,
-        anchor: 'center', // Anchor to center of marker
-        offset: [0, 0]    // No offset to prevent stretching
-      })
-        .setLngLat([point.longitude, point.latitude])
-        .addTo(this.map!);
+      // Create marker element
+      const markerElement = this.createMarkerElement(point, x, y);
 
-      // Create popup for hover with proper anchoring
-      const popup = new mapboxgl.Popup({
-        closeButton: false,
-        closeOnClick: false,
-        className: 'municipality-popup',
-        anchor: 'bottom', // Anchor popup to bottom of marker
-        offset: [0, 15]   // Small offset to prevent overlap
-      });
-
-      // Get top 1-3 services affected as summary
-      const topServices = point.top_services_affected?.slice(0, 3) || [];
-      const servicesText = topServices.length > 0 ? topServices.join(', ') : 'Various services';
-
-      popup.setHTML(`
-        <div class="p-3">
-          <div class="font-semibold text-gray-900 text-sm">${point.municipality}</div>
-          <div class="text-xs text-gray-600 mt-1">${servicesText}</div>
-          <div class="text-xs text-gray-500 mt-1">${point.issues_count} issues • ${point.severity}</div>
-        </div>
-      `);
-
-      // Add hover events with proper anchoring
-      markerElement.addEventListener('mouseenter', () => {
-        // Ensure popup is positioned exactly at marker location
-        popup.setLngLat([point.longitude, point.latitude]).addTo(this.map!);
-      });
-
-      markerElement.addEventListener('mouseleave', () => {
-        popup.remove();
-      });
-
-      // Add click handler
-      markerElement.addEventListener('click', () => {
-        this.onMunicipalityClick?.(point);
-      });
+      if (this.overlayContainer) {
+        this.overlayContainer.appendChild(markerElement);
+      }
     });
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  private createMarkerElement(point: HeatmapDataPoint): HTMLElement {
-    // Create a wrapper to isolate transform effects from Mapbox positioning
+  private createMarkerElement(point: HeatmapDataPoint, x: number, y: number): HTMLElement {
+    // Create marker wrapper
     const wrapper = document.createElement('div');
     wrapper.className = 'municipality-marker-wrapper';
     wrapper.style.cssText = `
-      width: 14px;
-      height: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
+      position: absolute;
+      left: ${x - 8}px;
+      top: ${y - 8}px;
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
       z-index: 10;
     `;
 
-    // Create the actual marker inside the wrapper
+    // Create the actual marker
     const marker = document.createElement('div');
     marker.className = 'municipality-marker';
     marker.style.cssText = `
-      width: 14px;
-      height: 14px;
+      width: 16px;
+      height: 16px;
       border-radius: 50%;
       background-color: ${point.color};
       border: 2px solid white;
       box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-      cursor: pointer;
       transition: all 0.2s ease;
-      position: relative;
     `;
 
-    // Add a subtle glow effect for better visibility
-    marker.style.boxShadow = `
-      0 2px 8px rgba(0,0,0,0.3),
-      0 0 0 2px rgba(255,255,255,0.8) inset
+    // Create tooltip
+    const tooltip = document.createElement('div');
+    tooltip.className = 'municipality-tooltip';
+    tooltip.style.cssText = `
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      padding: 12px;
+      max-width: 300px;
+      display: none;
+      z-index: 20;
+      font-family: inherit;
+    `;
+    tooltip.innerHTML = `
+      <div class="font-semibold text-gray-900 text-sm">${point.municipality}</div>
+      <div class="text-xs text-gray-600 mt-1">${point.summary}</div>
+      <div class="text-xs text-gray-500 mt-2">${point.issues_count} issues • ${point.severity}</div>
     `;
 
-    // Add hover effects to the inner marker only, not the wrapper
-    marker.addEventListener('mouseenter', () => {
-      // Only scale the inner marker, not the wrapper
+    // Add hover effects
+    wrapper.addEventListener('mouseenter', () => {
       marker.style.transform = 'scale(1.3)';
-      marker.style.zIndex = '20';
-      marker.style.boxShadow = `
-        0 4px 12px rgba(0,0,0,0.4),
-        0 0 15px ${point.color}40
-      `;
-      marker.style.outline = '2px solid white';
+      marker.style.boxShadow = `0 4px 12px rgba(0,0,0,0.4), 0 0 15px ${point.color}40`;
+      tooltip.style.display = 'block';
     });
 
-    marker.addEventListener('mouseleave', () => {
+    wrapper.addEventListener('mouseleave', () => {
       marker.style.transform = 'scale(1)';
-      marker.style.zIndex = '10';
-      marker.style.boxShadow = `
-        0 2px 8px rgba(0,0,0,0.3),
-        0 0 0 2px rgba(255,255,255,0.8) inset
-      `;
-      marker.style.outline = 'none';
+      marker.style.boxShadow = '0 2px 8px rgba(0,0,0,0.3)';
+      tooltip.style.display = 'none';
     });
 
-    // Add the marker to the wrapper
+    // Add click handler
+    wrapper.addEventListener('click', () => {
+      this.onMunicipalityClick?.(point);
+    });
+
     wrapper.appendChild(marker);
+    wrapper.appendChild(tooltip);
 
     return wrapper;
   }
 
-  private createGeoJSON(points: HeatmapDataPoint[]): GeoJSON.FeatureCollection {
-    // Use this.data to ensure the method uses 'this'
-    const dataPoints = points.length > 0 ? points : this.data;
-    
-    return {
-      type: 'FeatureCollection',
-      features: dataPoints.map(point => ({
-        type: 'Feature',
-        geometry: {
-          type: 'Point',
-          coordinates: [point.longitude, point.latitude]
-        },
-        properties: {
-          municipality: point.municipality,
-          severity: point.severity,
-          intensity: point.intensity,
-          issues_count: point.issues_count,
-          affected_populations: point.affected_populations
-        }
-      }))
-    };
-  }
-
   private updateMapData(data: HeatmapDataPoint[]) {
-    if (!this.map) return;
+    this.data = data;
+    console.log('Updating map data with', data.length, 'municipalities');
 
-    // Update heatmap data
-    const source = this.map.getSource('service-gaps') as mapboxgl.GeoJSONSource;
-    if (source) {
-      source.setData(this.createGeoJSON(data));
+    // Update static map URL with filtered data
+    if (this.mapImage && this.overlayContainer) {
+      this.mapImage.src = this.generateStaticMapUrl(data);
+      this.mapImage.onload = () => {
+        this.addMunicipalityMarkers();
+      };
     }
-
-    // Remove existing markers properly
-    const markers = document.querySelectorAll('.municipality-marker');
-    markers.forEach(marker => {
-      // Remove the marker element and its associated Mapbox marker
-      const parent = marker.parentElement;
-      if (parent && parent.classList.contains('mapboxgl-marker')) {
-        parent.remove();
-      } else {
-        marker.remove();
-      }
-    });
-
-    // Add new markers
-    data.forEach(point => {
-      const markerElement = this.createMarkerElement(point);
-
-      new mapboxgl.Marker({ element: markerElement })
-        .setLngLat([point.longitude, point.latitude])
-        .addTo(this.map!);
-
-      // Add click handler
-      markerElement.addEventListener('click', () => {
-        this.onMunicipalityClick?.(point);
-      });
-    });
   }
 
   // Public methods
@@ -676,9 +376,8 @@ class ServiceGapHeatmap {
   }
 
   destroy() {
-    if (this.map) {
-      this.map.remove();
-      this.map = null;
+    if (this.overlayContainer) {
+      this.overlayContainer.innerHTML = '';
     }
   }
 }
