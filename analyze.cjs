@@ -56,6 +56,7 @@ TASKS:
    - Location or neighbourhood (if mentioned)
    - Who is affected (if stated)
    - Severity (low, medium, high)
+   - Service type needed: categorize as healthcare, transportation, internet access, mental health support, disability services, or other community resources
 3. Write a concise 2–4 sentence summary.
 
 If no community concern is present, return:
@@ -79,6 +80,7 @@ ${chunkText}`;
         location: parsed.location || null,
         affected_group: parsed.affected_group || null,
         severity: parsed.severity || 'medium',
+        service_type: parsed.service_type || 'other community resources',
         summary: parsed.summary || '',
         source_url: sourceUrl
       };
