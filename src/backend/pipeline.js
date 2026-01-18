@@ -23,7 +23,8 @@ async function mockAnalyzeChunks(city, textChunks) {
         description: `${category.charAt(0).toUpperCase() + category.slice(1)} improvements needed in ${city.name.split(',')[0]}`,
         category,
         location: Math.random() > 0.5 ? `${city.name.split(',')[0]} downtown area` : '',
-        severity
+        severity,
+        summary: `Community members in ${city.name.split(',')[0]} have expressed concerns about ${category} services, indicating a need for improved infrastructure and responsive local government action.`
       });
     }
   });

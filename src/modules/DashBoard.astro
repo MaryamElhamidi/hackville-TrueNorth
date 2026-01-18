@@ -3,7 +3,8 @@ import { getCompanyDashboardData } from '../lib/dashboard/index.js';
 import { loadCompanies } from '../lib/company/index.js';
 import { transformMunicipalityToHeatmapData } from '../lib/dashboard/heatmap.js';
 
-const dashboardData = await getCompanyDashboardData();
+const companyIdFromCookie = Astro.cookies.get('activeCompanyId')?.value;
+const dashboardData = await getCompanyDashboardData(companyIdFromCookie);
 const { company, summary, municipalities, insights, topServices } = dashboardData;
 const allCompanies = loadCompanies();
 
@@ -27,7 +28,7 @@ if (typeof window !== 'undefined') {
 						<div>
 							<span
 								class="text-xl font-bold leading-none text-gray-900 sm:text-2xl dark:text-white"
-								>{company?.companyName || 'No Company Selected'}</span
+								>{company?.companyName || 'Selected Company'}</span
 							>
 							<h3 class="text-base font-light text-gray-500 dark:text-gray-400">
 								Accessibility Dashboard
@@ -107,7 +108,7 @@ if (typeof window !== 'undefined') {
 						>Municipality Accessibility Overview</span
 					>
 					<p class="text-sm font-light text-gray-500 dark:text-gray-400 mt-1">
-						Filtered by {company?.companyName}'s geographic focus and industry
+						Filtered by {company?.companyName || 'Selected Company'}'s geographic focus and industry
 					</p>
 				</div>
 			</div>
@@ -146,7 +147,7 @@ if (typeof window !== 'undefined') {
 			{municipalities.length === 0 && (
 				<div class="text-center py-8">
 					<p class="text-gray-500 dark:text-gray-400">
-						No municipalities found matching {company?.companyName}'s criteria.
+						No municipalities found matching {company?.companyName || 'Selected Company'}'s criteria.
 					</p>
 				</div>
 			)}
@@ -208,8 +209,11 @@ if (typeof window !== 'undefined') {
 		const companySelector = document.getElementById('company-selector');
 		if (companySelector) {
 			companySelector.addEventListener('change', () => {
-				// For demo purposes, we'll reload the page. In a real app,
-				// this would update the active company in the session/user context
+				// @ts-ignore
+				const selectedCompanyId = companySelector.value;
+				// Store the selected company ID in a cookie
+				document.cookie = `activeCompanyId=${selectedCompanyId}; path=/; max-age=31536000`; // 1 year expiry
+				// Reload the page to reflect the change
 				window.location.reload();
 			});
 		}

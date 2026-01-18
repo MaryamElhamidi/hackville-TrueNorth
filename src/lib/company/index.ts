@@ -39,15 +39,16 @@ export function getCompanyById(companyId: string): Company | null {
 
 /**
  * Get the active company ID from environment/storage
- * In a demo app, this could be set via localStorage or environment variables
+ * In a demo app, this could be set via cookies or environment variables
  */
-export function getActiveCompanyId(): string | null {
-  // In a real app, this would come from user session/authentication
-  // For demo purposes, check if there's a specific company ID set
-  // You can set this via environment variable or modify this function
+export function getActiveCompanyId(overrideCompanyId?: string): string | null {
+  if (overrideCompanyId) return overrideCompanyId;
 
-  // For now, return null to use the most recently created company as default
-  // In production, this would be tied to user authentication
+  // In a real app, this would come from user session/authentication
+  // For demo purposes, check cookies or environment variable
+  // Note: Cookies are checked server-side, localStorage client-side
+
+  // Fallback to environment variable
   return process.env.ACTIVE_COMPANY_ID || null;
 }
 
@@ -55,17 +56,15 @@ export function getActiveCompanyId(): string | null {
  * Get the active company
  * In a real implementation, this would be based on user authentication/session
  */
-export function getActiveCompany(): Company | null {
-  const activeCompanyId = getActiveCompanyId();
+export function getActiveCompany(overrideCompanyId?: string): Company | null {
+  const activeCompanyId = getActiveCompanyId(overrideCompanyId);
 
   if (activeCompanyId) {
     return getCompanyById(activeCompanyId);
   }
 
-  // Fallback: return the most recently created company (last in array)
-  // This ensures newly onboarded companies are shown by default
-  const companies = loadCompanies();
-  return companies.length > 0 ? companies[companies.length - 1] ?? null : null;
+  // No explicit selection - return null to show "Selected Company" in UI
+  return null;
 }
 
 /**

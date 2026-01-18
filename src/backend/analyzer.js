@@ -26,7 +26,8 @@ Required JSON Schema:
       "description": "Short, clear description of the concern",
       "category": "housing | transit | healthcare | infrastructure | safety | utilities | social | other",
       "location": "Specific neighbourhood, ward, or area if mentioned, otherwise empty string",
-      "severity": "low | medium | high"
+      "severity": "low | medium | high",
+			"summary": a concise 2-4 sentence summary of the concern 
     }
   ]
 }

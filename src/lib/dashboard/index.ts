@@ -5,8 +5,8 @@ import { generateCompanySpecificSummary, generateCompanyInsights } from '../ai/s
 /**
  * Get filtered municipality data for the active company
  */
-export async function getCompanyFilteredMunicipalities() {
-  const company = getActiveCompany();
+export async function getCompanyFilteredMunicipalities(overrideCompanyId?: string) {
+  const company = getActiveCompany(overrideCompanyId);
   if (!company) {
     return {
       company: null,
@@ -74,8 +74,8 @@ function getTopAffectedServices(municipalities: any[]) {
 /**
  * Get dashboard data for the active company
  */
-export async function getCompanyDashboardData() {
-  const { company, municipalities, insights } = await getCompanyFilteredMunicipalities();
+export async function getCompanyDashboardData(overrideCompanyId?: string) {
+  const { company, municipalities, insights } = await getCompanyFilteredMunicipalities(overrideCompanyId);
 
   // Calculate summary statistics
   const totalMunicipalities = municipalities.length;
