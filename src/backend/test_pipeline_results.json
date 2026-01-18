@@ -1,0 +1,91 @@
+{
+  "timestamp": "2026-01-18T06:18:19.008Z",
+  "test_type": "limited_pipeline_test",
+  "cities_processed": 3,
+  "summary": {
+    "completed": 3,
+    "skipped": 0,
+    "errors": 0,
+    "total_concerns": 8
+  },
+  "results": [
+    {
+      "city": "Barrie, City of",
+      "status": "completed",
+      "urls_discovered": 301,
+      "documents_extracted": 3,
+      "chunks_created": 3,
+      "concerns_count": 3,
+      "concerns": [
+        {
+          "description": "Community concern related to safety in Barrie",
+          "category": "safety",
+          "location": "Barrie downtown",
+          "severity": "medium"
+        },
+        {
+          "description": "Community concern related to healthcare in Barrie",
+          "category": "healthcare",
+          "location": "",
+          "severity": "medium"
+        },
+        {
+          "description": "Community concern related to housing in Barrie",
+          "category": "housing",
+          "location": "Barrie downtown",
+          "severity": "medium"
+        }
+      ]
+    },
+    {
+      "city": "Belleville, City of",
+      "status": "completed",
+      "urls_discovered": 385,
+      "documents_extracted": 2,
+      "chunks_created": 2,
+      "concerns_count": 1,
+      "concerns": [
+        {
+          "description": "Community concern related to housing in Belleville",
+          "category": "housing",
+          "location": "",
+          "severity": "high"
+        }
+      ]
+    },
+    {
+      "city": "Brampton, City of",
+      "status": "completed",
+      "urls_discovered": 907,
+      "documents_extracted": 3,
+      "chunks_created": 7,
+      "concerns_count": 4,
+      "concerns": [
+        {
+          "description": "Community concern related to housing in Brampton",
+          "category": "housing",
+          "location": "Brampton downtown",
+          "severity": "low"
+        },
+        {
+          "description": "Community concern related to infrastructure in Brampton",
+          "category": "infrastructure",
+          "location": "Brampton downtown",
+          "severity": "medium"
+        },
+        {
+          "description": "Community concern related to infrastructure in Brampton",
+          "category": "infrastructure",
+          "location": "Brampton downtown",
+          "severity": "low"
+        },
+        {
+          "description": "Community concern related to transit in Brampton",
+          "category": "transit",
+          "location": "Brampton downtown",
+          "severity": "low"
+        }
+      ]
+    }
+  ]
+}

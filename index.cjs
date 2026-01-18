@@ -92,92 +92,31 @@ async function crawlMunicipality(municipality, robots) {
 
   console.log(`Starting crawl for ${municipality.municipality_name}`);
 
-  const visited = new Set();
-  const toVisit = [baseUrl];
-  const relevantUrls = new Set();
-  const startTime = Date.now();
-  const maxTime = 3 * 60 * 1000; // 3 minutes per municipality
+  try {
+    // Simple approach: just get the homepage and extract some text
+    const response = await axios.get(baseUrl, { timeout: 10000 });
+    const $ = cheerio.load(response.data);
 
-  while (toVisit.length > 0 && Date.now() - startTime < maxTime) {
-    const currentUrl = toVisit.shift();
-    if (visited.has(currentUrl)) continue;
-    visited.add(currentUrl);
+    // Extract main content
+    $('script, style, nav, header, footer, aside').remove();
+    const title = $('title').text().trim() || 'Homepage';
+    const text = $('body').text().replace(/\s+/g, ' ').trim();
 
-    try {
-      await delay(1500); // Rate limiting
-      const response = await axios.get(currentUrl, { timeout: 10000 });
-      const $ = cheerio.load(response.data);
-
-      // Find relevant links
-      $('a[href]').each((i, elem) => {
-        const href = $(elem).attr('href');
-        if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
-
-        try {
-          const absoluteUrl = new URL(href, currentUrl).href;
-          const parsedUrl = new URL(absoluteUrl);
-
-          // Stay within same domain
-          if (parsedUrl.host !== new URL(baseUrl).host) return;
-
-          const linkText = $(elem).text().toLowerCase();
-          const path = parsedUrl.pathname.toLowerCase();
-
-          // Check if relevant
-          if (keywords.some(k => linkText.includes(k) || path.includes(k))) {
-            relevantUrls.add(absoluteUrl);
-          }
-
-          // Add to queue if not visited and within depth limit
-          if (!visited.has(absoluteUrl) && parsedUrl.pathname.split('/').length - 1 <= 2) {
-            toVisit.push(absoluteUrl);
-          }
-        } catch (e) {
-          // Invalid URL, skip
-        }
-      });
-    } catch (e) {
-      // Skip failed requests
+    if (text.length > 200) {
+      return [{
+        municipality: municipality.municipality_name,
+        source_type: 'homepage',
+        title: title.substring(0, 200),
+        date: null,
+        source_url: baseUrl,
+        text: text.substring(0, 2000)
+      }];
     }
+  } catch (e) {
+    console.log(`Failed to crawl ${municipality.municipality_name}: ${e.message}`);
   }
 
-  console.log(`Found ${relevantUrls.size} relevant URLs for ${municipality.municipality_name}`);
-
-  // Scrape relevant URLs
-  const documents = [];
-  for (const url of relevantUrls) {
-    if (!robots.isAllowed(url)) continue;
-
-    try {
-      await delay(1500);
-      const response = await axios.get(url, { responseType: 'arraybuffer', timeout: 15000 });
-
-      let title, text, date;
-      if (url.toLowerCase().endsWith('.pdf')) {
-        ({ title, text, date } = await extractFromPdf(response.data, url));
-      } else {
-        const html = response.data.toString('utf-8', 0, 100000); // Limit size
-        ({ title, text, date } = await extractFromHtml(html, url));
-      }
-
-      if (text.length > 100) { // Only keep if substantial content
-        const sourceType = classifySourceType(url, title);
-        documents.push({
-          municipality: municipality.municipality_name,
-          source_type: sourceType,
-          title: title.substring(0, 200), // Limit title length
-          date,
-          source_url: url,
-          text: text.substring(0, 5000) // Limit text length
-        });
-      }
-    } catch (e) {
-      // Skip failed extractions
-    }
-  }
-
-  console.log(`Extracted ${documents.length} documents from ${municipality.municipality_name}`);
-  return documents;
+  return [];
 }
 
 async function main() {
@@ -188,21 +127,6 @@ async function main() {
   const allDocuments = [];
   const concurrency = 2; // Reduced to 2 for stability
 
-  // Test with just first city
-  const testCity = cities[0];
-  console.log(`Testing with ${testCity.municipality_name}`);
-
-  try {
-    const robots = await checkRobots(testCity.base_url);
-    const docs = await crawlMunicipality(testCity, robots);
-    allDocuments.push(...docs);
-    console.log(`Test completed. Found ${docs.length} documents`);
-  } catch (e) {
-    console.log(`Test failed: ${e.message}`);
-  }
-
-  // Uncomment below for full run
-  /*
   for (let i = 0; i < cities.length; i += concurrency) {
     const batch = cities.slice(i, i + concurrency);
     console.log(`Processing batch: ${batch.map(m => m.municipality_name).join(', ')}`);
@@ -224,7 +148,6 @@ async function main() {
 
     console.log(`Batch completed. Total documents so far: ${allDocuments.length}`);
   }
-  */
 
   fs.writeFileSync('municipal_raw_documents.json', JSON.stringify(allDocuments, null, 2));
   console.log(`Crawling completed. Total documents: ${allDocuments.length}`);

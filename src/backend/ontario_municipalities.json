@@ -1,0 +1,2207 @@
+[
+  {
+    "name": "Addington Highlands, Township of",
+    "type": "Township",
+    "website": "http://www.addingtonhighlands.ca/"
+  },
+  {
+    "name": "Adelaide-Metcalfe, Township of",
+    "type": "Township",
+    "website": "https://adelaidemetcalfe.on.ca/"
+  },
+  {
+    "name": "Adjala-Tosorontio, Township of",
+    "type": "Township",
+    "website": "https://www.adjtos.ca/en/index.aspx"
+  },
+  {
+    "name": "Admaston/Bromley, Township of",
+    "type": "Township",
+    "website": "http://www.admastonbromley.com/"
+  },
+  {
+    "name": "Ajax, Town of",
+    "type": "Town",
+    "website": "http://www.ajax.ca/en/"
+  },
+  {
+    "name": "Alberton, Township of",
+    "type": "Township",
+    "website": "http://www.alberton.ca/"
+  },
+  {
+    "name": "Alfred and Plantagenet, Township of",
+    "type": "Township",
+    "website": "https://www.alfred-plantagenet.com/en/index.aspx"
+  },
+  {
+    "name": "Algonquin Highlands, Township of",
+    "type": "Township",
+    "website": "http://www.algonquinhighlands.ca/"
+  },
+  {
+    "name": "Alnwick/Haldimand, Township of",
+    "type": "Township",
+    "website": "http://www.alnwickhaldimand.ca/"
+  },
+  {
+    "name": "Amaranth, Township of",
+    "type": "Township",
+    "website": "http://www.amaranth.ca/en/index.aspx"
+  },
+  {
+    "name": "Amherstburg, Town of",
+    "type": "Town",
+    "website": "http://www.amherstburg.ca/"
+  },
+  {
+    "name": "Armour, Township of",
+    "type": "Township",
+    "website": "http://www.armourtownship.ca/"
+  },
+  {
+    "name": "Armstrong, Township of",
+    "type": "Township",
+    "website": "http://www.armstrongtownship.com/"
+  },
+  {
+    "name": "Arnprior, Town of",
+    "type": "Town",
+    "website": "http://www.arnprior.ca/"
+  },
+  {
+    "name": "Arran-Elderslie, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.arran-elderslie.com/"
+  },
+  {
+    "name": "Ashfield-Colborne-Wawanosh, Township of",
+    "type": "Township",
+    "website": "http://www.acwtownship.ca/"
+  },
+  {
+    "name": "Asphodel-Norwood, Township of",
+    "type": "Township",
+    "website": "https://www.antownship.ca/en/index.aspx"
+  },
+  {
+    "name": "Assiginack, Township of",
+    "type": "Township",
+    "website": "http://www.assiginack.ca/"
+  },
+  {
+    "name": "Athens, Township of",
+    "type": "Township",
+    "website": "http://www.athenstownship.ca/"
+  },
+  {
+    "name": "Atikokan, Town of",
+    "type": "Town",
+    "website": "http://www.atikokan.ca/siteengine/activepage.asp"
+  },
+  {
+    "name": "Augusta, Township of",
+    "type": "Township",
+    "website": "http://www.augusta.ca/"
+  },
+  {
+    "name": "Aurora, Town of",
+    "type": "Town",
+    "website": "https://www.aurora.ca/en/index.aspx"
+  },
+  {
+    "name": "Aylmer, Town of",
+    "type": "Town",
+    "website": "http://www.aylmer.ca/"
+  },
+  {
+    "name": "Baldwin, Township of",
+    "type": "Township",
+    "website": "https://www.baldwin.ca/"
+  },
+  {
+    "name": "Bancroft, Town of",
+    "type": "Town",
+    "website": "http://www.bancroft.ca/"
+  },
+  {
+    "name": "Barrie, City of",
+    "type": "City",
+    "website": "http://www.barrie.ca/Pages/default.aspx"
+  },
+  {
+    "name": "Bayham, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.bayham.on.ca/siteengine/activepage.asp"
+  },
+  {
+    "name": "Beckwith, Township of",
+    "type": "Township",
+    "website": "http://www.twp.beckwith.on.ca/"
+  },
+  {
+    "name": "Belleville, City of",
+    "type": "City",
+    "website": "http://www.belleville.ca/"
+  },
+  {
+    "name": "Billings, Township of",
+    "type": "Township",
+    "website": "http://www.billingstwp.ca/"
+  },
+  {
+    "name": "Black River-Matheson, Township of",
+    "type": "Township",
+    "website": "http://www.blackriver-matheson.com/"
+  },
+  {
+    "name": "Blandford-Blenheim, Township of",
+    "type": "Township",
+    "website": "http://www.blandfordblenheim.ca/"
+  },
+  {
+    "name": "Blind River, Town of",
+    "type": "Town",
+    "website": "https://www.blindriver.ca/"
+  },
+  {
+    "name": "Bluewater, Municipality of",
+    "type": "Municipality",
+    "website": "https://www.municipalityofbluewater.ca/"
+  },
+  {
+    "name": "Bonfield, Township of",
+    "type": "Township",
+    "website": "https://www.bonfieldtownship.com/"
+  },
+  {
+    "name": "Bonnechere Valley, Township of",
+    "type": "Township",
+    "website": "http://www.bonnecherevalleytwp.com/"
+  },
+  {
+    "name": "Bracebridge, Town of",
+    "type": "Town",
+    "website": "http://www.bracebridge.ca/"
+  },
+  {
+    "name": "Bradford West Gwillimbury, Town of",
+    "type": "Town",
+    "website": "https://www.townofbwg.com/"
+  },
+  {
+    "name": "Brampton, City of",
+    "type": "City",
+    "website": "http://www.brampton.ca/en/pages/welcome.aspx"
+  },
+  {
+    "name": "Brant, County of",
+    "type": "County",
+    "website": "http://www.brant.ca/"
+  },
+  {
+    "name": "Brantford, City of",
+    "type": "City",
+    "website": "http://www.brantford.ca/Pages/default.aspx"
+  },
+  {
+    "name": "Brighton, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.brighton.ca/"
+  },
+  {
+    "name": "Brock, Township of",
+    "type": "Township",
+    "website": "http://townshipofbrock.ca/"
+  },
+  {
+    "name": "Brockton, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.brockton.ca/"
+  },
+  {
+    "name": "Brockville, City of",
+    "type": "City",
+    "website": "http://www.brockville.com/"
+  },
+  {
+    "name": "Brooke-Alvinston, Municipality of",
+    "type": "Municipality",
+    "website": "http://brookealvinston.com/home/"
+  },
+  {
+    "name": "Bruce Mines, Town of",
+    "type": "Town",
+    "website": "http://www.brucemines.ca/"
+  },
+  {
+    "name": "Bruce, County of",
+    "type": "County",
+    "website": "http://www.brucecounty.on.ca/"
+  },
+  {
+    "name": "Brudenell, Lyndoch and Raglan, Township of",
+    "type": "Township",
+    "website": "http://www.blrtownship.ca/"
+  },
+  {
+    "name": "Burk’s Falls, Village of",
+    "type": "Village",
+    "website": "http://www.burksfalls.net/"
+  },
+  {
+    "name": "Burlington, City of",
+    "type": "City",
+    "website": "https://www.burlington.ca/en/index.aspx"
+  },
+  {
+    "name": "Burpee and Mills, Township of",
+    "type": "Township",
+    "website": "http://www.burpeemills.com/"
+  },
+  {
+    "name": "Caledon, Town of",
+    "type": "Town",
+    "website": "http://www.town.caledon.on.ca/"
+  },
+  {
+    "name": "Callander, Municipality of",
+    "type": "Municipality",
+    "website": "http://mycallander.ca/"
+  },
+  {
+    "name": "Calvin, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.calvintownship.ca/"
+  },
+  {
+    "name": "Cambridge, City of",
+    "type": "City",
+    "website": "http://www.cambridge.ca/"
+  },
+  {
+    "name": "Carleton Place, Town of",
+    "type": "Town",
+    "website": "http://www.carletonplace.ca/"
+  },
+  {
+    "name": "Carling, Township of",
+    "type": "Township",
+    "website": "http://www.carlingtownship.ca/"
+  },
+  {
+    "name": "Carlow/Mayo, Township of",
+    "type": "Township",
+    "website": "http://www.carlowmayo.ca/"
+  },
+  {
+    "name": "Casey, Township of",
+    "type": "Township",
+    "website": "http://casey.ca/"
+  },
+  {
+    "name": "Casselman, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.en.casselman.ca/"
+  },
+  {
+    "name": "Cavan Monaghan, Township of",
+    "type": "Township",
+    "website": "http://www.cavanmonaghan.net/siteengine/activepage.asp"
+  },
+  {
+    "name": "Central Elgin, Municipality of",
+    "type": "Municipality",
+    "website": "https://www.centralelgin.org/en/index.aspx"
+  },
+  {
+    "name": "Central Frontenac, Township of",
+    "type": "Township",
+    "website": "http://www.centralfrontenac.com/"
+  },
+  {
+    "name": "Central Huron, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.centralhuron.com/"
+  },
+  {
+    "name": "Central Manitoulin, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.centralmanitoulin.ca/"
+  },
+  {
+    "name": "Centre Hastings, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.centrehastings.com/"
+  },
+  {
+    "name": "Centre Wellington, Township of",
+    "type": "Township",
+    "website": "https://www.centrewellington.ca/en/index.aspx"
+  },
+  {
+    "name": "Chamberlain, Township of",
+    "type": "Township",
+    "website": "https://www.chamberlaintownship.com/"
+  },
+  {
+    "name": "Champlain, Township of",
+    "type": "Township",
+    "website": "http://www.champlain.ca/en/index.aspx"
+  },
+  {
+    "name": "Chapleau, Township of",
+    "type": "Township",
+    "website": "https://chapleau.ca/"
+  },
+  {
+    "name": "Chapple, Township of",
+    "type": "Township",
+    "website": "http://www.chapple.on.ca/"
+  },
+  {
+    "name": "Charlton and Dack, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.charltonanddack.com/"
+  },
+  {
+    "name": "Chatham-Kent, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.chatham-kent.ca/"
+  },
+  {
+    "name": "Chatsworth, Township of",
+    "type": "Township",
+    "website": "http://www.chatsworth.ca/"
+  },
+  {
+    "name": "Chisholm, Township of",
+    "type": "Township",
+    "website": "http://www.chisholm.ca/"
+  },
+  {
+    "name": "Clarence-Rockland, City of",
+    "type": "City",
+    "website": "http://www.clarence-rockland.com/"
+  },
+  {
+    "name": "Clarington, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.clarington.net/"
+  },
+  {
+    "name": "Clearview, Township of",
+    "type": "Township",
+    "website": "http://www.clearview.ca/"
+  },
+  {
+    "name": "Cobalt, Town of",
+    "type": "Town",
+    "website": "http://www.cobalt.ca/"
+  },
+  {
+    "name": "Cobourg, Town of",
+    "type": "Town",
+    "website": "http://www.cobourg.ca/"
+  },
+  {
+    "name": "Cochrane, Town of",
+    "type": "Town",
+    "website": "https://cochraneontario.com/"
+  },
+  {
+    "name": "Cockburn Island, Township of",
+    "type": "Township",
+    "website": "https://www.cockburnisland.ca/"
+  },
+  {
+    "name": "Coleman, Township of",
+    "type": "Township",
+    "website": "http://www.colemantownship.ca/"
+  },
+  {
+    "name": "Collingwood, Town of",
+    "type": "Town",
+    "website": "http://www.collingwood.ca/"
+  },
+  {
+    "name": "Conmee, Township of",
+    "type": "Township",
+    "website": "http://www.conmee.com/"
+  },
+  {
+    "name": "Cornwall, City of",
+    "type": "City",
+    "website": "http://www.cornwall.ca/"
+  },
+  {
+    "name": "Cramahe, Township of",
+    "type": "Township",
+    "website": "http://www.visitcramahe.ca/"
+  },
+  {
+    "name": "Dawn-Euphemia, Township of",
+    "type": "Township",
+    "website": "https://dawneuphemia.ca/"
+  },
+  {
+    "name": "Dawson, Township of",
+    "type": "Township",
+    "website": "https://dawsontownship.weebly.com/"
+  },
+  {
+    "name": "Deep River, Town of",
+    "type": "Town",
+    "website": "http://www.deepriver.ca/"
+  },
+  {
+    "name": "Deseronto, Town of",
+    "type": "Town",
+    "website": "http://www.deseronto.ca/"
+  },
+  {
+    "name": "Dorion, Township of",
+    "type": "Township",
+    "website": "http://www.doriontownship.ca/"
+  },
+  {
+    "name": "Douro-Dummer, Township of",
+    "type": "Township",
+    "website": "http://www.dourodummer.on.ca/"
+  },
+  {
+    "name": "Drummond/North Elmsley, Township of",
+    "type": "Township",
+    "website": "https://www.dnetownship.ca/"
+  },
+  {
+    "name": "Dryden, City of",
+    "type": "City",
+    "website": "http://www.dryden.ca/"
+  },
+  {
+    "name": "Dubreuilville, Township of",
+    "type": "Township",
+    "website": "http://www.dubreuilville.ca/"
+  },
+  {
+    "name": "Dufferin, County of",
+    "type": "County",
+    "website": "https://www.dufferincounty.ca/"
+  },
+  {
+    "name": "Durham, Regional Municipality of",
+    "type": "Region",
+    "website": "http://www.durham.ca/"
+  },
+  {
+    "name": "Dutton/Dunwich, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.duttondunwich.on.ca/"
+  },
+  {
+    "name": "Dysart et al, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.dysartetal.ca/"
+  },
+  {
+    "name": "Ear Falls, Township of",
+    "type": "Township",
+    "website": "http://www.ear-falls.com/"
+  },
+  {
+    "name": "East Ferris, Township of",
+    "type": "Township",
+    "website": "http://eastferris.ca/"
+  },
+  {
+    "name": "East Garafraxa, Township of",
+    "type": "Township",
+    "website": "https://www.eastgarafraxa.ca/en/index.aspx"
+  },
+  {
+    "name": "East Gwillimbury, Town of",
+    "type": "Town",
+    "website": "http://www.eastgwillimbury.ca/"
+  },
+  {
+    "name": "East Hawkesbury, Township of",
+    "type": "Township",
+    "website": "http://www.easthawkesbury.ca/"
+  },
+  {
+    "name": "East Zorra-Tavistock, Township of",
+    "type": "Township",
+    "website": "https://www.ezt.ca/en/index.aspx"
+  },
+  {
+    "name": "Edwardsburgh/Cardinal, Township of",
+    "type": "Township",
+    "website": "http://www.edwardsburghcardinal.ca/"
+  },
+  {
+    "name": "Elgin, County of",
+    "type": "County",
+    "website": "https://www.elgincounty.ca/"
+  },
+  {
+    "name": "Elizabethtown-Kitley, Township of",
+    "type": "Township",
+    "website": "http://www.elizabethtown-kitley.on.ca/"
+  },
+  {
+    "name": "Elliot Lake, City of",
+    "type": "City",
+    "website": "http://www.cityofelliotlake.com/"
+  },
+  {
+    "name": "Emo, Township of",
+    "type": "Township",
+    "website": "http://www.twspemo.on.ca/"
+  },
+  {
+    "name": "Englehart, Town of",
+    "type": "Town",
+    "website": "http://www.englehart.ca/"
+  },
+  {
+    "name": "Enniskillen, Township of",
+    "type": "Township",
+    "website": "http://www.enniskillen.ca/"
+  },
+  {
+    "name": "Erin, Town of",
+    "type": "Town",
+    "website": "http://www.erin.ca/"
+  },
+  {
+    "name": "Espanola, Town of",
+    "type": "Town",
+    "website": "https://www.espanola.ca/"
+  },
+  {
+    "name": "Essa, Township of",
+    "type": "Township",
+    "website": "http://www.essatownship.on.ca/"
+  },
+  {
+    "name": "Essex, County of",
+    "type": "County",
+    "website": "http://www.countyofessex.on.ca/"
+  },
+  {
+    "name": "Essex, Town of",
+    "type": "Town",
+    "website": "http://www.townofessex.on.ca/"
+  },
+  {
+    "name": "Evanturel, Township of",
+    "type": "Township",
+    "website": "http://www.evanturel.com/"
+  },
+  {
+    "name": "Faraday, Township of",
+    "type": "Township",
+    "website": "http://www.faraday.ca/"
+  },
+  {
+    "name": "Fauquier-Strickland, Township of",
+    "type": "Township",
+    "website": "http://www.fauquierstrickland.com/"
+  },
+  {
+    "name": "Fort Erie, Town of",
+    "type": "Town",
+    "website": "http://www.forterie.on.ca/"
+  },
+  {
+    "name": "Fort Frances, Town of",
+    "type": "Town",
+    "website": "http://www.fort-frances.com/"
+  },
+  {
+    "name": "French River, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.frenchriver.ca/"
+  },
+  {
+    "name": "Front of Yonge, Township of",
+    "type": "Township",
+    "website": "https://mallorytown.ca/"
+  },
+  {
+    "name": "Frontenac Islands, Township of",
+    "type": "Township",
+    "website": "http://municipality.frontenacislands.on.ca/"
+  },
+  {
+    "name": "Frontenac, County of",
+    "type": "County",
+    "website": "https://frontenacislands.ca/"
+  },
+  {
+    "name": "Gananoque, Town of",
+    "type": "Town",
+    "website": "http://www.gananoque.ca/"
+  },
+  {
+    "name": "Georgian Bay, Township of",
+    "type": "Township",
+    "website": "http://www.gbtownship.ca/"
+  },
+  {
+    "name": "Georgian Bluffs, Township of",
+    "type": "Township",
+    "website": "https://www.georgianbluffs.ca/en/index.aspx"
+  },
+  {
+    "name": "Georgina, Town of",
+    "type": "Town",
+    "website": "http://www.georgina.ca/"
+  },
+  {
+    "name": "Gillies, Township of",
+    "type": "Township",
+    "website": "http://www.gilliestownship.com/"
+  },
+  {
+    "name": "Goderich, Town of",
+    "type": "Town",
+    "website": "http://www.goderich.ca/"
+  },
+  {
+    "name": "Gordon/Barrie Island, Municipality of",
+    "type": "Municipality",
+    "website": "https://www.gordonbarrieisland.ca/"
+  },
+  {
+    "name": "Gore Bay, Town of",
+    "type": "Town",
+    "website": "http://www.gorebay.ca/"
+  },
+  {
+    "name": "Grand Valley, Town of",
+    "type": "Town",
+    "website": "http://www.eastluthergrandvalley.ca/"
+  },
+  {
+    "name": "Gravenhurst, Town of",
+    "type": "Town",
+    "website": "http://www.gravenhurst.ca/"
+  },
+  {
+    "name": "Greater Madawaska, Township of",
+    "type": "Township",
+    "website": "http://www.greatermadawaska.com/"
+  },
+  {
+    "name": "Greater Napanee, Town of",
+    "type": "Town",
+    "website": "https://www.greaternapanee.com/en/index.aspx"
+  },
+  {
+    "name": "Greater Sudbury, City of",
+    "type": "City",
+    "website": "https://www.greatersudbury.ca/"
+  },
+  {
+    "name": "Greenstone, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.greenstone.ca/"
+  },
+  {
+    "name": "Grey Highlands, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.greyhighlands.ca/"
+  },
+  {
+    "name": "Grey, County of",
+    "type": "County",
+    "website": "http://www.grey.ca/"
+  },
+  {
+    "name": "Grimsby, Town of",
+    "type": "Town",
+    "website": "http://www.town.grimsby.on.ca/"
+  },
+  {
+    "name": "Guelph, City of",
+    "type": "City",
+    "website": "http://www.guelph.ca/"
+  },
+  {
+    "name": "Guelph/Eramosa, Township of",
+    "type": "Township",
+    "website": "http://www.get.on.ca/"
+  },
+  {
+    "name": "Haldimand County",
+    "type": "Municipality",
+    "website": "http://www.haldimandcounty.on.ca/"
+  },
+  {
+    "name": "Haliburton, County of",
+    "type": "County",
+    "website": "http://haliburtoncounty.ca/"
+  },
+  {
+    "name": "Halton Hills, Town of",
+    "type": "Town",
+    "website": "http://www.haltonhills.ca/"
+  },
+  {
+    "name": "Halton, Regional Municipality of",
+    "type": "Region",
+    "website": "http://www.halton.ca/"
+  },
+  {
+    "name": "Hamilton, City of",
+    "type": "City",
+    "website": "http://www.hamilton.ca/"
+  },
+  {
+    "name": "Hamilton, Township of",
+    "type": "Township",
+    "website": "http://www.hamiltontownship.ca/"
+  },
+  {
+    "name": "Hanover, Town of",
+    "type": "Town",
+    "website": "http://www.hanover.ca/"
+  },
+  {
+    "name": "Harley, Township of",
+    "type": "Township",
+    "website": "http://www.harley.ca/"
+  },
+  {
+    "name": "Harris, Township of",
+    "type": "Township",
+    "website": "https://harristownship.weebly.com/"
+  },
+  {
+    "name": "Hastings Highlands, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.hastingshighlands.ca/"
+  },
+  {
+    "name": "Hastings, County of",
+    "type": "County",
+    "website": "http://www.hastingscounty.com/"
+  },
+  {
+    "name": "Havelock-Belmont-Methuen, Township of",
+    "type": "Township",
+    "website": "http://www.hbmtwp.ca/"
+  },
+  {
+    "name": "Hawkesbury, Town of",
+    "type": "Town",
+    "website": "http://www.hawkesbury.ca/en/"
+  },
+  {
+    "name": "Head, Clara and Maria, Township of",
+    "type": "Township",
+    "website": "http://townshipsofheadclaramaria.ca/"
+  },
+  {
+    "name": "Hearst, Town of",
+    "type": "Town",
+    "website": "http://www.hearst.ca/"
+  },
+  {
+    "name": "Highlands East, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.highlandseast.ca/"
+  },
+  {
+    "name": "Hilliard, Township of",
+    "type": "Township",
+    "website": "https://townshipofhilliard.ca/"
+  },
+  {
+    "name": "Hilton Beach, Village of",
+    "type": "Village",
+    "website": "http://www.hiltonbeach.com/"
+  },
+  {
+    "name": "Hilton, Township of",
+    "type": "Township",
+    "website": "http://www.hiltontownship.ca/"
+  },
+  {
+    "name": "Hornepayne, Township of",
+    "type": "Township",
+    "website": "http://www.townshipofhornepayne.ca/"
+  },
+  {
+    "name": "Horton, Township of",
+    "type": "Township",
+    "website": "http://www.hortontownship.ca/"
+  },
+  {
+    "name": "Howick, Township of",
+    "type": "Township",
+    "website": "https://howick.ca/"
+  },
+  {
+    "name": "Hudson, Township of",
+    "type": "Township",
+    "website": "http://hudson.ca/"
+  },
+  {
+    "name": "Huntsville, Town of",
+    "type": "Town",
+    "website": "https://www.huntsville.ca/en/index.aspx"
+  },
+  {
+    "name": "Huron East, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.huroneast.com/"
+  },
+  {
+    "name": "Huron Shores, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.huronshores.ca/"
+  },
+  {
+    "name": "Huron-Kinloss, Township of",
+    "type": "Township",
+    "website": "http://www.huronkinloss.com/"
+  },
+  {
+    "name": "Huron, County of",
+    "type": "County",
+    "website": "http://www.huroncounty.ca/"
+  },
+  {
+    "name": "Ignace, Township of",
+    "type": "Township",
+    "website": "http://town.ignace.on.ca/"
+  },
+  {
+    "name": "Ingersoll, Town of",
+    "type": "Town",
+    "website": "http://www.ingersoll.ca/"
+  },
+  {
+    "name": "Innisfil, Town of",
+    "type": "Town",
+    "website": "https://innisfil.ca/"
+  },
+  {
+    "name": "Iroquois Falls, Town of",
+    "type": "Town",
+    "website": "http://www.iroquoisfalls.com/home"
+  },
+  {
+    "name": "James, Township of",
+    "type": "Township",
+    "website": "http://www.elklake.ca/"
+  },
+  {
+    "name": "Jocelyn, Township of",
+    "type": "Township",
+    "website": "https://jocelyn.ca/"
+  },
+  {
+    "name": "Johnson, Township of",
+    "type": "Township",
+    "website": "https://johnsontownship.ca/"
+  },
+  {
+    "name": "Joly, Township of",
+    "type": "Township",
+    "website": "http://www.townshipofjoly.com/"
+  },
+  {
+    "name": "Kapuskasing, Town of",
+    "type": "Town",
+    "website": "http://www.kapuskasing.ca/"
+  },
+  {
+    "name": "Kawartha Lakes, City of",
+    "type": "City",
+    "website": "http://www.city.kawarthalakes.on.ca/"
+  },
+  {
+    "name": "Kearney, Town of",
+    "type": "Town",
+    "website": "http://www.townofkearney.com/"
+  },
+  {
+    "name": "Kenora, City of",
+    "type": "City",
+    "website": "http://www.kenora.ca/"
+  },
+  {
+    "name": "Kerns, Township of",
+    "type": "Township",
+    "website": "http://kerns.ca/"
+  },
+  {
+    "name": "Killaloe, Hagarty and Richards, Township of",
+    "type": "Township",
+    "website": "http://www.killaloe-hagarty-richards.ca/"
+  },
+  {
+    "name": "Killarney, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.municipalityofkillarney.ca/"
+  },
+  {
+    "name": "Kincardine, Municipality of",
+    "type": "Municipality",
+    "website": "https://www.kincardine.ca/en/index.aspx"
+  },
+  {
+    "name": "King, Township of",
+    "type": "Township",
+    "website": "http://www.king.ca/"
+  },
+  {
+    "name": "Kingston, City of",
+    "type": "City",
+    "website": "http://www.cityofkingston.ca/"
+  },
+  {
+    "name": "Kingsville, Town of",
+    "type": "Town",
+    "website": "https://www.kingsville.ca/en/index.aspx"
+  },
+  {
+    "name": "Kirkland Lake, Town of",
+    "type": "Town",
+    "website": "http://www.discoverkl.ca/"
+  },
+  {
+    "name": "Kitchener, City of",
+    "type": "City",
+    "website": "http://www.kitchener.ca/"
+  },
+  {
+    "name": "La Vallee, Township of",
+    "type": "Township",
+    "website": "http://www.lavallee.ca/"
+  },
+  {
+    "name": "Laird, Township of",
+    "type": "Township",
+    "website": "http://www.lairdtownship.ca/"
+  },
+  {
+    "name": "Lake of Bays, Township of",
+    "type": "Township",
+    "website": "http://www.lakeofbays.on.ca/"
+  },
+  {
+    "name": "Lake of the Woods, Township of",
+    "type": "Township",
+    "website": "http://www.lakeofthewoods.ca/"
+  },
+  {
+    "name": "Lakeshore, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.townoflakeshore.on.ca/"
+  },
+  {
+    "name": "Lambton Shores, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.lambtonshores.ca/"
+  },
+  {
+    "name": "Lambton, County of",
+    "type": "County",
+    "website": "http://www.lambtononline.ca/"
+  },
+  {
+    "name": "Lanark Highlands, Township of",
+    "type": "Township",
+    "website": "http://www.lanarkhighlands.ca/"
+  },
+  {
+    "name": "Lanark, County of",
+    "type": "County",
+    "website": "https://www.lanarkcounty.ca/en/index.aspx"
+  },
+  {
+    "name": "Larder Lake, Township of",
+    "type": "Township",
+    "website": "https://larderlake.ca/"
+  },
+  {
+    "name": "LaSalle, Town of",
+    "type": "Town",
+    "website": "http://www.town.lasalle.on.ca/"
+  },
+  {
+    "name": "Latchford, Town of",
+    "type": "Town",
+    "website": "http://www.latchford.ca/"
+  },
+  {
+    "name": "Laurentian Hills, Town of",
+    "type": "Town",
+    "website": "http://www.laurentianhills.ca/"
+  },
+  {
+    "name": "Laurentian Valley, Township of",
+    "type": "Township",
+    "website": "http://www.laurentianvalleytwsp.on.ca/"
+  },
+  {
+    "name": "Leamington, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.leamington.ca/"
+  },
+  {
+    "name": "Leeds and Grenville, United Counties of",
+    "type": "Municipality",
+    "website": "https://www.leedsgrenville.com/en/index.aspx"
+  },
+  {
+    "name": "Leeds and the Thousand Islands, Township of",
+    "type": "Township",
+    "website": "http://www.townshipleeds.on.ca/"
+  },
+  {
+    "name": "Lennox and Addington, County of",
+    "type": "County",
+    "website": "http://www.lennox-addington.on.ca/"
+  },
+  {
+    "name": "Limerick, Township of",
+    "type": "Township",
+    "website": "http://www.township.limerick.on.ca/"
+  },
+  {
+    "name": "Lincoln, Town of",
+    "type": "Town",
+    "website": "http://www.lincoln.ca/"
+  },
+  {
+    "name": "London, City of",
+    "type": "City",
+    "website": "http://www.london.ca/"
+  },
+  {
+    "name": "Loyalist, Township of",
+    "type": "Township",
+    "website": "http://www.loyalist.ca/"
+  },
+  {
+    "name": "Lucan Biddulph, Township of",
+    "type": "Township",
+    "website": "http://www.lucanbiddulph.on.ca/"
+  },
+  {
+    "name": "Macdonald, Meredith and Aberdeen Additional, Township of",
+    "type": "Township",
+    "website": "http://www.echobay.ca/"
+  },
+  {
+    "name": "Machar, Township of",
+    "type": "Township",
+    "website": "http://www.machartownship.net/"
+  },
+  {
+    "name": "Machin, Township of",
+    "type": "Township",
+    "website": "http://www.visitmachin.com/"
+  },
+  {
+    "name": "Madawaska Valley, Township of",
+    "type": "Township",
+    "website": "http://www.madawaskavalley.ca/"
+  },
+  {
+    "name": "Madoc, Township of",
+    "type": "Township",
+    "website": "http://www.madoc.ca/"
+  },
+  {
+    "name": "Magnetawan, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.magnetawan.com/"
+  },
+  {
+    "name": "Malahide, Township of",
+    "type": "Township",
+    "website": "http://www.malahide.ca/"
+  },
+  {
+    "name": "Manitouwadge, Township of",
+    "type": "Township",
+    "website": "http://www.manitouwadge.ca/"
+  },
+  {
+    "name": "Mapleton, Township of",
+    "type": "Township",
+    "website": "http://www.mapleton.ca/"
+  },
+  {
+    "name": "Marathon, Town of",
+    "type": "Town",
+    "website": "http://www.marathon.ca/"
+  },
+  {
+    "name": "Markham, City of",
+    "type": "City",
+    "website": "http://www.markham.ca/"
+  },
+  {
+    "name": "Markstay-Warren, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.markstay-warren.ca/"
+  },
+  {
+    "name": "Marmora and Lake, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.marmoraandlake.ca/"
+  },
+  {
+    "name": "Matachewan, Township of",
+    "type": "Township",
+    "website": "http://www.matachewan.com/"
+  },
+  {
+    "name": "Mattawa, Town of",
+    "type": "Town",
+    "website": "http://www.mattawa.ca/"
+  },
+  {
+    "name": "Mattawan, Municipality of",
+    "type": "Municipality",
+    "website": "https://mattawan.ca/"
+  },
+  {
+    "name": "Mattice-Val CÃ´tÃ©, Township of",
+    "type": "Township",
+    "website": "http://www.matticevalcote.ca/"
+  },
+  {
+    "name": "McDougall, Township of",
+    "type": "Township",
+    "website": "http://www.municipalityofmcdougall.com/"
+  },
+  {
+    "name": "McGarry, Township of",
+    "type": "Township",
+    "website": "http://www.mcgarry.ca/"
+  },
+  {
+    "name": "McKellar, Township of",
+    "type": "Township",
+    "website": "https://www.mckellar.ca/en/index.aspx"
+  },
+  {
+    "name": "McMurrich/Monteith, Township of",
+    "type": "Township",
+    "website": "http://www.mcmurrichmonteith.com/"
+  },
+  {
+    "name": "McNab/Braeside, Township of",
+    "type": "Township",
+    "website": "http://mcnabbraeside.com/"
+  },
+  {
+    "name": "Meaford, Municipality of",
+    "type": "Municipality",
+    "website": "http://meaford.ca/"
+  },
+  {
+    "name": "Melancthon, Township of",
+    "type": "Township",
+    "website": "http://melancthontownship.ca/"
+  },
+  {
+    "name": "Merrickville-Wolford, Village of",
+    "type": "Village",
+    "website": "http://www.merrickville-wolford.ca/"
+  },
+  {
+    "name": "Middlesex Centre, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.middlesexcentre.on.ca/"
+  },
+  {
+    "name": "Middlesex, County of",
+    "type": "County",
+    "website": "http://www.middlesex.ca/"
+  },
+  {
+    "name": "Midland, Town of",
+    "type": "Town",
+    "website": "http://www.midland.ca/"
+  },
+  {
+    "name": "Milton, Town of",
+    "type": "Town",
+    "website": "http://www.milton.ca/"
+  },
+  {
+    "name": "Minden Hills, Township of",
+    "type": "Township",
+    "website": "http://www.mindenhills.ca/"
+  },
+  {
+    "name": "Minto, Town of",
+    "type": "Town",
+    "website": "http://www.town.minto.on.ca/"
+  },
+  {
+    "name": "Mississauga, City of",
+    "type": "City",
+    "website": "http://www.mississauga.ca/"
+  },
+  {
+    "name": "Mississippi Mills, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.mississippimills.ca/"
+  },
+  {
+    "name": "Mono, Town of",
+    "type": "Town",
+    "website": "http://www.townofmono.com/"
+  },
+  {
+    "name": "Montague, Township of",
+    "type": "Township",
+    "website": "http://www.township.montague.on.ca/"
+  },
+  {
+    "name": "Moonbeam, Township of",
+    "type": "Township",
+    "website": "http://www.moonbeam.ca/"
+  },
+  {
+    "name": "Moosonee, Town of",
+    "type": "Town",
+    "website": "http://www.moosonee.ca/"
+  },
+  {
+    "name": "Morley, Township of",
+    "type": "Township",
+    "website": "http://www.townshipofmorley.ca/"
+  },
+  {
+    "name": "Morris-Turnberry, Municipality of",
+    "type": "Municipality",
+    "website": "https://morristurnberry.ca/"
+  },
+  {
+    "name": "Mulmur, Township of",
+    "type": "Township",
+    "website": "http://www.mulmurtownship.ca./"
+  },
+  {
+    "name": "Muskoka Lakes, Township of",
+    "type": "Township",
+    "website": "http://www.muskokalakes.ca/"
+  },
+  {
+    "name": "Muskoka, District Municipality of",
+    "type": "Municipality",
+    "website": "http://www.muskoka.on.ca/"
+  },
+  {
+    "name": "Nairn and Hyman, Township of",
+    "type": "Township",
+    "website": "http://www.nairncentre.ca/"
+  },
+  {
+    "name": "Neebing, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.neebing.org/"
+  },
+  {
+    "name": "New Tecumseth, Town of",
+    "type": "Town",
+    "website": "http://www.town.newtecumseth.on.ca/"
+  },
+  {
+    "name": "Newbury, Village of",
+    "type": "Village",
+    "website": "http://www.newbury.ca/"
+  },
+  {
+    "name": "Newmarket, Town of",
+    "type": "Town",
+    "website": "http://www.newmarket.ca/"
+  },
+  {
+    "name": "Niagara Falls, City of",
+    "type": "City",
+    "website": "http://www.niagarafalls.ca/"
+  },
+  {
+    "name": "Niagara-on-the-Lake, Town of",
+    "type": "Town",
+    "website": "http://www.notl.org/"
+  },
+  {
+    "name": "Niagara, Regional Municipality of",
+    "type": "Region",
+    "website": "http://www.niagararegion.ca/"
+  },
+  {
+    "name": "Nipigon, Township of",
+    "type": "Township",
+    "website": "http://www.nipigon.net/"
+  },
+  {
+    "name": "Nipissing, Township of",
+    "type": "Township",
+    "website": "http://nipissingtownship.com/"
+  },
+  {
+    "name": "Norfolk County",
+    "type": "Municipality",
+    "website": "https://www.norfolkcounty.ca/"
+  },
+  {
+    "name": "North Algona Wilberforce, Township of",
+    "type": "Township",
+    "website": "http://www.nalgonawil.com/"
+  },
+  {
+    "name": "North Bay, City of",
+    "type": "City",
+    "website": "http://www.cityofnorthbay.ca/"
+  },
+  {
+    "name": "North Dumfries, Township of",
+    "type": "Township",
+    "website": "http://www.northdumfries.ca/"
+  },
+  {
+    "name": "North Dundas, Township of",
+    "type": "Township",
+    "website": "http://www.northdundas.com/"
+  },
+  {
+    "name": "North Frontenac, Township of",
+    "type": "Township",
+    "website": "http://www.northfrontenac.ca/"
+  },
+  {
+    "name": "North Glengarry, Township of",
+    "type": "Township",
+    "website": "http://www.northglengarry.ca/"
+  },
+  {
+    "name": "North Grenville, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.northgrenville.ca/"
+  },
+  {
+    "name": "North Huron, Township of",
+    "type": "Township",
+    "website": "http://www.northhuron.ca/"
+  },
+  {
+    "name": "North Kawartha, Township of",
+    "type": "Township",
+    "website": "http://www.northkawartha.on.ca/"
+  },
+  {
+    "name": "North Middlesex, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.northmiddlesex.on.ca/"
+  },
+  {
+    "name": "North Perth, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.northperth.ca/"
+  },
+  {
+    "name": "North Stormont, Township of",
+    "type": "Township",
+    "website": "http://www.northstormont.ca/"
+  },
+  {
+    "name": "Northeastern Manitoulin and The Islands, Town of",
+    "type": "Town",
+    "website": "http://www.townofnemi.on.ca/"
+  },
+  {
+    "name": "Northern Bruce Peninsula, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.northbrucepeninsula.ca/"
+  },
+  {
+    "name": "Northumberland, County of",
+    "type": "County",
+    "website": "http://northumberland.ca/"
+  },
+  {
+    "name": "Norwich, Township of",
+    "type": "Township",
+    "website": "http://www.twp.norwich.on.ca/"
+  },
+  {
+    "name": "O’Connor, Township of",
+    "type": "Township",
+    "website": "http://www.oconnortownship.ca/"
+  },
+  {
+    "name": "Oakville, Town of",
+    "type": "Town",
+    "website": "http://www.oakville.ca/"
+  },
+  {
+    "name": "Oil Springs, Village of",
+    "type": "Village",
+    "website": "http://www.oilsprings.ca/"
+  },
+  {
+    "name": "Oliver Paipoonge, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.oliverpaipoonge.on.ca/"
+  },
+  {
+    "name": "Opasatika, Township of",
+    "type": "Township",
+    "website": "http://opasatika.net/"
+  },
+  {
+    "name": "Orangeville, Town of",
+    "type": "Town",
+    "website": "http://www.orangeville.ca/"
+  },
+  {
+    "name": "Orillia, City of",
+    "type": "City",
+    "website": "http://www.orillia.ca/"
+  },
+  {
+    "name": "Oro-Medonte, Township of",
+    "type": "Township",
+    "website": "http://www.oro-medonte.ca/"
+  },
+  {
+    "name": "Oshawa, City of",
+    "type": "City",
+    "website": "https://www.oshawa.ca/en/index.aspx"
+  },
+  {
+    "name": "Otonabee-South Monaghan, Township of",
+    "type": "Township",
+    "website": "http://www.osmtownship.ca/"
+  },
+  {
+    "name": "Ottawa, City of",
+    "type": "City",
+    "website": "http://ottawa.ca/en"
+  },
+  {
+    "name": "Owen Sound, City of",
+    "type": "City",
+    "website": "http://www.owensound.ca/"
+  },
+  {
+    "name": "Oxford, County of",
+    "type": "County",
+    "website": "http://www.oxfordcounty.ca/"
+  },
+  {
+    "name": "Papineau-Cameron, Township of",
+    "type": "Township",
+    "website": "http://www.papineaucameron.ca/"
+  },
+  {
+    "name": "Parry Sound, Town of",
+    "type": "Town",
+    "website": "http://www.townofparrysound.com/"
+  },
+  {
+    "name": "Peel, Regional Municipality of",
+    "type": "Region",
+    "website": "http://www.peelregion.ca/"
+  },
+  {
+    "name": "Pelee, Township of",
+    "type": "Township",
+    "website": "http://www.pelee.org/"
+  },
+  {
+    "name": "Pelham, Town of",
+    "type": "Town",
+    "website": "http://www.pelham.ca/"
+  },
+  {
+    "name": "Pembroke, City of",
+    "type": "City",
+    "website": "http://www.pembrokeontario.com/"
+  },
+  {
+    "name": "Penetanguishene, Town of",
+    "type": "Town",
+    "website": "http://www.penetanguishene.ca/"
+  },
+  {
+    "name": "Perry, Township of",
+    "type": "Township",
+    "website": "http://www.townshipofperry.ca/"
+  },
+  {
+    "name": "Perth East, Township of",
+    "type": "Township",
+    "website": "https://www.pertheast.ca/en/index.aspx"
+  },
+  {
+    "name": "Perth South, Township of",
+    "type": "Township",
+    "website": "http://www.perthsouth.ca/"
+  },
+  {
+    "name": "Perth, County of",
+    "type": "County",
+    "website": "http://www.perthcounty.ca/"
+  },
+  {
+    "name": "Perth, Town of",
+    "type": "Town",
+    "website": "http://www.perth.ca/en/index.aspx"
+  },
+  {
+    "name": "Petawawa, Town of",
+    "type": "Town",
+    "website": "http://www.petawawa.ca/"
+  },
+  {
+    "name": "Peterborough, City of",
+    "type": "City",
+    "website": "http://www.peterborough.ca/"
+  },
+  {
+    "name": "Peterborough, County of",
+    "type": "County",
+    "website": "http://www.ptbocounty.ca/en/index.aspx"
+  },
+  {
+    "name": "Petrolia, Town of",
+    "type": "Town",
+    "website": "http://town.petrolia.on.ca/"
+  },
+  {
+    "name": "Pickering, City of",
+    "type": "City",
+    "website": "https://www.pickering.ca/en/index.aspx"
+  },
+  {
+    "name": "Pickle Lake, Township of",
+    "type": "Township",
+    "website": "http://www.picklelake.ca/"
+  },
+  {
+    "name": "Plummer Additional, Township of",
+    "type": "Township",
+    "website": "http://copperbaywebdesign.com/plummer_index.html"
+  },
+  {
+    "name": "Plympton-Wyoming, Town of",
+    "type": "Town",
+    "website": "http://plympton-wyoming.com/"
+  },
+  {
+    "name": "Point Edward, Village of",
+    "type": "Village",
+    "website": "http://www.villageofpointedward.com/"
+  },
+  {
+    "name": "Port Colborne, City of",
+    "type": "City",
+    "website": "http://www.portcolborne.ca/"
+  },
+  {
+    "name": "Port Hope, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.porthope.ca/"
+  },
+  {
+    "name": "Powassan, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.powassan.net/"
+  },
+  {
+    "name": "Prescott and Russell, United Counties of",
+    "type": "Municipality",
+    "website": "http://www.prescott-russell.on.ca/"
+  },
+  {
+    "name": "Prescott, Town of",
+    "type": "Town",
+    "website": "http://www.prescott.ca/"
+  },
+  {
+    "name": "Prince Edward, County of",
+    "type": "County",
+    "website": "http://www.pecounty.on.ca/"
+  },
+  {
+    "name": "Prince, Township of",
+    "type": "Township",
+    "website": "http://www.princetwp.ca/"
+  },
+  {
+    "name": "Puslinch, Township of",
+    "type": "Township",
+    "website": "https://puslinch.ca/"
+  },
+  {
+    "name": "Quinte West, City of",
+    "type": "City",
+    "website": "http://www.quintewest.ca/"
+  },
+  {
+    "name": "Rainy River, Town of",
+    "type": "Town",
+    "website": "http://www.rainyriver.ca/"
+  },
+  {
+    "name": "Ramara, Township of",
+    "type": "Township",
+    "website": "http://www.ramara.ca/"
+  },
+  {
+    "name": "Red Lake, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.red-lake.com/"
+  },
+  {
+    "name": "Red Rock, Township of",
+    "type": "Township",
+    "website": "http://www.redrocktownship.com/"
+  },
+  {
+    "name": "Renfrew, County of",
+    "type": "County",
+    "website": "http://www.countyofrenfrew.on.ca/"
+  },
+  {
+    "name": "Renfrew, Town of",
+    "type": "Town",
+    "website": "http://www.renfrewontario.com/"
+  },
+  {
+    "name": "Richmond Hill, City of",
+    "type": "City",
+    "website": "http://www.richmondhill.ca/"
+  },
+  {
+    "name": "Rideau Lakes, Township of",
+    "type": "Township",
+    "website": "http://www.twprideaulakes.on.ca/"
+  },
+  {
+    "name": "Russell, Township of",
+    "type": "Township",
+    "website": "http://www.russell.ca/"
+  },
+  {
+    "name": "Ryerson, Township of",
+    "type": "Township",
+    "website": "http://www.ryersontownship.ca/"
+  },
+  {
+    "name": "Sables-Spanish Rivers, Township of",
+    "type": "Township",
+    "website": "http://www.sables-spanish.ca/"
+  },
+  {
+    "name": "Sarnia, City of",
+    "type": "City",
+    "website": "http://www.sarnia.ca/"
+  },
+  {
+    "name": "Saugeen Shores, Town of",
+    "type": "Town",
+    "website": "http://www.saugeenshores.ca/"
+  },
+  {
+    "name": "Sault Ste. Marie, City of",
+    "type": "City",
+    "website": "https://saultstemarie.ca/"
+  },
+  {
+    "name": "Schreiber, Township of",
+    "type": "Township",
+    "website": "http://www.schreiber.ca/"
+  },
+  {
+    "name": "Scugog, Township of",
+    "type": "Township",
+    "website": "https://www.scugog.ca/en/index.aspx"
+  },
+  {
+    "name": "Seguin, Township of",
+    "type": "Township",
+    "website": "http://www.twp.seguin.on.ca/"
+  },
+  {
+    "name": "Selwyn, Township of",
+    "type": "Township",
+    "website": "http://www.selwyntownship.ca/en/index.asp"
+  },
+  {
+    "name": "Severn, Township of",
+    "type": "Township",
+    "website": "http://www.townshipofsevern.com/"
+  },
+  {
+    "name": "Shelburne, Town of",
+    "type": "Town",
+    "website": "http://www.townofshelburne.on.ca/"
+  },
+  {
+    "name": "Shuniah, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.shuniah.org/"
+  },
+  {
+    "name": "Simcoe, County of",
+    "type": "County",
+    "website": "http://www.simcoe.ca/"
+  },
+  {
+    "name": "Sioux Lookout, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.siouxlookout.ca/"
+  },
+  {
+    "name": "Sioux Narrows-Nestor Falls, Township of",
+    "type": "Township",
+    "website": "http://www.siouxnarrows-nestorfalls.ca/"
+  },
+  {
+    "name": "Smiths Falls, Town of",
+    "type": "Town",
+    "website": "http://www.smithsfalls.ca/"
+  },
+  {
+    "name": "Smooth Rock Falls, Town of",
+    "type": "Town",
+    "website": "http://www.townofsmoothrockfalls.ca/"
+  },
+  {
+    "name": "South Algonquin, Township of",
+    "type": "Township",
+    "website": "http://www.township.southalgonquin.on.ca/"
+  },
+  {
+    "name": "South Bruce Peninsula, Town of",
+    "type": "Town",
+    "website": "http://www.southbrucepeninsula.com/"
+  },
+  {
+    "name": "South Bruce, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.town.southbruce.on.ca/"
+  },
+  {
+    "name": "South Dundas, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.southdundas.com/"
+  },
+  {
+    "name": "South Frontenac, Township of",
+    "type": "Township",
+    "website": "http://www.township.southfrontenac.on.ca/"
+  },
+  {
+    "name": "South Glengarry, Township of",
+    "type": "Township",
+    "website": "http://southglengarry.com/"
+  },
+  {
+    "name": "South Huron, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.southhuron.ca/"
+  },
+  {
+    "name": "South River, Village of",
+    "type": "Village",
+    "website": "http://www.southriverontario.com/"
+  },
+  {
+    "name": "South Stormont, Township of",
+    "type": "Township",
+    "website": "http://southstormont.ca/"
+  },
+  {
+    "name": "South-West Oxford, Township of",
+    "type": "Township",
+    "website": "http://www.swox.org/"
+  },
+  {
+    "name": "Southgate, Township of",
+    "type": "Township",
+    "website": "https://www.southgate.ca/en/index.aspx"
+  },
+  {
+    "name": "Southwest Middlesex, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.southwestmiddlesex.ca/"
+  },
+  {
+    "name": "Southwold, Township of",
+    "type": "Township",
+    "website": "http://www.twp.southwold.on.ca/"
+  },
+  {
+    "name": "Spanish, Town of",
+    "type": "Town",
+    "website": "http://www.townofspanish.com/"
+  },
+  {
+    "name": "Springwater, Township of",
+    "type": "Township",
+    "website": "http://www.springwater.ca/"
+  },
+  {
+    "name": "St. Catharines, City of",
+    "type": "City",
+    "website": "http://www.stcatharines.ca/"
+  },
+  {
+    "name": "St. Clair, Township of",
+    "type": "Township",
+    "website": "http://www.twp.stclair.on.ca/"
+  },
+  {
+    "name": "St. Joseph, Township of",
+    "type": "Township",
+    "website": "http://www.stjosephtownship.com/"
+  },
+  {
+    "name": "St. Marys, Town of",
+    "type": "Town",
+    "website": "http://www.townofstmarys.com/"
+  },
+  {
+    "name": "St. Thomas, City of",
+    "type": "City",
+    "website": "https://www.stthomas.ca/"
+  },
+  {
+    "name": "St.-Charles, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.stcharlesontario.ca/"
+  },
+  {
+    "name": "Stirling-Rawdon, Township of",
+    "type": "Township",
+    "website": "http://www.stirling-rawdon.com/"
+  },
+  {
+    "name": "Stone Mills, Township of",
+    "type": "Township",
+    "website": "http://www.stonemills.com/"
+  },
+  {
+    "name": "Stormont, Dundas and Glengarry, United Counties of",
+    "type": "Municipality",
+    "website": "http://www.sdg.on.ca/"
+  },
+  {
+    "name": "Stratford, City of",
+    "type": "City",
+    "website": "https://www.stratford.ca/en/index.aspx"
+  },
+  {
+    "name": "Strathroy-Caradoc, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.strathroy-caradoc.ca/"
+  },
+  {
+    "name": "Strong, Township of",
+    "type": "Township",
+    "website": "http://www.strongtownship.com/"
+  },
+  {
+    "name": "Sundridge, Village of",
+    "type": "Village",
+    "website": "http://www.sundridge.ca/"
+  },
+  {
+    "name": "Tarbutt, Township of",
+    "type": "Township",
+    "website": "http://www.tarbutttownship.com/"
+  },
+  {
+    "name": "Tay Valley, Township of",
+    "type": "Township",
+    "website": "http://www.tayvalleytwp.ca/"
+  },
+  {
+    "name": "Tay, Township of",
+    "type": "Township",
+    "website": "http://www.tay.ca/"
+  },
+  {
+    "name": "Tecumseh, Town of",
+    "type": "Town",
+    "website": "http://www.tecumseh.ca/"
+  },
+  {
+    "name": "Tehkummah, Township of",
+    "type": "Township",
+    "website": "https://tehkummah.ca/"
+  },
+  {
+    "name": "Temagami, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.temagami.ca/"
+  },
+  {
+    "name": "Temiskaming Shores, City of",
+    "type": "City",
+    "website": "http://www.temiskamingshores.ca/"
+  },
+  {
+    "name": "Terrace Bay, Township of",
+    "type": "Township",
+    "website": "http://www.terracebay.ca/"
+  },
+  {
+    "name": "Thames Centre, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.thamescentre.on.ca/"
+  },
+  {
+    "name": "The Archipelago, Township of",
+    "type": "Township",
+    "website": "http://www.thearchipelago.on.ca/"
+  },
+  {
+    "name": "The Blue Mountains, Town of",
+    "type": "Town",
+    "website": "http://www.thebluemountains.ca/"
+  },
+  {
+    "name": "The Nation Municipality",
+    "type": "Municipality",
+    "website": "http://www.nationmun.ca/"
+  },
+  {
+    "name": "The North Shore, Township of",
+    "type": "Township",
+    "website": "http://www.townshipofthenorthshore.ca/"
+  },
+  {
+    "name": "Thessalon, Town of",
+    "type": "Town",
+    "website": "http://www.thessalon.ca/"
+  },
+  {
+    "name": "Thorold, City of",
+    "type": "City",
+    "website": "http://www.thorold.com/"
+  },
+  {
+    "name": "Thunder Bay, City of",
+    "type": "City",
+    "website": "http://www.thunderbay.ca/"
+  },
+  {
+    "name": "Tillsonburg, Town of",
+    "type": "Town",
+    "website": "http://www.town.tillsonburg.on.ca/"
+  },
+  {
+    "name": "Timmins, City of",
+    "type": "City",
+    "website": "http://www.timmins.ca/"
+  },
+  {
+    "name": "Tiny, Township of",
+    "type": "Township",
+    "website": "https://www.tiny.ca/"
+  },
+  {
+    "name": "Toronto, City of",
+    "type": "City",
+    "website": "http://www.toronto.ca/"
+  },
+  {
+    "name": "Trent Hills, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.trenthills.ca/"
+  },
+  {
+    "name": "Trent Lakes, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.trentlakes.ca/"
+  },
+  {
+    "name": "Tudor and Cashel, Township of",
+    "type": "Township",
+    "website": "http://www.tudorandcashel.com/"
+  },
+  {
+    "name": "Tweed, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.tweed.ca/"
+  },
+  {
+    "name": "Tyendinaga, Township of",
+    "type": "Township",
+    "website": "http://www.tyendinagatownship.com/"
+  },
+  {
+    "name": "Uxbridge, Township of",
+    "type": "Township",
+    "website": "http://www.town.uxbridge.on.ca/"
+  },
+  {
+    "name": "Val Rita-Harty, Township of",
+    "type": "Township",
+    "website": "http://valharty.ca/en/"
+  },
+  {
+    "name": "Vaughan, City of",
+    "type": "City",
+    "website": "http://www.city.vaughan.on.ca/"
+  },
+  {
+    "name": "Wainfleet, Township of",
+    "type": "Township",
+    "website": "http://www.wainfleet.ca/"
+  },
+  {
+    "name": "Warwick, Township of",
+    "type": "Township",
+    "website": "http://www.warwicktownship.ca/"
+  },
+  {
+    "name": "Wasaga Beach, Town of",
+    "type": "Town",
+    "website": "http://www.wasagabeach.com/"
+  },
+  {
+    "name": "Waterloo, City of",
+    "type": "City",
+    "website": "http://www.city.waterloo.on.ca/"
+  },
+  {
+    "name": "Waterloo, Regional Municipality of",
+    "type": "Region",
+    "website": "http://www.region.waterloo.on.ca/"
+  },
+  {
+    "name": "Wawa, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.wawa.cc/"
+  },
+  {
+    "name": "Welland, City of",
+    "type": "City",
+    "website": "http://www.welland.ca/"
+  },
+  {
+    "name": "Wellesley, Township of",
+    "type": "Township",
+    "website": "https://www.wellesley.ca/en/index.aspx"
+  },
+  {
+    "name": "Wellington North, Township of",
+    "type": "Township",
+    "website": "http://www.wellington-north.com/"
+  },
+  {
+    "name": "Wellington, County of",
+    "type": "County",
+    "website": "http://www.wellington.ca/"
+  },
+  {
+    "name": "West Elgin, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.westelgin.net/"
+  },
+  {
+    "name": "West Grey, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.westgrey.com/"
+  },
+  {
+    "name": "West Lincoln, Township of",
+    "type": "Township",
+    "website": "http://www.westlincoln.ca/"
+  },
+  {
+    "name": "West Nipissing, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.westnipissing.ca/"
+  },
+  {
+    "name": "West Perth, Municipality of",
+    "type": "Municipality",
+    "website": "https://www.westperth.com/en/index.aspx"
+  },
+  {
+    "name": "Westport, Village of",
+    "type": "Village",
+    "website": "http://www.village.westport.on.ca/"
+  },
+  {
+    "name": "Whitby, Town of",
+    "type": "Town",
+    "website": "http://www.whitby.ca/en/"
+  },
+  {
+    "name": "Whitchurch-Stouffville, Town of",
+    "type": "Town",
+    "website": "http://www.townofws.com/"
+  },
+  {
+    "name": "White River, Township of",
+    "type": "Township",
+    "website": "http://www.whiteriver.ca/"
+  },
+  {
+    "name": "Whitestone, Municipality of",
+    "type": "Municipality",
+    "website": "http://www.whitestone.ca/"
+  },
+  {
+    "name": "Whitewater Region, Township of",
+    "type": "Township",
+    "website": "http://www.whitewaterregion.ca/"
+  },
+  {
+    "name": "Wilmot, Township of",
+    "type": "Township",
+    "website": "http://www.wilmot.ca/"
+  },
+  {
+    "name": "Windsor, City of",
+    "type": "City",
+    "website": "http://www.citywindsor.ca/"
+  },
+  {
+    "name": "Wollaston, Township of",
+    "type": "Township",
+    "website": "https://wollaston.ca/"
+  },
+  {
+    "name": "Woodstock, City of",
+    "type": "City",
+    "website": "https://www.cityofwoodstock.ca/en/index.aspx"
+  },
+  {
+    "name": "Woolwich, Township of",
+    "type": "Township",
+    "website": "http://www.woolwich.ca/"
+  },
+  {
+    "name": "York, Regional Municipality of",
+    "type": "Region",
+    "website": "http://www.york.ca/"
+  },
+  {
+    "name": "Zorra, Township of",
+    "type": "Township",
+    "website": "http://www.zorra.on.ca/"
+  }
+]
