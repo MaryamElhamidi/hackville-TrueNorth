@@ -1,0 +1,48 @@
+[
+  {
+    "companyId": "19afde19-8cbe-4ad6-9631-c0ff98896189",
+    "companyName": "Test Company Inc.",
+    "companyStage": "early",
+    "industry": "Technology",
+    "description": "We provide innovative solutions for accessibility challenges.",
+    "servedCustomerTypes": [
+      "individuals",
+      "small_businesses",
+      "enterprises"
+    ],
+    "geographicFocus": [
+      "Ontario",
+      "British Columbia",
+      "Nationwide"
+    ],
+    "currentReach": "active_users",
+    "accessibilityCommitment": "intentional",
+    "languagesSupported": [
+      "English",
+      "French",
+      "Spanish"
+    ],
+    "createdAt": "2026-01-17T23:56:57.318Z"
+  },
+  {
+    "companyId": "14aa6565-d12b-4669-af90-f525f69a5018",
+    "companyName": "Sheridan Student Union",
+    "companyStage": "idea",
+    "industry": "Other",
+    "description": "My company is selling roasted coffee beans, and is trying to help provide cheaper alternatives.",
+    "servedCustomerTypes": [
+      "individuals",
+      "small_businesses",
+      "non_profits"
+    ],
+    "geographicFocus": [
+      "Ontario"
+    ],
+    "currentReach": "pilot_users",
+    "accessibilityCommitment": "somewhat",
+    "languagesSupported": [
+      "English"
+    ],
+    "createdAt": "2026-01-17T23:59:01.025Z"
+  }
+]

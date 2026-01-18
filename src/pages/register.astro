@@ -4,7 +4,8 @@ import AuthCard from '../components/AuthCard.astro';
 ---
 
 <LayoutApp centered>
-	<AuthCard
+	<div class="w-full max-w-md mx-auto">
+		<AuthCard
 		title="Create your account"
 		description="Tell us a bit about your organization to get started with the Canadian accessibility and market insight platform."
 		id="register"
@@ -96,6 +97,7 @@ import AuthCard from '../components/AuthCard.astro';
 			</p>
 		</form>
 	</AuthCard>
+	</div>
 
 	<script>
 		const form = document.querySelector('form');
