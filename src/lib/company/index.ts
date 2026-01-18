@@ -30,20 +30,42 @@ export function loadCompanies(): Company[] {
 }
 
 /**
- * Get the active company (for demo purposes, returns the first company)
- * In a real implementation, this would be based on user authentication/session
- */
-export function getActiveCompany(): Company | null {
-  const companies = loadCompanies();
-  return companies.length > 0 ? companies[0] : null;
-}
-
-/**
  * Get company by ID
  */
 export function getCompanyById(companyId: string): Company | null {
   const companies = loadCompanies();
   return companies.find(company => company.companyId === companyId) ?? null;
+}
+
+/**
+ * Get the active company ID from environment/storage
+ * In a demo app, this could be set via localStorage or environment variables
+ */
+export function getActiveCompanyId(): string | null {
+  // In a real app, this would come from user session/authentication
+  // For demo purposes, check if there's a specific company ID set
+  // You can set this via environment variable or modify this function
+
+  // For now, return null to use the most recently created company as default
+  // In production, this would be tied to user authentication
+  return process.env.ACTIVE_COMPANY_ID || null;
+}
+
+/**
+ * Get the active company
+ * In a real implementation, this would be based on user authentication/session
+ */
+export function getActiveCompany(): Company | null {
+  const activeCompanyId = getActiveCompanyId();
+
+  if (activeCompanyId) {
+    return getCompanyById(activeCompanyId);
+  }
+
+  // Fallback: return the most recently created company (last in array)
+  // This ensures newly onboarded companies are shown by default
+  const companies = loadCompanies();
+  return companies.length > 0 ? companies[companies.length - 1] ?? null : null;
 }
 
 /**

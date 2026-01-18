@@ -1,0 +1,157 @@
+---
+import LayoutSidebar from '../../app/LayoutSidebar.astro';
+import { getCompanySpecificMunicipalitySummary } from '../../lib/dashboard/index.js';
+import { getActiveCompany } from '../../lib/company/index.js';
+
+export async function getStaticPaths() {
+  // In a real app, you'd generate paths for all municipalities
+  // For now, we'll create a dynamic route that handles any municipality
+  return [];
+}
+
+const { municipality } = Astro.params;
+const company = getActiveCompany();
+
+let summary = '';
+let error = '';
+
+if (company && municipality) {
+  try {
+    summary = await getCompanySpecificMunicipalitySummary(municipality);
+  } catch (err) {
+    error = 'Unable to generate municipality analysis. Please try again.';
+    console.error('Error generating municipality summary:', err);
+  }
+} else {
+  error = 'No active company or municipality specified.';
+}
+---
+
+<LayoutSidebar title={`${municipality} - Service Gap Analysis`}>
+  <div class="px-4 pt-6 bg-gray-50 dark:bg-gray-900 min-h-screen">
+    <div class="max-w-4xl mx-auto">
+      <!-- Header -->
+      <div class="mb-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <h1 class="text-3xl font-bold text-gray-900 dark:text-white">
+              {municipality} Service Gap Analysis
+            </h1>
+            <p class="text-lg text-gray-600 dark:text-gray-400 mt-2">
+              Personalized insights for {company?.companyName || 'your company'}
+            </p>
+          </div>
+          <a
+            href="/dashboard"
+            class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          >
+            ← Back to Dashboard
+          </a>
+        </div>
+      </div>
+
+      {error ? (
+        <!-- Error State -->
+        <div class="bg-red-50 border border-red-200 rounded-md p-4">
+          <div class="flex">
+            <div class="flex-shrink-0">
+              <svg class="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+              </svg>
+            </div>
+            <div class="ml-3">
+              <h3 class="text-sm font-medium text-red-800">
+                Analysis Unavailable
+              </h3>
+              <div class="mt-2 text-sm text-red-700">
+                <p>{error}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <!-- Analysis Content -->
+        <div class="space-y-6">
+          {summary.split('\n\n').map((section) => {
+            const lines = section.split('\n');
+            const title = lines[0] || '';
+            const content = lines.slice(1).join('\n');
+
+            {title.toLowerCase().includes('urgency level') ? (
+              (() => {
+                const urgencyMatch = content.match(/(Red|Orange|Green)/i);
+                const urgencyColor = urgencyMatch ?
+                  (urgencyMatch[1].toLowerCase() === 'red' ? 'bg-red-100 text-red-800 border-red-200' :
+                   urgencyMatch[1].toLowerCase() === 'orange' ? 'bg-orange-100 text-orange-800 border-orange-200' :
+                   'bg-green-100 text-green-800 border-green-200') : 'bg-gray-100 text-gray-800 border-gray-200';
+
+                return (
+                  <div class={`border-l-4 p-4 rounded-r-md ${urgencyColor}`}>
+                    <h3 class="text-lg font-semibold mb-2">{title}</h3>
+                    <div class="prose prose-sm max-w-none dark:prose-invert">
+                      {content}
+                    </div>
+                  </div>
+                );
+              })()
+            ) : (
+              <div class="bg-white dark:bg-gray-800 overflow-hidden shadow rounded-lg">
+                <div class="px-4 py-5 sm:p-6">
+                  <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+                    {title}
+                  </h3>
+                  <div class="prose prose-sm max-w-none text-gray-700 dark:text-gray-300 dark:prose-invert">
+                    {content}
+                  </div>
+                </div>
+              </div>
+            )}
+          })}
+        </div>
+      )}
+
+      <!-- Action Buttons -->
+      <div class="mt-8 flex space-x-4">
+        <button
+          class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          onclick="window.print()"
+        >
+          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+          </svg>
+          Export Report
+        </button>
+
+        <a
+          href={`/contact?municipality=${encodeURIComponent(municipality || '')}&company=${encodeURIComponent(company?.companyId || '')}`}
+          class="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700"
+        >
+          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+          Contact Support
+        </a>
+      </div>
+    </div>
+  </div>
+</LayoutSidebar>
+
+<style>
+  .prose p {
+    margin-bottom: 1em;
+  }
+
+  .prose strong {
+    font-weight: 600;
+  }
+
+  .prose ul {
+    list-style-type: disc;
+    padding-left: 1.5em;
+    margin: 1em 0;
+  }
+
+  .prose li {
+    margin: 0.5em 0;
+  }
+</style>

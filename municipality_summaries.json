@@ -1,1 +1,735 @@
-[]
+[
+  {
+    "municipality": "Addington Highlands",
+    "summary": "Sample accessibility summary for Addington Highlands, a township in Ontario. This municipality has various digital services that may have accessibility considerations.",
+    "issues_count": 10,
+    "top_services_affected": [
+      "Website Navigation"
+    ],
+    "locations_mentioned": [
+      "Addington Highlands",
+      "Ontario"
+    ],
+    "latitude": 43.7,
+    "longitude": -77.4,
+    "affected_populations": 31281,
+    "severity_level": "critical"
+  },
+  {
+    "municipality": "Adelaide-Metcalfe",
+    "summary": "Sample accessibility summary for Adelaide-Metcalfe, a township in Ontario. This municipality has various digital services that may have accessibility considerations.",
+    "issues_count": 10,
+    "top_services_affected": [
+      "Website Navigation"
+    ],
+    "locations_mentioned": [
+      "Adelaide-Metcalfe",
+      "Ontario"
+    ],
+    "latitude": 44.65885107720841,
+    "longitude": -77.64483487621926,
+    "affected_populations": 9809,
+    "severity_level": "moderate"
+  },
+  {
+    "municipality": "Adjala-Tosorontio",
+    "summary": "Sample accessibility summary for Adjala-Tosorontio, a township in Ontario. This municipality has various digital services that may have accessibility considerations.",
+    "issues_count": 5,
+    "top_services_affected": [
+      "Website Navigation",
+      "Online Forms",
+      "Public Documents"
+    ],
+    "locations_mentioned": [
+      "Adjala-Tosorontio",
+      "Ontario"
+    ],
+    "latitude": 45.38294196961579,
+    "longitude": -78.31939538826373,
+    "affected_populations": 17681,
+    "severity_level": "minor"
+  },
+  {
+    "municipality": "Admaston/Bromley",
+    "summary": "Sample accessibility summary for Admaston/Bromley, a township in Ontario. This municipality has various digital services that may have accessibility considerations.",
+    "issues_count": 2,
+    "top_services_affected": [
+      "Website Navigation"
+    ],
+    "locations_mentioned": [
+      "Admaston/Bromley",
+      "Ontario"
+    ],
+    "latitude": 45.69498997320811,
+    "longitude": -79.2585255966646,
+    "affected_populations": 48666,
+    "severity_level": "critical"
+  },
+  {
+    "municipality": "Ajax",
+    "summary": "Sample accessibility summary for Ajax, a town in Ontario. This municipality has various digital services that may have accessibility considerations.",
+    "issues_count": 7,
+    "top_services_affected": [
+      "Website Navigation"
+    ],
+    "locations_mentioned": [
+      "Ajax",
+      "Ontario"
+    ],
+    "latitude": 45.518594853651365,
+    "longitude": -80.23229367309429,
+    "affected_populations": 3162,
+    "severity_level": "moderate"
+  },
+  {
+    "municipality": "Alberton",
+    "summary": "Sample accessibility summary for Alberton, a township in Ontario. This municipality has various digital services that may have accessibility considerations.",
+    "issues_count": 10,
+    "top_services_affected": [
+      "Website Navigation",
+      "Online Forms",
+      "Public Documents"
+    ],
+    "locations_mentioned": [
+      "Alberton",
+      "Ontario"
+    ],
+    "latitude": 44.89694428820792,
+    "longitude": -81.00228723109387,
+    "affected_populations": 29364,
+    "severity_level": "minor"
+  },
+  {
+    "municipality": "Alfred and Plantagenet",
+    "summary": "Sample accessibility summary for Alfred and Plantagenet, a township in Ontario. This municipality has various digital services that may have accessibility considerations.",
+    "issues_count": 4,
+    "top_services_affected": [
+      "Website Navigation",
+      "Online Forms",
+      "Public Documents"
+    ],
+    "locations_mentioned": [
+      "Alfred and Plantagenet",
+      "Ontario"
+    ],
+    "latitude": 43.98224001611974,
+    "longitude": -81.37998499320089,
+    "affected_populations": 13879,
+    "severity_level": "critical"
+  },
+  {
+    "municipality": "Algonquin Highlands",
+    "summary": "Sample accessibility summary for Algonquin Highlands, a township in Ontario. This municipality has various digital services that may have accessibility considerations.",
+    "issues_count": 8,
+    "top_services_affected": [
+      "Website Navigation"
+    ],
+    "locations_mentioned": [
+      "Algonquin Highlands",
+      "Ontario"
+    ],
+    "latitude": 42.99843354462077,
+    "longitude": -81.27291337458159,
+    "affected_populations": 44618,
+    "severity_level": "moderate"
+  },
+  {
+    "municipality": "Alnwick/Haldimand",
+    "summary": "Sample accessibility summary for Alnwick/Haldimand, a township in Ontario. This municipality has various digital services that may have accessibility considerations.",
+    "issues_count": 3,
+    "top_services_affected": [
+      "Website Navigation",
+      "Online Forms",
+      "Public Documents"
+    ],
+    "locations_mentioned": [
+      "Alnwick/Haldimand",
+      "Ontario"
+    ],
+    "latitude": 42.18639500938415,
+    "longitude": -80.70728724172723,
+    "affected_populations": 10245,
+    "severity_level": "minor"
+  },
+  {
+    "municipality": "Amaranth",
+    "summary": "Sample accessibility summary for Amaranth, a township in Ontario. This municipality has various digital services that may have accessibility considerations.",
+    "issues_count": 7,
+    "top_services_affected": [
+      "Website Navigation",
+      "Online Forms"
+    ],
+    "locations_mentioned": [
+      "Amaranth",
+      "Ontario"
+    ],
+    "latitude": 41.74493976466981,
+    "longitude": -79.82159159886156,
+    "affected_populations": 23361,
+    "severity_level": "critical"
+  },
+  {
+    "municipality": "Amherstburg",
+    "summary": "Sample accessibility summary for Amherstburg, a town in Ontario. This municipality has various digital services that may have accessibility considerations.",
+    "issues_count": 3,
+    "top_services_affected": [
+      "Website Navigation",
+      "Online Forms",
+      "Public Documents"
+    ],
+    "locations_mentioned": [
+      "Amherstburg",
+      "Ontario"
+    ],
+    "latitude": 41.78215145067372,
+    "longitude": -78.83267562907355,
+    "affected_populations": 12270,
+    "severity_level": "moderate"
+  },
+  {
+    "municipality": "Armour",
+    "summary": "Sample accessibility summary for Armour, a township in Ontario. This municipality has various digital services that may have accessibility considerations.",
+    "issues_count": 2,
+    "top_services_affected": [
+      "Website Navigation",
+      "Online Forms"
+    ],
+    "locations_mentioned": [
+      "Armour",
+      "Ontario"
+    ],
+    "latitude": 42.28891934885922,
+    "longitude": -77.98266045141749,
+    "affected_populations": 15456,
+    "severity_level": "minor"
+  },
+  {
+    "municipality": "Armstrong",
+    "summary": "Sample accessibility summary for Armstrong, a township in Ontario. This municipality has various digital services that may have accessibility considerations.",
+    "issues_count": 3,
+    "top_services_affected": [
+      "Website Navigation",
+      "Online Forms"
+    ],
+    "locations_mentioned": [
+      "Armstrong",
+      "Ontario"
+    ],
+    "latitude": 43.14116900360215,
+    "longitude": -77.47965942669927,
+    "affected_populations": 9027,
+    "severity_level": "critical"
+  },
+  {
+    "municipality": "Arnprior",
+    "summary": "Sample accessibility summary for Arnprior, a town in Ontario. This municipality has various digital services that may have accessibility considerations.",
+    "issues_count": 6,
+    "top_services_affected": [
+      "Website Navigation",
+      "Online Forms"
+    ],
+    "locations_mentioned": [
+      "Arnprior",
+      "Ontario"
+    ],
+    "latitude": 44.13023997617563,
+    "longitude": -77.44682474854396,
+    "affected_populations": 26263,
+    "severity_level": "moderate"
+  },
+  {
+    "municipality": "Arran-Elderslie",
+    "summary": "Sample accessibility summary for Arran-Elderslie, a municipality in Ontario. This municipality has various digital services that may have accessibility considerations.",
+    "issues_count": 6,
+    "top_services_affected": [
+      "Website Navigation",
+      "Online Forms"
+    ],
+    "locations_mentioned": [
+      "Arran-Elderslie",
+      "Ontario"
+    ],
+    "latitude": 45.01397319743758,
+    "longitude": -77.8921954913134,
+    "affected_populations": 29610,
+    "severity_level": "minor"
+  },
+  {
+    "municipality": "Ashfield-Colborne-Wawanosh",
+    "summary": "Sample accessibility summary for Ashfield-Colborne-Wawanosh, a township in Ontario. This municipality has various digital services that may have accessibility considerations.",
+    "issues_count": 6,
+    "top_services_affected": [
+      "Website Navigation",
+      "Online Forms",
+      "Public Documents"
+    ],
+    "locations_mentioned": [
+      "Ashfield-Colborne-Wawanosh",
+      "Ontario"
+    ],
+    "latitude": 45.575999953549484,
+    "longitude": -78.70672936432996,
+    "affected_populations": 37973,
+    "severity_level": "critical"
+  },
+  {
+    "municipality": "Asphodel-Norwood",
+    "summary": "Sample accessibility summary for Asphodel-Norwood, a township in Ontario. This municipality has various digital services that may have accessibility considerations.",
+    "issues_count": 5,
+    "top_services_affected": [
+      "Website Navigation",
+      "Online Forms",
+      "Public Documents"
+    ],
+    "locations_mentioned": [
+      "Asphodel-Norwood",
+      "Ontario"
+    ],
+    "latitude": 45.67871649324677,
+    "longitude": -79.69100006761724,
+    "affected_populations": 50684,
+    "severity_level": "moderate"
+  },
+  {
+    "municipality": "Assiginack",
+    "summary": "Sample accessibility summary for Assiginack, a township in Ontario. This municipality has various digital services that may have accessibility considerations.",
+    "issues_count": 9,
+    "top_services_affected": [
+      "Website Navigation",
+      "Online Forms",
+      "Public Documents"
+    ],
+    "locations_mentioned": [
+      "Assiginack",
+      "Ontario"
+    ],
+    "latitude": 45.296974225246984,
+    "longitude": -80.60402380536965,
+    "affected_populations": 32625,
+    "severity_level": "minor"
+  },
+  {
+    "municipality": "Athens",
+    "summary": "Sample accessibility summary for Athens, a township in Ontario. This municipality has various digital services that may have accessibility considerations.",
+    "issues_count": 6,
+    "top_services_affected": [
+      "Website Navigation",
+      "Online Forms"
+    ],
+    "locations_mentioned": [
+      "Athens",
+      "Ontario"
+    ],
+    "latitude": 44.524236970483514,
+    "longitude": -81.22226052376936,
+    "affected_populations": 14971,
+    "severity_level": "critical"
+  },
+  {
+    "municipality": "Atikokan",
+    "summary": "Sample accessibility summary for Atikokan, a town in Ontario. This municipality has various digital services that may have accessibility considerations.",
+    "issues_count": 5,
+    "top_services_affected": [
+      "Website Navigation"
+    ],
+    "locations_mentioned": [
+      "Atikokan",
+      "Ontario"
+    ],
+    "latitude": 43.54969775907639,
+    "longitude": -81.39434431239276,
+    "affected_populations": 20160,
+    "severity_level": "moderate"
+  },
+  {
+    "municipality": "Augusta",
+    "summary": "Sample accessibility summary for Augusta, a township in Ontario. This municipality has various digital services that may have accessibility considerations.",
+    "issues_count": 2,
+    "top_services_affected": [
+      "Website Navigation"
+    ],
+    "locations_mentioned": [
+      "Augusta",
+      "Ontario"
+    ]
+  },
+  {
+    "municipality": "Aurora",
+    "summary": "Sample accessibility summary for Aurora, a town in Ontario. This municipality has various digital services that may have accessibility considerations.",
+    "issues_count": 3,
+    "top_services_affected": [
+      "Website Navigation",
+      "Online Forms",
+      "Public Documents"
+    ],
+    "locations_mentioned": [
+      "Aurora",
+      "Ontario"
+    ]
+  },
+  {
+    "municipality": "Aylmer",
+    "summary": "Sample accessibility summary for Aylmer, a town in Ontario. This municipality has various digital services that may have accessibility considerations.",
+    "issues_count": 8,
+    "top_services_affected": [
+      "Website Navigation"
+    ],
+    "locations_mentioned": [
+      "Aylmer",
+      "Ontario"
+    ]
+  },
+  {
+    "municipality": "Baldwin",
+    "summary": "Sample accessibility summary for Baldwin, a township in Ontario. This municipality has various digital services that may have accessibility considerations.",
+    "issues_count": 4,
+    "top_services_affected": [
+      "Website Navigation"
+    ],
+    "locations_mentioned": [
+      "Baldwin",
+      "Ontario"
+    ]
+  },
+  {
+    "municipality": "Bancroft",
+    "summary": "Sample accessibility summary for Bancroft, a town in Ontario. This municipality has various digital services that may have accessibility considerations.",
+    "issues_count": 6,
+    "top_services_affected": [
+      "Website Navigation",
+      "Online Forms",
+      "Public Documents"
+    ],
+    "locations_mentioned": [
+      "Bancroft",
+      "Ontario"
+    ]
+  },
+  {
+    "municipality": "Barrie",
+    "summary": "Sample accessibility summary for Barrie, a city in Ontario. This municipality has various digital services that may have accessibility considerations.",
+    "issues_count": 10,
+    "top_services_affected": [
+      "Website Navigation",
+      "Online Forms",
+      "Public Documents"
+    ],
+    "locations_mentioned": [
+      "Barrie",
+      "Ontario"
+    ]
+  },
+  {
+    "municipality": "Bayham",
+    "summary": "Sample accessibility summary for Bayham, a municipality in Ontario. This municipality has various digital services that may have accessibility considerations.",
+    "issues_count": 9,
+    "top_services_affected": [
+      "Website Navigation",
+      "Online Forms"
+    ],
+    "locations_mentioned": [
+      "Bayham",
+      "Ontario"
+    ]
+  },
+  {
+    "municipality": "Beckwith",
+    "summary": "Sample accessibility summary for Beckwith, a township in Ontario. This municipality has various digital services that may have accessibility considerations.",
+    "issues_count": 1,
+    "top_services_affected": [
+      "Website Navigation",
+      "Online Forms",
+      "Public Documents"
+    ],
+    "locations_mentioned": [
+      "Beckwith",
+      "Ontario"
+    ]
+  },
+  {
+    "municipality": "Belleville",
+    "summary": "Sample accessibility summary for Belleville, a city in Ontario. This municipality has various digital services that may have accessibility considerations.",
+    "issues_count": 10,
+    "top_services_affected": [
+      "Website Navigation",
+      "Online Forms",
+      "Public Documents"
+    ],
+    "locations_mentioned": [
+      "Belleville",
+      "Ontario"
+    ]
+  },
+  {
+    "municipality": "Billings",
+    "summary": "Sample accessibility summary for Billings, a township in Ontario. This municipality has various digital services that may have accessibility considerations.",
+    "issues_count": 1,
+    "top_services_affected": [
+      "Website Navigation",
+      "Online Forms"
+    ],
+    "locations_mentioned": [
+      "Billings",
+      "Ontario"
+    ]
+  },
+  {
+    "municipality": "Black River-Matheson",
+    "summary": "Sample accessibility summary for Black River-Matheson, a township in Ontario. This municipality has various digital services that may have accessibility considerations.",
+    "issues_count": 1,
+    "top_services_affected": [
+      "Website Navigation"
+    ],
+    "locations_mentioned": [
+      "Black River-Matheson",
+      "Ontario"
+    ]
+  },
+  {
+    "municipality": "Blandford-Blenheim",
+    "summary": "Sample accessibility summary for Blandford-Blenheim, a township in Ontario. This municipality has various digital services that may have accessibility considerations.",
+    "issues_count": 8,
+    "top_services_affected": [
+      "Website Navigation",
+      "Online Forms",
+      "Public Documents"
+    ],
+    "locations_mentioned": [
+      "Blandford-Blenheim",
+      "Ontario"
+    ]
+  },
+  {
+    "municipality": "Blind River",
+    "summary": "Sample accessibility summary for Blind River, a town in Ontario. This municipality has various digital services that may have accessibility considerations.",
+    "issues_count": 1,
+    "top_services_affected": [
+      "Website Navigation"
+    ],
+    "locations_mentioned": [
+      "Blind River",
+      "Ontario"
+    ]
+  },
+  {
+    "municipality": "Bluewater",
+    "summary": "Sample accessibility summary for Bluewater, a municipality in Ontario. This municipality has various digital services that may have accessibility considerations.",
+    "issues_count": 7,
+    "top_services_affected": [
+      "Website Navigation",
+      "Online Forms"
+    ],
+    "locations_mentioned": [
+      "Bluewater",
+      "Ontario"
+    ]
+  },
+  {
+    "municipality": "Bonfield",
+    "summary": "Sample accessibility summary for Bonfield, a township in Ontario. This municipality has various digital services that may have accessibility considerations.",
+    "issues_count": 9,
+    "top_services_affected": [
+      "Website Navigation"
+    ],
+    "locations_mentioned": [
+      "Bonfield",
+      "Ontario"
+    ]
+  },
+  {
+    "municipality": "Bonnechere Valley",
+    "summary": "Sample accessibility summary for Bonnechere Valley, a township in Ontario. This municipality has various digital services that may have accessibility considerations.",
+    "issues_count": 6,
+    "top_services_affected": [
+      "Website Navigation"
+    ],
+    "locations_mentioned": [
+      "Bonnechere Valley",
+      "Ontario"
+    ]
+  },
+  {
+    "municipality": "Bracebridge",
+    "summary": "Sample accessibility summary for Bracebridge, a town in Ontario. This municipality has various digital services that may have accessibility considerations.",
+    "issues_count": 3,
+    "top_services_affected": [
+      "Website Navigation",
+      "Online Forms"
+    ],
+    "locations_mentioned": [
+      "Bracebridge",
+      "Ontario"
+    ]
+  },
+  {
+    "municipality": "Bradford West Gwillimbury",
+    "summary": "Sample accessibility summary for Bradford West Gwillimbury, a town in Ontario. This municipality has various digital services that may have accessibility considerations.",
+    "issues_count": 3,
+    "top_services_affected": [
+      "Website Navigation"
+    ],
+    "locations_mentioned": [
+      "Bradford West Gwillimbury",
+      "Ontario"
+    ]
+  },
+  {
+    "municipality": "Brampton",
+    "summary": "Sample accessibility summary for Brampton, a city in Ontario. This municipality has various digital services that may have accessibility considerations.",
+    "issues_count": 1,
+    "top_services_affected": [
+      "Website Navigation",
+      "Online Forms",
+      "Public Documents"
+    ],
+    "locations_mentioned": [
+      "Brampton",
+      "Ontario"
+    ]
+  },
+  {
+    "municipality": "Brant",
+    "summary": "Sample accessibility summary for Brant, a county in Ontario. This municipality has various digital services that may have accessibility considerations.",
+    "issues_count": 6,
+    "top_services_affected": [
+      "Website Navigation",
+      "Online Forms",
+      "Public Documents"
+    ],
+    "locations_mentioned": [
+      "Brant",
+      "Ontario"
+    ]
+  },
+  {
+    "municipality": "Brantford",
+    "summary": "Sample accessibility summary for Brantford, a city in Ontario. This municipality has various digital services that may have accessibility considerations.",
+    "issues_count": 1,
+    "top_services_affected": [
+      "Website Navigation",
+      "Online Forms"
+    ],
+    "locations_mentioned": [
+      "Brantford",
+      "Ontario"
+    ]
+  },
+  {
+    "municipality": "",
+    "summary": "Sample accessibility summary for , a  in Ontario. This municipality has various digital services that may have accessibility considerations.",
+    "issues_count": 5,
+    "top_services_affected": [
+      "Website Navigation"
+    ],
+    "locations_mentioned": [
+      "",
+      "Ontario"
+    ]
+  },
+  {
+    "municipality": "Brighton",
+    "summary": "Sample accessibility summary for Brighton, a municipality in Ontario. This municipality has various digital services that may have accessibility considerations.",
+    "issues_count": 3,
+    "top_services_affected": [
+      "Website Navigation",
+      "Online Forms",
+      "Public Documents"
+    ],
+    "locations_mentioned": [
+      "Brighton",
+      "Ontario"
+    ]
+  },
+  {
+    "municipality": "Brock",
+    "summary": "Sample accessibility summary for Brock, a township in Ontario. This municipality has various digital services that may have accessibility considerations.",
+    "issues_count": 5,
+    "top_services_affected": [
+      "Website Navigation",
+      "Online Forms",
+      "Public Documents"
+    ],
+    "locations_mentioned": [
+      "Brock",
+      "Ontario"
+    ]
+  },
+  {
+    "municipality": "Brockton",
+    "summary": "Sample accessibility summary for Brockton, a municipality in Ontario. This municipality has various digital services that may have accessibility considerations.",
+    "issues_count": 1,
+    "top_services_affected": [
+      "Website Navigation",
+      "Online Forms"
+    ],
+    "locations_mentioned": [
+      "Brockton",
+      "Ontario"
+    ]
+  },
+  {
+    "municipality": "Brockville",
+    "summary": "Sample accessibility summary for Brockville, a city in Ontario. This municipality has various digital services that may have accessibility considerations.",
+    "issues_count": 6,
+    "top_services_affected": [
+      "Website Navigation",
+      "Online Forms"
+    ],
+    "locations_mentioned": [
+      "Brockville",
+      "Ontario"
+    ]
+  },
+  {
+    "municipality": "Brooke-Alvinston",
+    "summary": "Sample accessibility summary for Brooke-Alvinston, a municipality in Ontario. This municipality has various digital services that may have accessibility considerations.",
+    "issues_count": 7,
+    "top_services_affected": [
+      "Website Navigation"
+    ],
+    "locations_mentioned": [
+      "Brooke-Alvinston",
+      "Ontario"
+    ]
+  },
+  {
+    "municipality": "Bruce",
+    "summary": "Sample accessibility summary for Bruce, a county in Ontario. This municipality has various digital services that may have accessibility considerations.",
+    "issues_count": 10,
+    "top_services_affected": [
+      "Website Navigation",
+      "Online Forms",
+      "Public Documents"
+    ],
+    "locations_mentioned": [
+      "Bruce",
+      "Ontario"
+    ]
+  },
+  {
+    "municipality": "Bruce Mines",
+    "summary": "Sample accessibility summary for Bruce Mines, a town in Ontario. This municipality has various digital services that may have accessibility considerations.",
+    "issues_count": 5,
+    "top_services_affected": [
+      "Website Navigation"
+    ],
+    "locations_mentioned": [
+      "Bruce Mines",
+      "Ontario"
+    ]
+  },
+  {
+    "municipality": "Brudenell",
+    "summary": "Sample accessibility summary for Brudenell, a lyndoch and raglan, township in Ontario. This municipality has various digital services that may have accessibility considerations.",
+    "issues_count": 8,
+    "top_services_affected": [
+      "Website Navigation",
+      "Online Forms",
+      "Public Documents"
+    ],
+    "locations_mentioned": [
+      "Brudenell",
+      "Ontario"
+    ]
+  }
+]

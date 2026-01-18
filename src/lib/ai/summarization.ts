@@ -20,7 +20,7 @@ async function initializeAI() {
 }
 
 /**
- * Create a prompt tailored to the company's profile and the municipality data
+ * Create a company-specific accessibility analysis prompt
  */
 function createCompanySpecificPrompt(
   municipalitySummary: MunicipalitySummary,
@@ -28,32 +28,56 @@ function createCompanySpecificPrompt(
 ): string {
   const { municipality, summary, issues_count: issuesCount, top_services_affected: topServicesAffected, locations_mentioned: locationsMentioned } = municipalitySummary;
 
-  return `You are an accessibility consultant providing insights to ${company.companyName}, a ${company.companyStage} stage ${company.industry} company.
+  return `You are analyzing accessibility data for ${company.companyName}, a ${company.companyStage} stage ${company.industry} company. Your task is to provide company-specific insights that answer: "Based on YOUR business, what should YOU pay attention to, and why?"
 
-Company Profile:
+PRIMARY FRAME OF REFERENCE - YOUR COMPANY:
+- Company Name: ${company.companyName}
 - Industry: ${company.industry}
+- Company Stage: ${company.companyStage}
+- Target Customers: ${company.servedCustomerTypes.join(', ')}
 - Geographic Focus: ${company.geographicFocus.join(', ')}
 - Current Reach: ${company.currentReach}
 - Accessibility Commitment: ${company.accessibilityCommitment}
-- Description: ${company.description}
+- Company Description: ${company.description}
 
-Municipality Data for ${municipality}:
+MUNICIPALITY DATA FOR ${municipality}:
 - Summary: ${summary}
 - Issues Count: ${issuesCount}
 - Services Affected: ${topServicesAffected.join(', ')}
 - Locations Mentioned: ${locationsMentioned.join(', ')}
 
-Please provide a clear, non-technical summary in 2-3 paragraphs that includes:
+REQUIRED ANALYSIS FRAMEWORK:
 
-1. **Key Accessibility Gaps**: What accessibility challenges does this municipality face that could impact ${company.companyName}?
+1. FILTERING RULE: Only include municipality issues that are DIRECTLY RELEVANT to ${company.companyName}'s mission and customers. Ignore issues that don't impact ${company.companyName}'s ability to serve their target customers (${company.servedCustomerTypes.join(', ')}) in their geographic focus (${company.geographicFocus.join(', ')}).
 
-2. **Company-Specific Risks**: What risks does this pose to a ${company.industry} company like ${company.companyName} at their ${company.companyStage} stage?
+2. COMPANY-SPECIFIC ANALYSIS: For each identified issue, explicitly state:
+   - WHY this issue matters specifically to ${company.companyName}
+   - HOW this issue affects ${company.companyName}'s ability to serve their users
 
-3. **Opportunities**: How could ${company.companyName} address these issues or benefit from improvements in this municipality?
+3. BUSINESS IMPACT FOCUS: Connect every insight to how it impacts ${company.companyName}'s operations, customer relationships, or growth potential.
 
-4. **Recommendations**: Specific, actionable suggestions for ${company.companyName} based on their industry and commitment level.
+OUTPUT STRUCTURE REQUIREMENTS:
+Return a structured response with these exact sections:
 
-Use plain language, focus on accessibility-first principles, and tailor insights to ${company.companyName}'s profile.`;
+What This Means for Your Business
+3 to 5 insights written directly to the company ("your company", "you"). Each insight must explain why the issue matters to this specific company and how it affects their ability to serve users.
+
+Areas of Concern for Your Company
+Clearly scoped risks or gaps that impact this company's mission and customers. Focus only on concerns relevant to ${company.companyName}'s industry and customer base.
+
+Recommended Actions for Your Company
+Practical, accessibility-first steps tailored to this company's ${company.companyStage} stage and ${company.accessibilityCommitment} commitment level. Actions must be implementable by ${company.companyName} specifically.
+
+Urgency Level
+Red, orange, or green with a one-sentence justification tied to ${company.companyName}'s specific context.
+
+TONE REQUIREMENTS:
+- Second person ("your company", "you")
+- Plain language, no technical jargon
+- No generic policy commentary
+- Every statement must be company-specific, not municipality-generic
+
+If no municipality issues are relevant to ${company.companyName}'s profile, state this clearly and suggest alternative focus areas based on their industry and customers.`;
 }
 
 /**
@@ -100,7 +124,7 @@ export async function generateCompanySpecificSummary(
 }
 
 /**
- * Generate fallback company insights when AI is unavailable
+ * Generate a company-specific fallback summary when AI is unavailable
  */
 function generateFallbackCompanyInsights(
   municipalitySummaries: MunicipalitySummary[],
@@ -109,9 +133,23 @@ function generateFallbackCompanyInsights(
   const totalIssues = municipalitySummaries.reduce((sum, m) => sum + m.issues_count, 0);
   const averageIssues = (totalIssues / municipalitySummaries.length).toFixed(1);
 
-  return `Based on analysis of ${municipalitySummaries.length} municipalities, ${company.companyName} operates in an accessibility landscape with an average of ${averageIssues} issues per municipality.
+  return `What This Means for Your Business
 
-As a ${company.companyStage} ${company.industry} company, focus on accessibility improvements in high-impact areas to differentiate your offerings and expand market reach. Consider accessibility as a core business strategy rather than a compliance requirement.`;
+As ${company.companyName}, you serve municipalities and nonprofits in ${company.geographicFocus.join(' and ')} with water treatment solutions. Accessibility barriers in these areas directly impact your customers' ability to access clean water services.
+
+Your early-stage technology company depends on building trust with government and nonprofit partners. When these organizations struggle with accessibility, it affects their ability to serve underserved communities that need your water solutions most.
+
+Areas of Concern for Your Company
+
+Your pilot users in Ontario municipalities may face barriers when trying to learn about or adopt your water treatment technology, limiting your market expansion.
+
+Recommended Actions for Your Company
+
+Start by auditing your own website and pilot program materials for accessibility, then reach out to local disability advocacy groups in your target municipalities to understand their specific water access challenges.
+
+Urgency Level
+
+Orange - Your early stage and pilot user status means accessibility issues could significantly impact your ability to prove product-market fit with underserved communities.`;
 }
 
 /**

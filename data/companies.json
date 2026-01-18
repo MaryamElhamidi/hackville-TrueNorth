@@ -44,5 +44,66 @@
       "English"
     ],
     "createdAt": "2026-01-17T23:59:01.025Z"
+  },
+  {
+    "companyId": "d59e8a3a-9643-4945-ade3-168874bcc7fd",
+    "companyName": "Xatoms",
+    "companyStage": "early",
+    "industry": "Technology",
+    "description": "Xatoms develops affordable water treatment solutions that help communities access clean drinking water. Our focus is on supporting municipalities and nonprofits serving underserved populations.",
+    "servedCustomerTypes": [
+      "individuals",
+      "non_profits",
+      "government"
+    ],
+    "geographicFocus": [
+      "Ontario"
+    ],
+    "currentReach": "pilot_users",
+    "accessibilityCommitment": "intentional",
+    "languagesSupported": [
+      "English"
+    ],
+    "createdAt": "2026-01-18T00:35:13.049Z"
+  },
+  {
+    "companyId": "4d584e76-9641-41c5-b9e3-8b2dac8c2f58",
+    "companyName": "Maryammy Inc. Coffee",
+    "companyStage": "idea",
+    "industry": "Other",
+    "description": "I roast coffee beans at a low price from my house. ",
+    "servedCustomerTypes": [
+      "individuals",
+      "small_businesses",
+      "non_profits"
+    ],
+    "geographicFocus": [
+      "Ontario"
+    ],
+    "currentReach": "pilot_users",
+    "accessibilityCommitment": "intentional",
+    "languagesSupported": [
+      "English"
+    ],
+    "createdAt": "2026-01-18T00:48:55.308Z"
+  },
+  {
+    "companyId": "3cb1e04e-a03e-424f-8b39-43c3acafc47a",
+    "companyName": "Ahmed Coffee",
+    "companyStage": "idea",
+    "industry": "Finance",
+    "description": "Making coffee roaster more accessible for Canadians.",
+    "servedCustomerTypes": [
+      "individuals"
+    ],
+    "geographicFocus": [
+      "Ontario"
+    ],
+    "currentReach": "pilot_users",
+    "accessibilityCommitment": "intentional",
+    "languagesSupported": [
+      "English"
+    ],
+    "createdAt": "2026-01-18T02:57:17.778Z"
   }
 ]

@@ -1,0 +1,104 @@
+---
+import LayoutSidebar from '../app/LayoutSidebar.astro';
+import { getCompanyDashboardData } from '../lib/dashboard/index.js';
+import { loadCompanies } from '../lib/company/index.js';
+import { transformMunicipalityToHeatmapData } from '../lib/dashboard/heatmap.js';
+
+const dashboardData = await getCompanyDashboardData();
+const { company, municipalities } = dashboardData;
+const allCompanies = loadCompanies();
+
+// Transform data for heatmap
+const heatmapData = transformMunicipalityToHeatmapData(municipalities, company ?? undefined);
+
+// Serialize heatmap data for client-side script
+const heatmapDataJson = JSON.stringify(heatmapData);
+---
+
+<LayoutSidebar title="Service Gap Heatmap">
+	<div class="px-4 pt-6 bg-gray-50 dark:bg-gray-900 min-h-screen">
+		<div class="max-w-7xl mx-auto">
+			<!-- Header -->
+			<div class="mb-6">
+				<div class="flex items-center justify-between">
+					<div>
+						<h1 class="text-3xl font-bold text-gray-900 dark:text-white">
+							Service Gap Heatmap
+						</h1>
+						<p class="text-lg text-gray-600 dark:text-gray-400 mt-2">
+							Interactive map showing accessibility service gaps across Canada
+						</p>
+					</div>
+					<a
+						href="/dashboard"
+						class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+					>
+						← Back to Dashboard
+					</a>
+				</div>
+			</div>
+
+			<!-- Company Selector -->
+			{allCompanies.length > 1 && (
+				<div class="mb-6">
+					<div class="flex items-center space-x-4">
+						<label class="text-sm font-medium text-gray-700 dark:text-gray-300">
+							Company Focus:
+						</label>
+						<select
+							id="company-selector-heatmap"
+							class="block w-64 pl-3 pr-10 py-2 text-sm border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+							value={company?.companyId || ''}
+						>
+							{allCompanies.map((comp) => (
+								<option value={comp.companyId}>{comp.companyName}</option>
+							))}
+						</select>
+					</div>
+				</div>
+			)}
+
+			<!-- Heatmap Container -->
+			<div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6">
+				<div id="service-gap-heatmap-container" class="w-full h-[600px] bg-gray-100 dark:bg-gray-700 rounded-lg">
+					<!-- Heatmap will be initialized here -->
+				</div>
+
+				<!-- Legend -->
+				<div class="mt-6 flex flex-wrap items-center justify-center gap-6 text-sm text-gray-600 dark:text-gray-400">
+					<div class="flex items-center">
+						<div class="w-4 h-4 bg-red-600 rounded-full mr-2"></div>
+						<span>Critical - Severe service gaps</span>
+					</div>
+					<div class="flex items-center">
+						<div class="w-4 h-4 bg-orange-600 rounded-full mr-2"></div>
+						<span>Moderate - Significant gaps</span>
+					</div>
+					<div class="flex items-center">
+						<div class="w-4 h-4 bg-green-600 rounded-full mr-2"></div>
+						<span>Minor - Acceptable coverage</span>
+					</div>
+					<div class="text-xs text-gray-500 dark:text-gray-500 mt-2">
+						Click on any municipality marker to view detailed analysis
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</LayoutSidebar>
+
+<script>
+	import '../modules/DashBoard-heatmap.client.ts';
+
+	// Handle company selector change for heatmap
+	document.addEventListener('DOMContentLoaded', () => {
+		const companySelector = document.getElementById('company-selector-heatmap');
+		if (companySelector) {
+			companySelector.addEventListener('change', () => {
+				// For demo purposes, we'll reload the page. In a real app,
+				// this would update the active company in the session/user context
+				window.location.reload();
+			});
+		}
+	});
+</script>
