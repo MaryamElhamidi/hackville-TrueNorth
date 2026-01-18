@@ -182,7 +182,13 @@ class ServiceGapHeatmap {
 
       this.map = new mapboxgl.Map({
         container: 'service-gap-map',
-        style: 'mapbox://styles/mapbox/outdoors-v12', // More detailed style better for Canadian geography
+        style: 'mapbox://styles/mapbox/standard',
+        config: {
+          basemap: {
+            theme: 'monochrome',
+            lightPreset: 'day'
+          }
+        },
         center: ontarioCenter, // Ontario center
         zoom: 6,
         maxBounds: ontarioBounds, // Strict Ontario bounds - cannot pan outside
@@ -311,51 +317,159 @@ class ServiceGapHeatmap {
   private addHeatmapLayer() {
     if (!this.map) return;
 
-    // Add heatmap source
+    console.log('Adding heatmap layer with data:', this.data.length, 'points');
+
+    // Add a geojson point source.
+    // Heatmap layers also work with a vector tile source.
     this.map.addSource('service-gaps', {
-      type: 'geojson',
-      data: this.createGeoJSON(this.data)
+      'type': 'geojson',
+      'data': this.createGeoJSON(this.data)
     });
 
-    // Add heatmap layer
+    console.log('Heatmap source added');
+
+    console.log('Adding heatmap layer...');
     this.map.addLayer({
-      id: 'service-gaps-heatmap',
-      type: 'heatmap',
-      source: 'service-gaps',
-      paint: {
+      'id': 'service-gaps-heatmap',
+      'type': 'heatmap',
+      'source': 'service-gaps',
+      'maxzoom': 9,
+      'paint': {
+        // Increase the heatmap weight based on frequency and property magnitude
         'heatmap-weight': [
           'interpolate',
           ['linear'],
-          ['get', 'intensity'],
-          0, 0,
-          1, 1
+          ['get', 'issues_count'],
+          0,
+          0,
+          10,
+          1
         ],
+        // Increase the heatmap color weight weight by zoom level
+        // heatmap-intensity is a multiplier on top of heatmap-weight
         'heatmap-intensity': [
           'interpolate',
           ['linear'],
           ['zoom'],
-          0, 1,
-          9, 3
+          0,
+          1,
+          9,
+          3
         ],
+        // Color ramp for heatmap.  Domain is 0 (low) to 1 (high).
+        // Begin color ramp at 0-stop with a 0-transparancy color
+        // to create a blur-like effect.
         'heatmap-color': [
           'interpolate',
           ['linear'],
           ['heatmap-density'],
-          0, 'rgba(0,0,0,0)',
-          0.2, 'rgba(16, 185, 129, 0.5)', // Green
-          0.4, 'rgba(245, 158, 11, 0.6)', // Orange
-          0.6, 'rgba(239, 68, 68, 0.7)',  // Red
-          1, 'rgba(185, 28, 28, 0.8)'     // Dark red
+          0,
+          'rgba(33,102,172,0)',
+          0.2,
+          'rgb(103,169,207)',
+          0.4,
+          'rgb(209,229,240)',
+          0.6,
+          'rgb(253,219,199)',
+          0.8,
+          'rgb(239,138,98)',
+          1,
+          'rgb(178,24,43)'
         ],
+        // Adjust the heatmap radius by zoom level
         'heatmap-radius': [
           'interpolate',
           ['linear'],
           ['zoom'],
-          0, 2,
-          9, 20
+          0,
+          2,
+          9,
+          20
         ],
-        'heatmap-opacity': 0.7
+        // Transition from heatmap to circle layer by zoom level
+        'heatmap-opacity': [
+          'interpolate',
+          ['linear'],
+          ['zoom'],
+          7,
+          1,
+          9,
+          0
+        ]
+      },
+      slot: 'top'
+    });
+    console.log('Heatmap layer added');
+
+    // Add circle layer for individual points when zoomed in
+    this.map.addLayer({
+      'id': 'service-gaps-point',
+      'type': 'circle',
+      'source': 'service-gaps',
+      'minzoom': 7,
+      'paint': {
+        // Size circle radius by earthquake magnitude and zoom level
+        'circle-radius': [
+          'interpolate',
+          ['linear'],
+          ['zoom'],
+          7,
+          ['interpolate', ['linear'], ['get', 'issues_count'], 1, 1, 10, 4],
+          16,
+          ['interpolate', ['linear'], ['get', 'issues_count'], 1, 5, 10, 50]
+        ],
+        // Color circle by issues count
+        'circle-color': [
+          'interpolate',
+          ['linear'],
+          ['get', 'issues_count'],
+          1,
+          'rgba(33,102,172,0)',
+          3,
+          'rgb(103,169,207)',
+          5,
+          'rgb(209,229,240)',
+          7,
+          'rgb(253,219,199)',
+          10,
+          'rgb(178,24,43)'
+        ],
+        'circle-stroke-color': 'white',
+        'circle-stroke-width': 1,
+        // Transition from heatmap to circle layer by zoom level
+        'circle-opacity': [
+          'interpolate',
+          ['linear'],
+          ['zoom'],
+          7,
+          0,
+          8,
+          1
+        ]
+      },
+      slot: 'top'
+    });
+
+    // Add click handlers for heatmap and point layers
+    this.map.on('click', 'service-gaps-point', (e) => {
+      if (e.features && e.features[0]) {
+        const { properties } = e.features[0];
+        if (properties) {
+          const municipalityData = this.data.find(d => d.municipality === properties.municipality);
+          if (municipalityData && this.onMunicipalityClick) {
+            this.onMunicipalityClick(municipalityData);
+          }
+        }
       }
+    });
+
+    // Change cursor on hover
+    this.map.on('mouseenter', 'service-gaps-point', () => {
+      this.map!.getCanvas().style.cursor = 'pointer';
+    });
+
+    this.map.on('mouseleave', 'service-gaps-point', () => {
+      this.map!.getCanvas().style.cursor = '';
     });
   }
 

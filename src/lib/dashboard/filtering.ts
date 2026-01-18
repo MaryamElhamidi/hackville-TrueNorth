@@ -34,8 +34,14 @@ export function loadMunicipalitySummaries(): MunicipalitySummary[] {
  * Filter municipality summaries based on company profile
  * Returns only municipalities relevant to the company's geographic focus
  */
-export function filterMunicipalitiesForCompany(company: Company): MunicipalitySummary[] {
+export function filterMunicipalitiesForCompany(company: Company | null): MunicipalitySummary[] {
   const allSummaries = loadMunicipalitySummaries();
+
+  // If no company is specified, return all municipalities (for demo purposes)
+  if (!company) {
+    console.log('No company specified, returning all municipalities');
+    return allSummaries;
+  }
 
   if (hasNationwideFocus(company)) {
     // If company has nationwide focus, return all municipalities
@@ -46,7 +52,6 @@ export function filterMunicipalitiesForCompany(company: Company): MunicipalitySu
 
   // For now, we'll use a simple heuristic to filter municipalities by province
   // In a real implementation, you'd have municipality-to-province mapping
-  // For the demo, we'll assume Ontario municipalities are relevant to Ontario-focused companies
   if (companyProvinces.includes('Ontario')) {
     // Return municipalities that might be in Ontario (simple heuristic for demo)
     return allSummaries.filter(() => true); // Include all for now since we don't have province mapping
@@ -98,7 +103,7 @@ function getIndustryKeywords(industry: string): string[] {
     'Other': ['service', 'business', 'community']
   };
 
-  return keywordMap[industry] || keywordMap['Other'];
+  return keywordMap[industry] || keywordMap['Other'] || [];
 }
 
 /**

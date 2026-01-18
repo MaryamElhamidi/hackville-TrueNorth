@@ -9,8 +9,16 @@ const { company, summary, municipalities, insights, topServices } = dashboardDat
 const heatmapData = transformMunicipalityToHeatmapData(municipalities, company ?? undefined);
 
 // Make heatmap data available to client-side scripts
+console.log('Server-side: heatmapData length:', heatmapData.length);
+console.log('Server-side: municipalities length:', municipalities.length);
+console.log('Server-side: company:', company?.companyName);
+
 if (typeof window !== 'undefined') {
 	(window as any).heatmapData = heatmapData;
+	console.log('Heatmap data set on window:', heatmapData.length, 'points');
+	console.log('Sample data points:', heatmapData.slice(0, 5));
+	console.log('Municipalities before transform:', municipalities.length);
+	console.log('Company:', company?.companyName, 'Focus:', company?.geographicFocus);
 }
 ---
 

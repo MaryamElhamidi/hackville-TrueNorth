@@ -1,58 +1,83 @@
 // Use the real ServiceGapHeatmap component with Mapbox
 document.addEventListener('DOMContentLoaded', () => {
 	console.log('Heatmap initialization starting...');
-	const container = document.getElementById('service-gap-heatmap-container');
-	console.log('Container found:', !!container);
-	console.log('Heatmap data available:', !!(window as any).heatmapData);
-	console.log('Companies available:', !!(window as any).allCompanies);
 
-	if (!container) {
-		console.error('Container not found!');
-		return;
-	}
+	const initializeHeatmap = () => {
+		const container = document.getElementById('service-gap-heatmap-container');
+		console.log('Container found:', !!container);
+		console.log('Heatmap data available:', !!(window as any).heatmapData);
+		console.log('Heatmap data length:', (window as any).heatmapData?.length || 0);
 
-	// Import the real ServiceGapHeatmap component
-	import('./ServiceGapHeatmap.client.ts').then((module) => {
-		const ServiceGapHeatmap = module.default;
+		if (!container) {
+			console.error('Container not found!');
+			return;
+		}
 
-		// Clear container for the component
-		container.innerHTML = '';
-
-		try {
-			// Create the heatmap with the current data
-			const heatmap = new ServiceGapHeatmap('service-gap-heatmap-container', (window as any).heatmapData || [], (municipality) => {
-				// Navigate to municipality page when clicked
-				window.location.href = `/municipality/${encodeURIComponent(municipality.municipality)}`;
-			});
-
-			// Store reference to heatmap for company switching
-			(window as any).currentHeatmap = heatmap;
-
-			console.log('Mapbox heatmap initialized successfully!');
-		} catch (error) {
-			console.error('Failed to initialize Mapbox heatmap:', error);
+		// Use the real heatmap data
+		const heatmapData = (window as any).heatmapData;
+		if (!heatmapData || heatmapData.length === 0) {
+			console.error('No heatmap data available!');
 			container.innerHTML = `
 				<div class="flex items-center justify-center h-full">
 					<div class="text-center">
-						<div class="text-red-500 text-lg font-semibold mb-2">Mapbox Initialization Failed</div>
-						<div class="text-gray-600">Unable to load the interactive map. Please check your Mapbox token.</div>
+						<div class="text-red-500 text-lg font-semibold mb-2">No Data Available</div>
+						<div class="text-gray-600">Unable to load municipality data for the heatmap.</div>
+						<div class="text-sm text-gray-500 mt-2">Please check if municipality_summaries.json exists.</div>
+					</div>
+				</div>
+			`;
+			return;
+		}
+
+		// Import the real ServiceGapHeatmap component
+		import('./ServiceGapHeatmap.client.ts').then((module) => {
+			const ServiceGapHeatmap = module.default;
+
+			// Clear container for the component
+			container.innerHTML = '';
+
+			try {
+				console.log('Creating heatmap with data:', heatmapData.length, 'points');
+
+				// Create the heatmap with the current data
+				const heatmap = new ServiceGapHeatmap('service-gap-heatmap-container', heatmapData, (municipality) => {
+					// Navigate to municipality page when clicked
+					console.log('Navigating to municipality:', municipality.municipality);
+					window.location.href = `/municipality/${encodeURIComponent(municipality.municipality)}`;
+				});
+
+				// Store reference to heatmap for company switching
+				(window as any).currentHeatmap = heatmap;
+
+				console.log('Mapbox heatmap initialized successfully!');
+			} catch (error) {
+				console.error('Failed to initialize Mapbox heatmap:', error);
+				container.innerHTML = `
+					<div class="flex items-center justify-center h-full">
+						<div class="text-center">
+							<div class="text-red-500 text-lg font-semibold mb-2">Mapbox Initialization Failed</div>
+							<div class="text-gray-600">Unable to load the interactive map. Please check your Mapbox token.</div>
+							<div class="text-sm text-gray-500 mt-2">Error: ${(error as Error).message}</div>
+						</div>
+					</div>
+				`;
+			}
+		}).catch((error) => {
+			console.error('Failed to load ServiceGapHeatmap component:', error);
+			container.innerHTML = `
+				<div class="flex items-center justify-center h-full">
+					<div class="text-center">
+						<div class="text-red-500 text-lg font-semibold mb-2">Component Load Failed</div>
+						<div class="text-gray-600">Unable to load the heatmap component.</div>
 						<div class="text-sm text-gray-500 mt-2">Error: ${(error as Error).message}</div>
 					</div>
 				</div>
 			`;
-		}
-	}).catch((error) => {
-		console.error('Failed to load ServiceGapHeatmap component:', error);
-		container.innerHTML = `
-			<div class="flex items-center justify-center h-full">
-				<div class="text-center">
-					<div class="text-red-500 text-lg font-semibold mb-2">Component Load Failed</div>
-					<div class="text-gray-600">Unable to load the heatmap component.</div>
-					<div class="text-sm text-gray-500 mt-2">Error: ${(error as Error).message}</div>
-				</div>
-			</div>
-		`;
-	});
+		});
+	};
+
+	// Start initialization
+	initializeHeatmap();
 
 	// Add company selector functionality
 	const companySelector = document.getElementById('company-selector-heatmap') as HTMLSelectElement;
