@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "name": "John Doe",
+    "avatar": "/avatars/john-doe.jpg",
+    "email": "john@accesspath.com",
+    "biography": "Accessibility specialist at AccessPath Technologies",
+    "position": "CTO",
+    "country": "Canada",
+    "status": "active",
+    "companyId": "19afde19-8cbe-4ad6-9631-c0ff98896189",
+    "password": "password123"
+  },
+  {
+    "id": 2,
+    "name": "Jane Smith",
+    "avatar": "/avatars/jane-smith.jpg",
+    "email": "jane@sheridanstudentunion.ca",
+    "biography": "Student advocate at Sheridan Student Union",
+    "position": "President",
+    "country": "Canada",
+    "status": "active",
+    "companyId": "14aa6565-d12b-4669-af90-f525f69a5018",
+    "password": "password123"
+  },
+  {
+    "id": 3,
+    "name": "Bob Wilson",
+    "avatar": "/avatars/bob-wilson.jpg",
+    "email": "bob@xatoms.com",
+    "biography": "Founder of Xatoms water treatment solutions",
+    "position": "CEO",
+    "country": "Canada",
+    "status": "active",
+    "companyId": "d59e8a3a-9643-4945-ade3-168874bcc7fd",
+    "password": "password123"
+  },
+  {
+    "id": 4,
+    "name": "Alice Johnson",
+    "avatar": "/avatars/alice-johnson.jpg",
+    "email": "alice@maryammycoffee.com",
+    "biography": "Founder of Maryammy Coffee Co.",
+    "position": "Owner",
+    "country": "Canada",
+    "status": "active",
+    "companyId": "4d584e76-9641-41c5-b9e3-8b2dac8c2f58",
+    "password": "password123"
+  }
+]

@@ -321,41 +321,6 @@ const provinces = [
 	</div>
 
 	<script>
-		const form = document.querySelector('form');
-		form?.addEventListener('submit', async (e) => {
-			e.preventDefault();
-			const formData = new FormData(form);
-			const data = Object.fromEntries(formData.entries());
-			
-			// Handle multi-selects manually since Object.fromEntries takes last value for same-name keys
-			const audiences = formData.getAll('audience');
-			const geoFocus = formData.getAll('geographicFocus');
-			const languages = formData.getAll('languages');
-			
-			const finalData = {
-				...data,
-				audience: audiences,
-				geographicFocus: geoFocus,
-				languages: languages
-			};
-
-			console.log('Onboarding Data:', finalData);
-			
-			try {
-				// Send data to the API endpoint to save to JSON file
-				await fetch('/api/onboarding', {
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json',
-					},
-					body: JSON.stringify(finalData),
-				});
-			} catch (error) {
-				console.error('Failed to save data:', error);
-			} finally {
-				// Redirect to dashboard regardless of save success for the demo
-				window.location.href = '/dashboard';
-			}
-		});
+		import './company-onboarding.client.ts';
 	</script>
 </LayoutApp>

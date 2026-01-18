@@ -1,28 +1,25 @@
 import fs from 'fs';
 import path from 'path';
-
-export interface Company {
-  companyId: string;
-  companyName: string;
-  companyStage: string;
-  industry: string;
-  description: string;
-  servedCustomerTypes: string[];
-  geographicFocus: string[];
-  currentReach: string;
-  accessibilityCommitment: string;
-  languagesSupported: string[];
-  createdAt: string;
-}
+import { getCurrentUser } from '../../services/auth.js';
+import type { Company } from '../../types/entities.js';
 
 /**
- * Load all companies from the data file
+ * Load all companies from the data file and localStorage
  */
 export function loadCompanies(): Company[] {
   try {
     const companiesPath = path.join(process.cwd(), 'data', 'companies.json');
     const companiesData = fs.readFileSync(companiesPath, 'utf8');
-    return JSON.parse(companiesData) as Company[];
+    const staticCompanies = JSON.parse(companiesData) as Company[];
+
+    // Load dynamically created companies from localStorage (for client-side)
+    if (typeof window !== 'undefined') {
+      const dynamicCompaniesJson = localStorage.getItem('dynamic_companies');
+      const dynamicCompanies: Company[] = dynamicCompaniesJson ? (JSON.parse(dynamicCompaniesJson) as Company[]) : [];
+      return [...staticCompanies, ...dynamicCompanies];
+    }
+
+    return staticCompanies;
   } catch (error) {
     console.error('Error loading companies:', error);
     return [];
@@ -42,12 +39,13 @@ export function getCompanyById(companyId: string): Company | null {
  * In a demo app, this could be set via localStorage or environment variables
  */
 export function getActiveCompanyId(): string | null {
-  // In a real app, this would come from user session/authentication
-  // For demo purposes, check if there's a specific company ID set
-  // You can set this via environment variable or modify this function
+  // First, check if user is logged in and has an associated company
+  const currentUser = getCurrentUser();
+  if (currentUser?.companyId) {
+    return currentUser.companyId;
+  }
 
-  // For now, return null to use the most recently created company as default
-  // In production, this would be tied to user authentication
+  // Fallback: check environment variable for demo purposes
   return process.env.ACTIVE_COMPANY_ID || null;
 }
 
@@ -56,8 +54,15 @@ export function getActiveCompanyId(): string | null {
  * In a real implementation, this would be based on user authentication/session
  */
 export function getActiveCompany(): Company | null {
-  const activeCompanyId = getActiveCompanyId();
+  const currentUser = getCurrentUser();
 
+  // If user has company data embedded, use that (for newly created companies)
+  if (currentUser?.company) {
+    return currentUser.company;
+  }
+
+  // Otherwise, try to find the company by ID
+  const activeCompanyId = getActiveCompanyId();
   if (activeCompanyId) {
     return getCompanyById(activeCompanyId);
   }
