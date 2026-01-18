@@ -1,22 +1,51 @@
+import { config } from 'dotenv';
 import { Company } from '../company/index.js';
 import { MunicipalitySummary } from '../dashboard/filtering.js';
 
+// Load environment variables
+config();
+
 // Dynamic import for AI functionality to avoid SSR issues
 let genAI: any = null;
-let model: any = null;
+let geminiModel: any = null;
+let openaiClient: any = null;
+
+type AIProvider = 'gemini' | 'openai' | 'auto';
 
 async function initializeAI() {
-  if (!genAI && process.env.GEMINI_API_KEY) {
+  const provider = (process.env.AI_PROVIDER || 'auto') as AIProvider;
+
+  // Try Gemini first if enabled
+  if ((provider === 'gemini' || provider === 'auto') && process.env.GEMINI_API_KEY && !genAI) {
     try {
       // @ts-ignore
       const { GoogleGenerativeAI } = await import('@google/generative-ai');
       genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-      model = genAI.getGenerativeModel({ model: 'gemini-pro' });
+      geminiModel = genAI.getGenerativeModel({ model: 'gemini-1.0-pro' });
+      console.log('Gemini AI initialized successfully');
+      return { provider: 'gemini', available: true };
     } catch (error) {
-      console.warn('Failed to initialize Google AI:', error);
+      console.warn('Failed to initialize Google Gemini AI:', error);
     }
   }
-  return model !== null;
+
+  // Try OpenAI if Gemini failed or if OpenAI is preferred
+  if ((provider === 'openai' || provider === 'auto') && process.env.OPENAI_API_KEY && !openaiClient) {
+    try {
+      // @ts-ignore
+      const OpenAI = (await import('openai')).default;
+      openaiClient = new OpenAI({
+        apiKey: process.env.OPENAI_API_KEY,
+      });
+      console.log('OpenAI initialized successfully');
+      return { provider: 'openai', available: true };
+    } catch (error) {
+      console.warn('Failed to initialize OpenAI:', error);
+    }
+  }
+
+  console.warn('No AI provider available. Using fallback responses.');
+  return { provider: null, available: false };
 }
 
 /**
@@ -106,21 +135,33 @@ export async function generateCompanySpecificSummary(
   const prompt = createCompanySpecificPrompt(municipalitySummary, company);
 
   // Try to initialize AI if not already done
-  const aiAvailable = await initializeAI();
+  const { provider, available } = await initializeAI();
 
-  if (!aiAvailable) {
+  if (!available) {
     return generateFallbackSummary(municipalitySummary, company);
   }
 
   try {
-    const result = await model.generateContent(prompt);
-    const response = await result.response;
-    return response.text().trim();
+    if (provider === 'gemini') {
+      const result = await geminiModel.generateContent(prompt);
+      const response = await result.response;
+      return response.text().trim();
+    } else if (provider === 'openai') {
+      const completion = await openaiClient.chat.completions.create({
+        model: 'gpt-3.5-turbo',
+        messages: [{ role: 'user', content: prompt }],
+        max_tokens: 1000,
+      });
+      return completion.choices[0].message.content.trim();
+    }
   } catch (error) {
     console.error('Error generating AI summary:', error);
     // Fallback to basic summary
     return generateFallbackSummary(municipalitySummary, company);
   }
+
+  // Fallback if no provider matched
+  return generateFallbackSummary(municipalitySummary, company);
 }
 
 /**
@@ -133,23 +174,65 @@ function generateFallbackCompanyInsights(
   const totalIssues = municipalitySummaries.reduce((sum, m) => sum + m.issues_count, 0);
   const averageIssues = (totalIssues / municipalitySummaries.length).toFixed(1);
 
+  // Generate company-specific insights based on company profile
+  const getIndustrySpecificInsights = (company: Company) => {
+    switch (company.industry) {
+      case 'Technology':
+        return {
+          businessImpact: `Digital accessibility barriers in ${company.geographicFocus.join(' and ')} directly impact your ability to reach and serve customers who rely on technology solutions. Many potential users may struggle to access your digital platforms and services.`,
+          concerns: `Customers with disabilities may face barriers when trying to learn about, purchase, or use your technology products and services.`,
+          actions: `Audit your website, mobile apps, and digital platforms for accessibility compliance, then develop training programs for your team on inclusive design practices.`
+        };
+      case 'Clean Technology':
+      case 'Water Treatment':
+        return {
+          businessImpact: `Accessibility barriers in ${company.geographicFocus.join(' and ')} affect your ability to work with municipalities and nonprofits that serve communities needing your water treatment solutions. When these organizations have accessibility challenges, it impacts their ability to effectively serve the communities you aim to help.`,
+          concerns: `Government and nonprofit partners may struggle with accessibility when trying to learn about or implement your water treatment technologies.`,
+          actions: `Audit your own materials and platforms for accessibility, then partner with local disability advocacy groups to understand specific accessibility challenges in water access.`
+        };
+      case 'Education':
+        return {
+          businessImpact: `Educational accessibility barriers directly impact your ability to serve students and educational institutions that need your services and programs.`,
+          concerns: `Students with disabilities may face barriers when accessing your educational content, platforms, or services.`,
+          actions: `Ensure your educational materials, online platforms, and communication channels meet accessibility standards, and develop partnerships with disability services offices.`
+        };
+      case 'Food & Beverage':
+        return {
+          businessImpact: `Accessibility barriers affect your ability to serve customers who want to purchase and enjoy your food and beverage products. Many potential customers may be unable to access your locations or online ordering systems.`,
+          concerns: `Customers with mobility or digital accessibility needs may struggle to access your products and services.`,
+          actions: `Audit your physical locations for accessibility compliance, ensure your website and ordering systems are accessible, and train staff on serving customers with disabilities.`
+        };
+      default:
+        return {
+          businessImpact: `Accessibility barriers in your target markets directly impact your ability to serve your customers effectively. When organizations and individuals face accessibility challenges, it affects their ability to engage with businesses like yours.`,
+          concerns: `Your customers may face barriers when trying to access your products, services, or information.`,
+          actions: `Conduct an accessibility audit of your current operations and develop an accessibility improvement plan based on your ${company.accessibilityCommitment} commitment level.`
+        };
+    }
+  };
+
+  const insights = getIndustrySpecificInsights(company);
+
+  const urgencyLevel = company.accessibilityCommitment === 'intentional' ? 'Orange' :
+                      company.companyStage === 'early' ? 'Orange' : 'Green';
+
   return `What This Means for Your Business
 
-As ${company.companyName}, you serve municipalities and nonprofits in ${company.geographicFocus.join(' and ')} with water treatment solutions. Accessibility barriers in these areas directly impact your customers' ability to access clean water services.
+${insights.businessImpact}
 
-Your early-stage technology company depends on building trust with government and nonprofit partners. When these organizations struggle with accessibility, it affects their ability to serve underserved communities that need your water solutions most.
+As a ${company.companyStage} stage ${company.industry} company serving ${company.servedCustomerTypes.join(' and ')}, accessibility issues in your geographic focus areas present both challenges and opportunities for growth.
 
 Areas of Concern for Your Company
 
-Your pilot users in Ontario municipalities may face barriers when trying to learn about or adopt your water treatment technology, limiting your market expansion.
+${insights.concerns} These barriers could limit your market reach and customer satisfaction.
 
 Recommended Actions for Your Company
 
-Start by auditing your own website and pilot program materials for accessibility, then reach out to local disability advocacy groups in your target municipalities to understand their specific water access challenges.
+${insights.actions} Focus on accessibility improvements that align with your ${company.accessibilityCommitment} commitment level.
 
 Urgency Level
 
-Orange - Your early stage and pilot user status means accessibility issues could significantly impact your ability to prove product-market fit with underserved communities.`;
+${urgencyLevel} - As a ${company.companyStage} company, addressing accessibility now will help you build inclusive practices from the ground up and better serve your target customers.`;
 }
 
 /**
@@ -192,18 +275,30 @@ Provide a 2-3 paragraph strategic summary that includes:
 Focus on actionable insights that align with their ${company.companyStage} stage and ${company.industry} industry.`;
 
   // Try to initialize AI if not already done
-  const aiAvailable = await initializeAI();
+  const { provider, available } = await initializeAI();
 
-  if (!aiAvailable) {
+  if (!available) {
     return generateFallbackCompanyInsights(municipalitySummaries, company);
   }
 
   try {
-    const result = await model.generateContent(prompt);
-    const response = await result.response;
-    return response.text().trim();
+    if (provider === 'gemini') {
+      const result = await geminiModel.generateContent(prompt);
+      const response = await result.response;
+      return response.text().trim();
+    } else if (provider === 'openai') {
+      const completion = await openaiClient.chat.completions.create({
+        model: 'gpt-3.5-turbo',
+        messages: [{ role: 'user', content: prompt }],
+        max_tokens: 1500,
+      });
+      return completion.choices[0].message.content.trim();
+    }
   } catch (error) {
     console.error('Error generating company insights:', error);
     return generateFallbackCompanyInsights(municipalitySummaries, company);
   }
+
+  // Fallback if no provider matched
+  return generateFallbackCompanyInsights(municipalitySummaries, company);
 }

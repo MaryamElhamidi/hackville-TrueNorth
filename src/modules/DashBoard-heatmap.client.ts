@@ -41,9 +41,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
 				// Create the heatmap with the current data
 				const heatmap = new ServiceGapHeatmap('service-gap-heatmap-container', heatmapData, (municipality) => {
-					// Navigate to municipality page when clicked
+					// Navigate to municipality page when clicked with issue data
 					console.log('Navigating to municipality:', municipality.municipality);
-					window.location.href = `/municipality/${encodeURIComponent(municipality.municipality)}`;
+
+					// Prepare URL parameters with issue-specific data
+					const params = new URLSearchParams({
+						severity: municipality.severity,
+						issues_count: municipality.issues_count.toString(),
+						affected_populations: municipality.affected_populations.toString(),
+						service_gap_types: municipality.service_gap_types.join(','),
+						accessibility_barriers: municipality.accessibility_barriers.join(','),
+						top_services_affected: municipality.top_services_affected.join(','),
+						summary: municipality.summary
+					});
+
+					window.location.href = `/municipality/${encodeURIComponent(municipality.municipality)}?${params.toString()}`;
 				});
 
 				// Store reference to heatmap for company switching

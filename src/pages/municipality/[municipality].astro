@@ -2,15 +2,33 @@
 import LayoutSidebar from '../../app/LayoutSidebar.astro';
 import { getCompanySpecificMunicipalitySummary } from '../../lib/dashboard/index.js';
 import { getActiveCompany } from '../../lib/company/index.js';
+import { loadMunicipalitySummaries } from '../../lib/dashboard/filtering.js';
 
 export async function getStaticPaths() {
-  // In a real app, you'd generate paths for all municipalities
-  // For now, we'll create a dynamic route that handles any municipality
-  return [];
+  // Generate paths for all municipalities
+  const municipalities = loadMunicipalitySummaries();
+
+  return municipalities.map((municipality) => ({
+    params: {
+      municipality: municipality.municipality
+    }
+  }));
 }
 
 const { municipality } = Astro.params;
 const company = getActiveCompany();
+
+// Parse URL parameters for issue-specific data
+const url = new URL(Astro.request.url);
+const issueData = {
+  severity: url.searchParams.get('severity') || 'minor',
+  issues_count: parseInt(url.searchParams.get('issues_count') || '0'),
+  affected_populations: parseInt(url.searchParams.get('affected_populations') || '0'),
+  service_gap_types: url.searchParams.get('service_gap_types')?.split(',') || [],
+  accessibility_barriers: url.searchParams.get('accessibility_barriers')?.split(',') || [],
+  top_services_affected: url.searchParams.get('top_services_affected')?.split(',') || [],
+  summary: url.searchParams.get('summary') || ''
+};
 
 let summary = '';
 let error = '';
@@ -70,6 +88,7 @@ if (company && municipality) {
           </div>
         </div>
       ) : (
+        <>
         <!-- Analysis Content -->
         <div class="space-y-6">
           {summary.split('\n\n').map((section) => {
@@ -231,7 +250,164 @@ if (company && municipality) {
             </div>
           </div>
         </div>
+
+        <!-- Issue-Specific Impact Analysis -->
+        <div class="bg-white dark:bg-gray-800 overflow-hidden shadow rounded-lg">
+          <div class="px-4 py-5 sm:p-6">
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+              Issue-Specific Impact Analysis: {issueData.top_services_affected[0] || 'Accessibility Barriers'}
+            </h3>
+
+            <!-- Issue Summary -->
+            <div class="mb-6 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Severity Level:</span>
+                <span class={`px-2 py-1 text-xs font-medium rounded-full ${
+                  issueData.severity === 'critical' ? 'bg-red-100 text-red-800' :
+                  issueData.severity === 'moderate' ? 'bg-orange-100 text-orange-800' :
+                  'bg-green-100 text-green-800'
+                }`}>
+                  {issueData.severity.charAt(0).toUpperCase() + issueData.severity.slice(1)}
+                </span>
+              </div>
+              <div class="grid grid-cols-2 gap-4 text-sm">
+                <div>
+                  <span class="font-medium text-gray-700 dark:text-gray-300">Issues Identified:</span>
+                  <span class="ml-2 text-gray-900 dark:text-gray-100">{issueData.issues_count}</span>
+                </div>
+                <div>
+                  <span class="font-medium text-gray-700 dark:text-gray-300">Affected Population:</span>
+                  <span class="ml-2 text-gray-900 dark:text-gray-100">{issueData.affected_populations.toLocaleString()}</span>
+                </div>
+              </div>
+              <div class="mt-3">
+                <span class="font-medium text-gray-700 dark:text-gray-300">Key Barriers:</span>
+                <div class="flex flex-wrap gap-2 mt-1">
+                  {issueData.accessibility_barriers.map((barrier) => (
+                    <span class="px-2 py-1 text-xs bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 rounded">
+                      {barrier}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <!-- Impact Chart Container -->
+            <div id="impact-chart-container" class="mb-6">
+              <!-- Chart will be rendered here by JavaScript -->
+            </div>
+          </div>
+        </div>
+        </>
       )}
+
+      <!-- Client-side script to render the impact chart -->
+      <script define:vars={{ issueData }}>
+        import ImpactChart from '../../components/charts/ImpactChart.client.ts';
+
+        document.addEventListener('DOMContentLoaded', () => {
+          // Generate impact data based on the issue type
+          const primaryBarrier = issueData.accessibility_barriers[0] || 'Digital accessibility';
+          const affectedPopulation = issueData.affected_populations;
+
+          // Calculate impact metrics based on barrier type and population
+          let chartData = [];
+
+          if (primaryBarrier.toLowerCase().includes('digital')) {
+            chartData = [
+              {
+                label: 'Digital Accessibility Audit',
+                value: Math.round(affectedPopulation * 0.85),
+                color: '#eab308',
+                description: 'Website modernization and WCAG compliance improvements'
+              },
+              {
+                label: 'Online Service Training',
+                value: Math.round(affectedPopulation * 0.65),
+                color: '#3b82f6',
+                description: 'Digital literacy programs for seniors and vulnerable groups'
+              },
+              {
+                label: 'Mobile App Development',
+                value: Math.round(affectedPopulation * 0.45),
+                color: '#10b981',
+                description: 'Accessible mobile applications for service delivery'
+              }
+            ];
+          } else if (primaryBarrier.toLowerCase().includes('physical')) {
+            chartData = [
+              {
+                label: 'Building Accessibility Retrofits',
+                value: Math.round(affectedPopulation * 0.75),
+                color: '#ef4444',
+                description: 'Ramps, elevators, and entrance modifications'
+              },
+              {
+                label: 'Public Transit Improvements',
+                value: Math.round(affectedPopulation * 0.60),
+                color: '#f97316',
+                description: 'Accessible transportation infrastructure'
+              },
+              {
+                label: 'Community Center Upgrades',
+                value: Math.round(affectedPopulation * 0.40),
+                color: '#8b5cf6',
+                description: 'Facility modifications for accessibility'
+              }
+            ];
+          } else if (primaryBarrier.toLowerCase().includes('transportation')) {
+            chartData = [
+              {
+                label: 'Accessible Public Transit',
+                value: Math.round(affectedPopulation * 0.80),
+                color: '#06b6d4',
+                description: 'Wheelchair-accessible buses and stations'
+              },
+              {
+                label: 'Ride-Sharing Programs',
+                value: Math.round(affectedPopulation * 0.55),
+                color: '#84cc16',
+                description: 'Subsidized accessible transportation services'
+              },
+              {
+                label: 'Community Mobility Centers',
+                value: Math.round(affectedPopulation * 0.35),
+                color: '#ec4899',
+                description: 'Centralized accessible transportation hubs'
+              }
+            ];
+          } else {
+            // Default mixed barriers
+            chartData = [
+              {
+                label: 'Multimodal Accessibility Program',
+                value: Math.round(affectedPopulation * 0.70),
+                color: '#eab308',
+                description: 'Comprehensive accessibility improvements across all barriers'
+              },
+              {
+                label: 'Community Support Networks',
+                value: Math.round(affectedPopulation * 0.50),
+                color: '#3b82f6',
+                description: 'Peer support and resource navigation assistance'
+              },
+              {
+                label: 'Digital Inclusion Initiatives',
+                value: Math.round(affectedPopulation * 0.40),
+                color: '#10b981',
+                description: 'Technology access and training programs'
+              }
+            ];
+          }
+
+          // Initialize the impact chart
+          const chart = new ImpactChart('impact-chart-container', {
+            data: chartData,
+            title: `Impact Potential for ${primaryBarrier}`,
+            subtitle: `Estimated Canadian citizens who could benefit from targeted solutions`
+          });
+        });
+      </script>
 
       <!-- Action Buttons -->
       <div class="mt-8 flex space-x-4">

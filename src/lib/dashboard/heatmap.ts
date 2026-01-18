@@ -22,9 +22,11 @@ export interface HeatmapDataPoint {
 export const SERVICE_GAP_TYPES = [
   'Healthcare',
   'Transportation',
-  'Internet access',
-  'Mental health support',
-  'Disability services',
+  'Community services',
+  'Physical barriers',
+  'Transportation barriers',
+  'Digital accessibility',
+  'Economic barriers',
   'Other community resources'
 ] as const;
 
@@ -305,10 +307,20 @@ export function filterHeatmapData(
   return data.filter(point => {
     // Filter by service gap types
     if (filters.serviceGapTypes && filters.serviceGapTypes.length > 0) {
+      // Check both service_gap_types and also match against top_services_affected for more inclusive filtering
       const hasMatchingGapType = point.service_gap_types.some(gapType =>
         filters.serviceGapTypes!.includes(gapType)
       );
-      if (!hasMatchingGapType) return false;
+
+      // Also check if any top_services_affected match the filter (case insensitive)
+      const hasMatchingService = point.top_services_affected.some(service =>
+        filters.serviceGapTypes!.some(filterType =>
+          service.toLowerCase().includes(filterType.toLowerCase()) ||
+          filterType.toLowerCase().includes(service.toLowerCase())
+        )
+      );
+
+      if (!hasMatchingGapType && !hasMatchingService) return false;
     }
 
     // Filter by severity levels
