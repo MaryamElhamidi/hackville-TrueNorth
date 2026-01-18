@@ -1,11 +1,9 @@
 ---
 import { getCompanyDashboardData } from '../lib/dashboard/index.js';
-import { loadCompanies } from '../lib/company/index.js';
 import { transformMunicipalityToHeatmapData } from '../lib/dashboard/heatmap.js';
 
 const dashboardData = await getCompanyDashboardData();
 const { company, summary, municipalities, insights, topServices } = dashboardData;
-const allCompanies = loadCompanies();
 
 // Transform data for heatmap
 const heatmapData = transformMunicipalityToHeatmapData(municipalities, company ?? undefined);
@@ -16,7 +14,7 @@ if (typeof window !== 'undefined') {
 }
 ---
 
-<div class="grid grid-cols-1 2xl:grid-cols-2 gap-4 p-4">
+<div class="grid grid-cols-1 2xl:grid-cols-2 gap-4 pt-8 px-4 pb-4">
 		<!-- Company Overview Widget -->
 		<div
 			class="p-4 bg-white border border-gray-200 rounded-lg shadow-sm 2xl:col-span-2 sm:p-6 dark:border-gray-700 sm:p-6 dark:bg-gray-800"
@@ -26,27 +24,13 @@ if (typeof window !== 'undefined') {
 					<div class="flex items-center gap-3">
 						<div>
 							<span
-								class="text-xl font-bold leading-none text-gray-900 sm:text-2xl dark:text-white"
+								class="text-xl font-bold leading-none text-gray-900 sm:text-2xl dark:text-white company-name-display"
 								>{company?.companyName || 'No Company Selected'}</span
 							>
 							<h3 class="text-base font-light text-gray-500 dark:text-gray-400">
 								Accessibility Dashboard
 							</h3>
 						</div>
-						<!-- Company Selector -->
-						{allCompanies.length > 1 && (
-							<div class="relative">
-								<select
-									id="company-selector"
-									class="block w-full pl-3 pr-10 py-2 text-sm border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-									value={company?.companyId || ''}
-								>
-									{allCompanies.map((comp) => (
-										<option value={comp.companyId}>{comp.companyName}</option>
-									))}
-								</select>
-							</div>
-						)}
 					</div>
 				</div>
 				<div
@@ -203,15 +187,27 @@ if (typeof window !== 'undefined') {
 	import './DashBoard.client.ts';
 	import './DashBoard-heatmap.client.ts';
 
-	// Handle company selector change
+	// Update company name from user data on client side
+	import { getCurrentUser } from '../services/auth.js';
+	import { getCompanyById } from '../lib/company/index.js';
+
 	document.addEventListener('DOMContentLoaded', () => {
-		const companySelector = document.getElementById('company-selector');
-		if (companySelector) {
-			companySelector.addEventListener('change', () => {
-				// For demo purposes, we'll reload the page. In a real app,
-				// this would update the active company in the session/user context
-				window.location.reload();
-			});
+		const currentUser = getCurrentUser();
+		let companyName = 'No Company Selected';
+
+		if (currentUser?.company) {
+			companyName = currentUser.company.companyName;
+		} else if (currentUser?.companyId) {
+			const company = getCompanyById(currentUser.companyId);
+			if (company) {
+				companyName = company.companyName;
+			}
+		}
+
+		// Update the company name in the DOM
+		const companyNameElement = document.querySelector('.company-name-display');
+		if (companyNameElement) {
+			companyNameElement.textContent = companyName;
 		}
 	});
 </script>
