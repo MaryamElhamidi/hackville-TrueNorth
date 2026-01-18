@@ -175,16 +175,119 @@ class ServiceGapHeatmap {
       mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
 
       console.log('Creating Mapbox map...');
+      const ontarioBounds = getOntarioBounds();
+      const ontarioCenter = getOntarioCenter();
+      console.log('Ontario bounds:', ontarioBounds);
+      console.log('Ontario center:', ontarioCenter);
+
       this.map = new mapboxgl.Map({
         container: 'service-gap-map',
-        style: 'mapbox://styles/mapbox/light-v11',
-        center: getOntarioCenter(), // Ontario center
+        style: 'mapbox://styles/mapbox/outdoors-v12', // More detailed style better for Canadian geography
+        center: ontarioCenter, // Ontario center
         zoom: 6,
-        maxBounds: getOntarioBounds(), // Ontario-focused bounds
+        maxBounds: ontarioBounds, // Strict Ontario bounds - cannot pan outside
         fitBoundsOptions: {
-          padding: 50,
+          padding: 20, // Reduced padding to stay within bounds
           maxZoom: 10
-        }
+        },
+        // Strictly enforce Ontario bounds - NO BORDERING AREAS
+        minZoom: 6, // Start zoomed in to show Ontario clearly
+        maxZoom: 12,
+        // Restrict interactions to prevent viewing outside Ontario
+        boxZoom: false, // Disable box zoom to prevent edge cases
+        dragPan: true, // Allow panning but strictly within bounds
+        dragRotate: false, // No rotation
+        scrollZoom: true, // Allow zoom but respect bounds
+        touchZoomRotate: false, // No touch rotation
+        doubleClickZoom: false, // Disable double-click zoom that might go outside bounds
+        keyboard: false, // Disable keyboard navigation
+        // Force initial view to be Ontario-only
+        bearing: 0,
+        pitch: 0
+      });
+
+      // Add a mask layer to hide everything outside Ontario
+      this.map.on('load', () => {
+        // Create a polygon that covers everything EXCEPT Ontario
+        // This will make only Ontario visible
+        const boundsForMask = getOntarioBounds();
+        const maskPolygon = {
+          type: 'FeatureCollection' as const,
+          features: [{
+            type: 'Feature' as const,
+            properties: {},
+            geometry: {
+              type: 'Polygon' as const,
+              coordinates: [
+                // Outer ring (world bounds)
+                [
+                  [-180, -85],
+                  [180, -85],
+                  [180, 85],
+                  [-180, 85],
+                  [-180, -85]
+                ],
+                // Inner ring (Ontario - this creates a hole)
+                [
+                  [boundsForMask[0][0], boundsForMask[0][1]], // SW corner
+                  [boundsForMask[1][0], boundsForMask[0][1]], // SE corner
+                  [boundsForMask[1][0], boundsForMask[1][1]], // NE corner
+                  [boundsForMask[0][0], boundsForMask[1][1]], // NW corner
+                  [boundsForMask[0][0], boundsForMask[0][1]]  // Close polygon
+                ]
+              ]
+            }
+          }]
+        };
+
+        // Add the mask layer
+        this.map!.addSource('ontario-mask', {
+          type: 'geojson',
+          data: maskPolygon as GeoJSON.FeatureCollection
+        });
+
+        this.map!.addLayer({
+          id: 'ontario-mask-layer',
+          type: 'fill',
+          source: 'ontario-mask',
+          paint: {
+            'fill-color': '#ffffff',
+            'fill-opacity': 0.85
+          }
+        });
+
+        // Add a subtle border around Ontario
+        this.map!.addLayer({
+          id: 'ontario-border',
+          type: 'line',
+          source: {
+            type: 'geojson',
+            data: {
+              type: 'FeatureCollection' as const,
+              features: [{
+                type: 'Feature' as const,
+                properties: {},
+                geometry: {
+                  type: 'Polygon' as const,
+                  coordinates: [
+                    [
+                      [boundsForMask[0][0], boundsForMask[0][1]], // SW corner
+                      [boundsForMask[1][0], boundsForMask[0][1]], // SE corner
+                      [boundsForMask[1][0], boundsForMask[1][1]], // NE corner
+                      [boundsForMask[0][0], boundsForMask[1][1]], // NW corner
+                      [boundsForMask[0][0], boundsForMask[0][1]]  // Close polygon
+                    ]
+                  ]
+                }
+              }]
+            } as GeoJSON.FeatureCollection
+          },
+          paint: {
+            'line-color': '#2563eb',
+            'line-width': 2,
+            'line-opacity': 0.8
+          }
+        });
       });
 
       console.log('Map created successfully, waiting for load event...');
@@ -310,6 +413,7 @@ class ServiceGapHeatmap {
     });
   }
 
+  // eslint-disable-next-line class-methods-use-this
   private createMarkerElement(point: HeatmapDataPoint): HTMLElement {
     // Create a wrapper to isolate transform effects from Mapbox positioning
     const wrapper = document.createElement('div');

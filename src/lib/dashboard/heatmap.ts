@@ -193,11 +193,11 @@ function validateCoordinates(lat: number, lng: number): { lat: number; lng: numb
     return null;
   }
 
-  // Check if coordinates are within Ontario bounds
+  // Strict Ontario bounds validation - reject anything outside Ontario
   if (lat < ONTARIO_BOUNDS.minLat || lat > ONTARIO_BOUNDS.maxLat ||
       lng < ONTARIO_BOUNDS.minLng || lng > ONTARIO_BOUNDS.maxLng) {
-    console.warn(`Coordinates for municipality outside Ontario bounds: lat=${lat}, lng=${lng}`);
-    return null;
+    console.warn(`Coordinates for municipality outside Ontario bounds: lat=${lat}, lng=${lng}. Ontario bounds: lat ${ONTARIO_BOUNDS.minLat}-${ONTARIO_BOUNDS.maxLat}, lng ${ONTARIO_BOUNDS.minLng}-${ONTARIO_BOUNDS.maxLng}`);
+    return null; // Strictly reject non-Ontario coordinates
   }
 
   return { lat, lng };

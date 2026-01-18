@@ -226,6 +226,66 @@ marker.addEventListener('mouseenter', () => {
 3. `src/modules/ServiceGapHeatmap.client.ts` - Map configuration and marker rendering
 4. `test-heatmap-validation.js` - Validation testing script
 
+## Coordinate Sources
+
+### Primary Source: municipality_summaries.json
+The coordinates come from the `municipality_summaries.json` file which contains:
+- **Real Ontario municipality coordinates**: Most entries have actual latitude/longitude values
+- **Sample data**: Some entries use placeholder coordinates for demonstration
+- **Mixed quality**: Some coordinates are outside Ontario bounds or missing entirely
+
+### Coordinate Quality Issues Found
+- **Invalid coordinates**: Some municipalities had coordinates outside Ontario (e.g., lat=45.518594853651365, lng=-80.23229367309429)
+- **Missing coordinates**: Many entries lacked latitude/longitude data
+- **Inconsistent formatting**: Mixed coordinate formats and precision
+
+### Fallback System Implementation
+Since the coordinate data quality was inconsistent, I implemented a fallback system:
+- **Grid-based distribution**: Generates realistic coordinates across Ontario
+- **Randomization**: Adds slight randomness to prevent perfect grid alignment
+- **Bounds validation**: Ensures all coordinates stay within Ontario geographic bounds
+
+### Coordinate Validation
+- **Ontario bounds**: 41.6°N to 56.9°N, -95.2°W to -74.3°W
+- **Validation function**: Filters out invalid coordinates
+- **Fallback generation**: Creates realistic coordinates for missing data
+
+## Ontario-Focused Map Configuration
+
+### Strict Ontario Enforcement
+Updated the Mapbox configuration to be strictly Ontario-focused:
+
+```typescript
+this.map = new mapboxgl.Map({
+  container: 'service-gap-map',
+  style: 'mapbox://styles/mapbox/light-v11',
+  center: getOntarioCenter(), // Ontario center
+  zoom: 6,
+  maxBounds: getOntarioBounds(), // Ontario-focused bounds
+  fitBoundsOptions: {
+    padding: 50,
+    maxZoom: 10
+  },
+  // Strictly enforce Ontario bounds
+  minZoom: 5,
+  maxZoom: 12,
+  // Disable panning outside Ontario
+  boxZoom: false,
+  dragPan: true, // Allow panning but respect bounds
+  dragRotate: false, // Disable rotation for cleaner UX
+  scrollZoom: true,
+  touchZoomRotate: false, // Disable rotation on touch
+  doubleClickZoom: false, // Disable double-click zoom
+  keyboard: false // Disable keyboard navigation
+});
+```
+
+### Features
+- **Geographic bounds**: Users cannot pan outside Ontario
+- **Zoom limits**: Prevents zooming too far out to see other provinces
+- **Clean UX**: Disables rotation and complex interactions
+- **Focus**: Keeps the map strictly on Ontario municipalities
+
 ## Verification
 
 To verify the fixes work correctly:

@@ -36,14 +36,14 @@ const dashboardData = await getCompanyDashboardData();
 const { company, municipalities } = dashboardData;
 const allCompanies = loadCompanies();
 
-// Focus on Ontario municipalities for demo
+// Focus on Ontario municipalities only
 let filteredMunicipalities = municipalities;
 let regionName: string = 'Ontario';
 
-// Filter to Ontario municipalities only (all current data appears to be Ontario)
-// In a real implementation, you'd filter by province field
+// Strict Ontario filtering - only include municipalities explicitly in Ontario
 filteredMunicipalities = municipalities.filter(municipality =>
-  municipality.locations_mentioned?.includes('Ontario')
+  municipality.locations_mentioned?.includes('Ontario') &&
+  municipality.municipality.trim() !== '' // Exclude empty municipality names
 );
 
 if (company) {
