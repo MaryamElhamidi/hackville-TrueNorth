@@ -1,28 +1,25 @@
 import fs from 'fs';
 import path from 'path';
-
-export interface Company {
-  companyId: string;
-  companyName: string;
-  companyStage: string;
-  industry: string;
-  description: string;
-  servedCustomerTypes: string[];
-  geographicFocus: string[];
-  currentReach: string;
-  accessibilityCommitment: string;
-  languagesSupported: string[];
-  createdAt: string;
-}
+import { getCurrentUser } from '../../services/auth.js';
+import type { Company } from '../../types/entities.js';
 
 /**
- * Load all companies from the data file
+ * Load all companies from the data file and localStorage
  */
 export function loadCompanies(): Company[] {
   try {
     const companiesPath = path.join(process.cwd(), 'data', 'companies.json');
     const companiesData = fs.readFileSync(companiesPath, 'utf8');
-    return JSON.parse(companiesData) as Company[];
+    const staticCompanies = JSON.parse(companiesData) as Company[];
+
+    // Load dynamically created companies from localStorage (for client-side)
+    if (typeof window !== 'undefined') {
+      const dynamicCompaniesJson = localStorage.getItem('dynamic_companies');
+      const dynamicCompanies: Company[] = dynamicCompaniesJson ? (JSON.parse(dynamicCompaniesJson) as Company[]) : [];
+      return [...staticCompanies, ...dynamicCompanies];
+    }
+
+    return staticCompanies;
   } catch (error) {
     console.error('Error loading companies:', error);
     return [];
@@ -41,14 +38,13 @@ export function getCompanyById(companyId: string): Company | null {
  * Get the active company ID from environment/storage
  * In a demo app, this could be set via cookies or environment variables
  */
-export function getActiveCompanyId(overrideCompanyId?: string): string | null {
-  if (overrideCompanyId) return overrideCompanyId;
-
+export function getActiveCompanyId(): string | null {
   // In a real app, this would come from user session/authentication
-  // For demo purposes, check cookies or environment variable
-  // Note: Cookies are checked server-side, localStorage client-side
+  // For demo purposes, check if there's a specific company ID set
+  // You can set this via environment variable or modify this function
 
-  // Fallback to environment variable
+  // For now, return null to use the most recently created company as default
+  // In production, this would be tied to user authentication
   return process.env.ACTIVE_COMPANY_ID || null;
 }
 
@@ -56,8 +52,8 @@ export function getActiveCompanyId(overrideCompanyId?: string): string | null {
  * Get the active company
  * In a real implementation, this would be based on user authentication/session
  */
-export function getActiveCompany(overrideCompanyId?: string): Company | null {
-  const activeCompanyId = getActiveCompanyId(overrideCompanyId);
+export function getActiveCompany(): Company | null {
+  const activeCompanyId = getActiveCompanyId();
 
   if (activeCompanyId) {
     return getCompanyById(activeCompanyId);

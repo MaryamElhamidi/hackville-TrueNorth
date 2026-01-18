@@ -1,32 +1,4 @@
-Implementation Requirements
-
-Use true latitude and longitude positioning
-
-Use point-based markers, not grid or circular layouts
-
-Hover interactions must not affect marker position
-
-Ontario municipalities must appear geographically correct relative to each other
-
-Do NOT
-
-Do not claim fixes are complete without visual correctness
-
-Do not describe expected behavior unless it is implemented
-
-Do not approximate locations or cluster into artificial shapes
-
-Output
-
-Identify the root cause of the incorrect marker placement
-
-Provide corrected map rendering code
-
-Explain why the markers were appearing in a circle or stretching
-
-Confirm how hover anchoring is fixed
-
-The goal is a geographically accurate Ontario heatmap where markers stay fixed and tooltips behave correctly.---
+---
 import LayoutSidebar from '../app/LayoutSidebar.astro';
 import { getCompanyDashboardData } from '../lib/dashboard/index.js';
 import { loadCompanies } from '../lib/company/index.js';
@@ -36,32 +8,8 @@ const dashboardData = await getCompanyDashboardData();
 const { company, municipalities } = dashboardData;
 const allCompanies = loadCompanies();
 
-// Focus on Ontario municipalities only
-let filteredMunicipalities = municipalities;
-let regionName: string = 'Ontario';
-
-// Strict Ontario filtering - only include municipalities explicitly in Ontario
-filteredMunicipalities = municipalities.filter(municipality =>
-  municipality.locations_mentioned?.includes('Ontario') &&
-  municipality.municipality.trim() !== '' // Exclude empty municipality names
-);
-
-if (company) {
-  // For demo, show Ontario municipalities with Ontario region
-  // In production, you'd combine company geographic focus with province filtering
-  regionName = 'Ontario';
-
-  // Add region info to data
-  filteredMunicipalities = filteredMunicipalities.map(mun => ({ ...mun, region: regionName }));
-} else {
-  // No company selected, show Ontario municipalities
-  filteredMunicipalities = filteredMunicipalities.map(mun => ({ ...mun, region: regionName }));
-}
-
-// Transform data for heatmap
-const heatmapData = transformMunicipalityToHeatmapData(filteredMunicipalities, company ?? undefined);
-
-
+// Use same data as dashboard - all municipalities (not filtered to Ontario)
+const heatmapData = transformMunicipalityToHeatmapData(municipalities, company ?? undefined);
 ---
 
 <link href='https://api.mapbox.com/mapbox-gl-js/v3.18.0/mapbox-gl.css' rel='stylesheet' />
@@ -77,7 +25,7 @@ const heatmapData = transformMunicipalityToHeatmapData(filteredMunicipalities, c
 							Service Gap Heatmap
 						</h1>
 						<p class="text-lg text-gray-600 dark:text-gray-400 mt-2">
-							Interactive map showing accessibility service gaps across Ontario municipalities
+							Interactive map showing accessibility service gaps across Canada
 						</p>
 					</div>
 					<a

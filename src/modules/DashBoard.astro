@@ -1,23 +1,23 @@
 ---
 import { getCompanyDashboardData } from '../lib/dashboard/index.js';
-import { loadCompanies } from '../lib/company/index.js';
 import { transformMunicipalityToHeatmapData } from '../lib/dashboard/heatmap.js';
 
 const companyIdFromCookie = Astro.cookies.get('activeCompanyId')?.value;
 const dashboardData = await getCompanyDashboardData(companyIdFromCookie);
 const { company, summary, municipalities, insights, topServices } = dashboardData;
-const allCompanies = loadCompanies();
 
 // Transform data for heatmap
 const heatmapData = transformMunicipalityToHeatmapData(municipalities, company ?? undefined);
 
 // Make heatmap data available to client-side scripts
-if (typeof window !== 'undefined') {
-	(window as any).heatmapData = heatmapData;
-}
+console.log('Server-side: heatmapData length:', heatmapData.length);
+console.log('Server-side: municipalities length:', municipalities.length);
+console.log('Server-side: company:', company?.companyName);
+
+
 ---
 
-<div class="grid grid-cols-1 2xl:grid-cols-2 gap-4 p-4">
+<div class="grid grid-cols-1 2xl:grid-cols-2 gap-4 pt-8 px-4 pb-4">
 		<!-- Company Overview Widget -->
 		<div
 			class="p-4 bg-white border border-gray-200 rounded-lg shadow-sm 2xl:col-span-2 sm:p-6 dark:border-gray-700 sm:p-6 dark:bg-gray-800"
@@ -28,26 +28,12 @@ if (typeof window !== 'undefined') {
 						<div>
 							<span
 								class="text-xl font-bold leading-none text-gray-900 sm:text-2xl dark:text-white"
-								>{company?.companyName || 'Selected Company'}</span
+								>{company?.companyName || 'No Company Selected'}</span
 							>
 							<h3 class="text-base font-light text-gray-500 dark:text-gray-400">
 								Accessibility Dashboard
 							</h3>
 						</div>
-						<!-- Company Selector -->
-						{allCompanies.length > 1 && (
-							<div class="relative">
-								<select
-									id="company-selector"
-									class="block w-full pl-3 pr-10 py-2 text-sm border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-									value={company?.companyId || ''}
-								>
-									{allCompanies.map((comp) => (
-										<option value={comp.companyId}>{comp.companyName}</option>
-									))}
-								</select>
-							</div>
-						)}
 					</div>
 				</div>
 				<div
@@ -200,20 +186,27 @@ if (typeof window !== 'undefined') {
 		</div>
 </div>
 
+<script define:vars={{ heatmapData, municipalities }}>
+	// Set heatmap data on window for client-side scripts
+	window.heatmapData = heatmapData;
+	window.originalMunicipalities = municipalities;
+	window.allCompanies = [{ companyId: 'default', companyName: 'Demo Company', geographicFocus: ['Nationwide'], industry: 'Other' }];
+</script>
+
 <script>
 	import './DashBoard.client.ts';
 	import './DashBoard-heatmap.client.ts';
 
-	// Handle company selector change
+	// Update company name from user data on client side
+	import { getCurrentUser } from '../services/auth.js';
+	import { getCompanyById } from '../lib/company/index.js';
+
 	document.addEventListener('DOMContentLoaded', () => {
 		const companySelector = document.getElementById('company-selector');
 		if (companySelector) {
 			companySelector.addEventListener('change', () => {
-				// @ts-ignore
-				const selectedCompanyId = companySelector.value;
-				// Store the selected company ID in a cookie
-				document.cookie = `activeCompanyId=${selectedCompanyId}; path=/; max-age=31536000`; // 1 year expiry
-				// Reload the page to reflect the change
+				// For demo purposes, we'll reload the page. In a real app,
+				// this would update the active company in the session/user context
 				window.location.reload();
 			});
 		}

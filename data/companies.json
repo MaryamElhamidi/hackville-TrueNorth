@@ -1,10 +1,10 @@
 [
   {
     "companyId": "19afde19-8cbe-4ad6-9631-c0ff98896189",
-    "companyName": "Test Company Inc.",
+    "companyName": "AccessPath Technologies",
     "companyStage": "early",
     "industry": "Technology",
-    "description": "We provide innovative solutions for accessibility challenges.",
+    "description": "AccessPath builds digital accessibility tools that help organizations identify and remediate barriers in websites, online forms, and customer portals. Our mission is to improve equitable access to digital services for Canadians with disabilities and limited digital literacy.",
     "servedCustomerTypes": [
       "individuals",
       "small_businesses",
@@ -28,11 +28,10 @@
     "companyId": "14aa6565-d12b-4669-af90-f525f69a5018",
     "companyName": "Sheridan Student Union",
     "companyStage": "idea",
-    "industry": "Other",
-    "description": "My company is selling roasted coffee beans, and is trying to help provide cheaper alternatives.",
+    "industry": "Education",
+    "description": "The Sheridan Student Union provides advocacy, services, and programming for post-secondary students. The organization aims to improve access to essential student resources such as food security programs, mental health supports, and affordable transportation.",
     "servedCustomerTypes": [
       "individuals",
-      "small_businesses",
       "non_profits"
     ],
     "geographicFocus": [
@@ -49,8 +48,8 @@
     "companyId": "d59e8a3a-9643-4945-ade3-168874bcc7fd",
     "companyName": "Xatoms",
     "companyStage": "early",
-    "industry": "Technology",
-    "description": "Xatoms develops affordable water treatment solutions that help communities access clean drinking water. Our focus is on supporting municipalities and nonprofits serving underserved populations.",
+    "industry": "Clean Technology",
+    "description": "Xatoms develops affordable and scalable water treatment solutions designed to improve access to safe drinking water. The company partners with municipalities and nonprofit organizations serving underserved and remote communities with aging water infrastructure.",
     "servedCustomerTypes": [
       "individuals",
       "non_profits",
@@ -68,10 +67,10 @@
   },
   {
     "companyId": "4d584e76-9641-41c5-b9e3-8b2dac8c2f58",
-    "companyName": "Maryammy Inc. Coffee",
+    "companyName": "Maryammy Coffee Co.",
     "companyStage": "idea",
-    "industry": "Other",
-    "description": "I roast coffee beans at a low price from my house. ",
+    "industry": "Food & Beverage",
+    "description": "Maryammy Coffee Co. is a small-scale coffee roasting initiative focused on providing affordable, ethically sourced coffee to local communities. The business aims to reduce cost barriers for individuals and community organizations while supporting inclusive local commerce.",
     "servedCustomerTypes": [
       "individuals",
       "small_businesses",
@@ -86,24 +85,5 @@
       "English"
     ],
     "createdAt": "2026-01-18T00:48:55.308Z"
-  },
-  {
-    "companyId": "3cb1e04e-a03e-424f-8b39-43c3acafc47a",
-    "companyName": "Ahmed Coffee",
-    "companyStage": "idea",
-    "industry": "Finance",
-    "description": "Making coffee roaster more accessible for Canadians.",
-    "servedCustomerTypes": [
-      "individuals"
-    ],
-    "geographicFocus": [
-      "Ontario"
-    ],
-    "currentReach": "pilot_users",
-    "accessibilityCommitment": "intentional",
-    "languagesSupported": [
-      "English"
-    ],
-    "createdAt": "2026-01-18T02:57:17.778Z"
   }
 ]

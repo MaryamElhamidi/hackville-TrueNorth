@@ -27,7 +27,7 @@ if (company && municipality) {
 }
 ---
 
-<LayoutSidebar title={`${municipality} - Service Gap Analysis`}>
+<LayoutSidebar title={`${municipality || 'Unknown Municipality'} - Service Gap Analysis`}>
   <div class="px-4 pt-6 bg-gray-50 dark:bg-gray-900 min-h-screen">
     <div class="max-w-4xl mx-auto">
       <!-- Header -->
@@ -77,36 +77,159 @@ if (company && municipality) {
             const title = lines[0] || '';
             const content = lines.slice(1).join('\n');
 
-            {title.toLowerCase().includes('urgency level') ? (
-              (() => {
-                const urgencyMatch = content.match(/(Red|Orange|Green)/i);
-                const urgencyColor = urgencyMatch ?
-                  (urgencyMatch[1].toLowerCase() === 'red' ? 'bg-red-100 text-red-800 border-red-200' :
-                   urgencyMatch[1].toLowerCase() === 'orange' ? 'bg-orange-100 text-orange-800 border-orange-200' :
-                   'bg-green-100 text-green-800 border-green-200') : 'bg-gray-100 text-gray-800 border-gray-200';
+            if (title.toLowerCase().includes('urgency level')) {
+              const urgencyMatch = content.match(/(Red|Orange|Green)/i);
+              const urgencyColor = urgencyMatch ?
+                (urgencyMatch[1].toLowerCase() === 'red' ? 'bg-red-100 text-red-800 border-red-200' :
+                 urgencyMatch[1].toLowerCase() === 'orange' ? 'bg-orange-100 text-orange-800 border-orange-200' :
+                 'bg-green-100 text-green-800 border-green-200') : 'bg-gray-100 text-gray-800 border-gray-200';
 
-                return (
-                  <div class={`border-l-4 p-4 rounded-r-md ${urgencyColor}`}>
-                    <h3 class="text-lg font-semibold mb-2">{title}</h3>
-                    <div class="prose prose-sm max-w-none dark:prose-invert">
-                      {content}
-                    </div>
-                  </div>
-                );
-              })()
-            ) : (
-              <div class="bg-white dark:bg-gray-800 overflow-hidden shadow rounded-lg">
-                <div class="px-4 py-5 sm:p-6">
-                  <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                    {title}
-                  </h3>
-                  <div class="prose prose-sm max-w-none text-gray-700 dark:text-gray-300 dark:prose-invert">
+              return (
+                <div class={`border-l-4 p-4 rounded-r-md ${urgencyColor}`}>
+                  <h3 class="text-lg font-semibold mb-2">{title}</h3>
+                  <div class="prose prose-sm max-w-none dark:prose-invert">
                     {content}
                   </div>
                 </div>
-              </div>
-            )}
+              );
+            } else {
+              return (
+                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow rounded-lg">
+                  <div class="px-4 py-5 sm:p-6">
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+                      {title}
+                    </h3>
+                    <div class="prose prose-sm max-w-none text-gray-700 dark:text-gray-300 dark:prose-invert">
+                      {content}
+                    </div>
+                  </div>
+                </div>
+              );
+            }
           })}
+        </div>
+
+        <!-- Service Gap Solutions -->
+        <div class="bg-white dark:bg-gray-800 overflow-hidden shadow rounded-lg">
+          <div class="px-4 py-5 sm:p-6">
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-6">
+              Recommended Solutions
+            </h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <!-- Most Impactful Solution - Highlighted -->
+              <div class="relative">
+                <div class="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                  <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 border-2 border-yellow-300">
+                    <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd" />
+                    </svg>
+                    Most Impactful
+                  </span>
+                </div>
+                <div class="border-2 border-yellow-300 bg-gradient-to-br from-yellow-50 to-orange-50 dark:from-yellow-900/20 dark:to-orange-900/20 rounded-lg p-6 shadow-lg">
+                  <div class="flex items-center mb-4">
+                    <div class="flex-shrink-0">
+                      <div class="w-10 h-10 bg-yellow-500 rounded-full flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                      </div>
+                    </div>
+                    <div class="ml-4">
+                      <h4 class="text-lg font-semibold text-gray-900 dark:text-white">
+                        Digital Accessibility Audit
+                      </h4>
+                      <p class="text-sm text-gray-600 dark:text-gray-400">
+                        Comprehensive assessment & modernization
+                      </p>
+                    </div>
+                  </div>
+                  <p class="text-sm text-gray-700 dark:text-gray-300 mb-4">
+                    Conduct a full digital accessibility audit of municipal websites and online services, followed by targeted improvements to ensure compliance with WCAG guidelines.
+                  </p>
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs font-medium text-yellow-700 dark:text-yellow-300 bg-yellow-100 dark:bg-yellow-900/50 px-2 py-1 rounded">
+                      High Priority
+                    </span>
+                    <span class="text-sm font-semibold text-yellow-800 dark:text-yellow-200">
+                      ~$25K - $50K
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Solution 2 -->
+              <div class="bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-6 shadow">
+                <div class="flex items-center mb-4">
+                  <div class="flex-shrink-0">
+                    <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center">
+                      <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V7M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="ml-4">
+                    <h4 class="text-lg font-semibold text-gray-900 dark:text-white">
+                      Community Outreach Program
+                    </h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">
+                      Targeted community engagement
+                    </p>
+                  </div>
+                </div>
+                <p class="text-sm text-gray-700 dark:text-gray-300 mb-4">
+                  Develop targeted outreach programs to connect residents with existing services and resources they may not be aware of.
+                </p>
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-medium text-blue-700 dark:text-blue-300 bg-blue-100 dark:bg-blue-900/50 px-2 py-1 rounded">
+                    Medium Priority
+                  </span>
+                  <span class="text-sm font-semibold text-gray-900 dark:text-gray-100">
+                    ~$15K - $30K
+                  </span>
+                </div>
+              </div>
+
+              <!-- Solution 3 -->
+              <div class="bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-6 shadow">
+                <div class="flex items-center mb-4">
+                  <div class="flex-shrink-0">
+                    <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">
+                      <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="ml-4">
+                    <h4 class="text-lg font-semibold text-gray-900 dark:text-white">
+                      Partnership Development
+                    </h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">
+                      Collaborate with external organizations
+                    </p>
+                  </div>
+                </div>
+                <p class="text-sm text-gray-700 dark:text-gray-300 mb-4">
+                  Establish partnerships with community organizations, NGOs, and private sector companies to expand service offerings.
+                </p>
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-medium text-green-700 dark:text-green-300 bg-green-100 dark:bg-green-900/50 px-2 py-1 rounded">
+                    Medium Priority
+                  </span>
+                  <span class="text-sm font-semibold text-gray-900 dark:text-gray-100">
+                    ~$10K - $20K
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-6 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+              <p class="text-sm text-gray-600 dark:text-gray-400">
+                <strong>Note:</strong> These recommendations are tailored based on the municipality's specific accessibility gaps and your company's geographic focus and industry. Contact our support team for detailed implementation plans and cost estimates.
+              </p>
+            </div>
+          </div>
         </div>
       )}
 
