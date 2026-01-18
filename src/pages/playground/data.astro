@@ -3,11 +3,18 @@
 
 import Code from 'astro/components/Code.astro';
 import LayoutSidebar from '../../app/LayoutSidebar.astro';
-import { getUsers, getProducts } from '../../services/index.js';
+import fs from 'fs';
+import path from 'path';
 
-const products = JSON.stringify(getProducts(), null, 2);
+// Load only the specified files
+const companiesPath = path.join(process.cwd(), 'data', 'companies.json');
+const companies = JSON.stringify(JSON.parse(fs.readFileSync(companiesPath, 'utf8')), null, 2);
 
-const users = JSON.stringify(getUsers(), null, 2);
+const concernsPath = path.join(process.cwd(), 'detected_community_concerns.json');
+const concerns = JSON.stringify(JSON.parse(fs.readFileSync(concernsPath, 'utf8')), null, 2);
+
+const summariesPath = path.join(process.cwd(), 'municipality_summaries.json');
+const summaries = JSON.stringify(JSON.parse(fs.readFileSync(summariesPath, 'utf8')), null, 2);
 ---
 
 <LayoutSidebar class="bg-slate-800 text-slate-100">
@@ -27,18 +34,18 @@ const users = JSON.stringify(getUsers(), null, 2);
 		</div>
 
 		<div class="mb-16">
-			<a href="/api/products" target="_blank">
-				<h1 class="text-6xl font-bold mb-8 dark:text-slate-100">Products</h1>
-			</a>
-
-			<Code code={products} lang="json" />
+			<h1 class="text-6xl font-bold mb-8 dark:text-slate-100">Companies</h1>
+			<Code code={companies} lang="json" />
 		</div>
-		<div class="mb-16">
-			<a href="/api/users" target="_blank">
-				<h1 class="text-6xl font-bold mb-8 dark:text-slate-100">Users</h1>
-			</a>
 
-			<Code code={users} lang="json" />
+		<div class="mb-16">
+			<h1 class="text-6xl font-bold mb-8 dark:text-slate-100">Community Concerns</h1>
+			<Code code={concerns} lang="json" />
+		</div>
+
+		<div class="mb-16">
+			<h1 class="text-6xl font-bold mb-8 dark:text-slate-100">Municipality Summaries</h1>
+			<Code code={summaries} lang="json" />
 		</div>
 	</div>
 </LayoutSidebar>
