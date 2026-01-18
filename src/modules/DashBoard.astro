@@ -357,7 +357,7 @@ console.log('Server-side: company:', company?.companyName);
 	import { getCompanyById } from '../lib/company/index.js';
 
 	// Toggle functions for municipalities dropdown
-	function toggleMunicipalitiesDropdown() {
+	(window as any).toggleMunicipalitiesDropdown = function() {
 		const content = document.getElementById('municipalities-content');
 		const arrow = document.getElementById('municipalities-dropdown-arrow');
 		if (content && arrow) {
@@ -370,9 +370,9 @@ console.log('Server-side: company:', company?.companyName);
 				arrow.classList.remove('rotate-180');
 			}
 		}
-	}
+	};
 
-	function toggleCard(cardId) {
+	(window as any).toggleCard = function(cardId) {
 		const content = document.getElementById(cardId + '-content');
 		const arrow = document.getElementById(cardId + '-arrow');
 		if (content && arrow) {
@@ -385,9 +385,7 @@ console.log('Server-side: company:', company?.companyName);
 				arrow.classList.remove('rotate-180');
 			}
 		}
-	}
-
-	// Functions are global in script scope
+	};
 
 	document.addEventListener('DOMContentLoaded', () => {
 		const currentUser = getCurrentUser();
@@ -411,7 +409,7 @@ console.log('Server-side: company:', company?.companyName);
 		// Add event listener for municipalities dropdown
 		const dropdownToggle = document.getElementById('municipalities-dropdown-toggle');
 		if (dropdownToggle) {
-			dropdownToggle.addEventListener('click', toggleMunicipalitiesDropdown);
+			dropdownToggle.addEventListener('click', window.toggleMunicipalitiesDropdown);
 		}
 	});
 </script>
